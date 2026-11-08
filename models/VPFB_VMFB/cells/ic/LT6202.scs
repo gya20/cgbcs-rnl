@@ -2,7 +2,7 @@ simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-vpfb-vmfb", version="1.0", path="../../symbols.rnl") }
 
 subckt L2_TM_REF_LT6202 (p n o bias g)
-parameters a0=100k fu=99.9M ro=3.98 fo=2036 f2=1.481M ew=1.9n vos=0
+parameters a0=100k fu=99.9M ro=4.2263 fo=1023.48 f2=2.6741M rz=557.893 ew=1.9n vos=0
 Xn (pn p g) L4_TM_COMMON_NOISE ew=ew
 Eos (pi pn bias g) vcvs gain=vos
 Gerr (g x pi n) vccs gm=a0/1M
@@ -13,8 +13,8 @@ R2 (u y) resistor r=1k isnoisy=no
 C2 (y g) capacitor c=1/(6.283185307*1k*f2)
 Ebuf (b g y g) vcvs gain=1
 Ro (b z) resistor r=ro isnoisy=no
-Rz (z o) resistor r=300 isnoisy=no
-Cz (z o) capacitor c=1/(6.283185307*300*fo)
+Rz (z o) resistor r=rz isnoisy=no
+Cz (z o) capacitor c=1/(6.283185307*rz*fo)
 // @RNL {
 //   #Xn @PLACE(0, 0);
 //   #Eos @PLACE(16, 0) => @ORIENT("R270");
@@ -36,7 +36,7 @@ Cz (z o) capacitor c=1/(6.283185307*300*fo)
 //   #Ro @PLACE(122, 4);
 //   (122, 5.45) @TEXT("Ro  ro", size=0.76, halign="middle");
 //   #Rz @PLACE(141, 4);
-//   (141, 5.45) @TEXT("Rz  300", size=0.76, halign="middle");
+//   (141, 5.45) @TEXT("Rz  rz", size=0.76, halign="middle");
 //   #Cz @PLACE(141, 12);
 //   (141, 13.45) @TEXT("Cz  C(eq)", size=0.76, halign="middle");
 //   %port_p = $IO_PORT @ATTACH &p => @PLACE(-12,0) => @ORIENT("R0");

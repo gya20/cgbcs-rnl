@@ -2,7 +2,7 @@ simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-vpfb-vmfb", version="1.0", path="../symbols.rnl") }
 
 subckt L1_TM_REF_REF_CH (ref bias pad die g)
-parameters rt=240 rofast=3.98 fo=2036 f2=1.481M ceff=220u lb=2n cpin=2p
+parameters rt=240 rofast=4.2263 fo=1023.48 f2=2.6741M rz=557.893 esrb=2m eslb=0.1n ceff=220u lb=2n cpin=2p
 Rt (ref div) L5_TM_COMMON_RES r=rt
 Rb (div g) L5_TM_COMMON_RES r=10k
 Rset (div set) L5_TM_COMMON_RES r=4.99k
@@ -10,12 +10,12 @@ Cset (set g) L5_TM_COMMON_CAP c=10u np=2 esr=40m esl=1n rleak=2T
 X_ADA4522 (set ns servo bias g) L2_TM_REF_ADA4522
 Rs (pad ns) L5_TM_COMMON_RES r=1k
 Cs (ns servo) L5_TM_COMMON_CAP c=100n esr=30m esl=0.25n
-X_LT6202 (servo nf drive bias g) L2_TM_REF_LT6202 ro=rofast fo=fo f2=f2
+X_LT6202 (servo nf drive bias g) L2_TM_REF_LT6202 ro=rofast rz=rz fo=fo f2=f2
 Rf (pad nf) L5_TM_COMMON_RES r=100
 Rh (nf nc) L5_TM_COMMON_RES r=20k
 Ch (nc drive) L5_TM_COMMON_CAP c=4.7n esr=30m esl=0.25n
 Riso (drive pad) L5_TM_COMMON_RES r=1
-Xbulk (pad g) L5_TM_COMMON_CAP c=22u np=12 kc=ceff/(12*22u) esr=24m esl=1.2n
+Xbulk (pad g) L5_TM_COMMON_CAP c=22u np=12 kc=ceff/(12*22u) esr=12*esrb esl=12*eslb
 Xhf (snub g) L5_TM_COMMON_CAP c=100n esr=10m esl=0.1n
 Xbond (pad die g) L4_TM_COMMON_LINE rs=50m le=lb
 Cpin (die g) capacitor c=cpin
