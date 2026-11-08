@@ -1,8 +1,9 @@
 simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-pvre", version="1.0", path="../symbols.rnl") }
+
 subckt L0_TM_PVRE_CARD_ONLY (cmop dac1 dac2 bias buf1 card1 plug1 buf2 card2 plug2 g)
 parameters ccard=100u len1=76.2 len2=82.96 sq1=42.86 sq2=46.66 cum=35 rreturn=5m lmm=0.5n cmm=0.12p rcontact=10m lcontact=1n rneck=2m lneck=1n lcap=0.7n esr=10m rin=1k edac=0 ecm=0
-Xcm (cm cmop g) L4_TM_PVRE_NOISE ew=ecm
+Xcm (cm cmop g) L4_TM_COMMON_NOISE ew=ecm
 Xch1 (cm dac1 bias buf1 card1 plug1 g) L2_TM_PVRE_CARD_CHANNEL rin=rin edac=edac ccard=ccard lenmm=len1 ratiosq=sq1 cum=cum rreturn=rreturn lmm=lmm cmm=cmm rcontact=rcontact lcontact=lcontact rneck=rneck lneck=lneck lcap=lcap esr=esr
 Xch2 (cm dac2 bias buf2 card2 plug2 g) L2_TM_PVRE_CARD_CHANNEL rin=rin edac=edac ccard=ccard lenmm=len2 ratiosq=sq2 cum=cum rreturn=rreturn lmm=lmm cmm=cmm rcontact=rcontact lcontact=lcontact rneck=rneck lneck=lneck lcap=lcap esr=esr
 // @RNL {

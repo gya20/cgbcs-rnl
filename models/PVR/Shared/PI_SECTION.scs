@@ -1,0 +1,35 @@
+simulator lang=spectre
+// @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-pvr", version="1.0", path="../symbols.rnl") }
+
+subckt L4_TM_COMMON_PI_SECTION (p q g)
+parameters rr=5m ll=5n cc=1p
+C1 (p g) capacitor c=cc/2
+Xline (p q g) L4_TM_COMMON_LINE rs=rr le=ll
+C2 (q g) capacitor c=cc/2
+// @RNL {
+//   #C1 @PLACE(-14, -7) => @ORIENT("R270");
+//   (-12.5, -7) @TEXT("C1  cc/2", size=0.76, halign="start");
+//   #Xline @PLACE(0, 0);
+//   #C2 @PLACE(14, -7) => @ORIENT("R270");
+//   (15.5, -7) @TEXT("C2  cc/2", size=0.76, halign="start");
+//   %j1 = (-14, 0);
+//   $JUNCTION @ATTACH %j1;
+//   %j2 = (14, 0);
+//   $JUNCTION @ATTACH %j2;
+//   %port_p = $IO_PORT @ATTACH &p => @PLACE(-21,0) => @ORIENT("R0");
+//   &p @WIRE(mode="straight") {%port_p:p %j1 #Xline:1};
+//   %port_q = $IO_PORT @ATTACH &q => @PLACE(21,0) => @ORIENT("R180");
+//   &q @WIRE(mode="straight") {#Xline:2 %j2 %port_q:p};
+//   &p @WIRE(mode="straight") {%j1 #C1:1};
+//   &q @WIRE(mode="straight") {%j2 #C2:1};
+//   %ground3 = $GROUND @ATTACH &g => @PLACE(-14,-13);
+//   &g @WIRE(mode="straight") {#C1:2 %ground3:p};
+//   %ground4 = $GROUND @ATTACH &g => @PLACE(14,-13);
+//   &g @WIRE(mode="straight") {#C2:2 %ground4:p};
+//   %ground5 = $GROUND @ATTACH &g => @PLACE(0,-8);
+//   &g @WIRE(mode="straight") {#Xline:3 %ground5:p};
+//   %port_g = $IO_PORT @ATTACH &g => @PLACE(-23,-15) => @ORIENT("R0");
+//   %common = $GROUND @ATTACH &g => @PLACE(-20,-17);
+//   &g @WIRE(mode="straight") {%port_g:p (-20, -15) %common:p}
+// }
+ends L4_TM_COMMON_PI_SECTION

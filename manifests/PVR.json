@@ -20,69 +20,69 @@
   "entry": "top.scs",
   "files": [
     {
-      "path": "cells/basic/LINE.scs",
-      "sha256": "2283ee8548f5818a33b17aa69abd6d9784e81df5483e7023179f88177bee220a",
-      "size": 1910
-    },
-    {
-      "path": "cells/basic/NOISE.scs",
-      "sha256": "17983b5de8a1b162bfb2af6a744cbd3ea14b78872fb33669423a27521defb9d6",
-      "size": 1269
-    },
-    {
-      "path": "cells/basic/PI_SECTION.scs",
-      "sha256": "24bee196a9a95f5a3a4bef3998b7e0d998eb9a272e31d8b810ff891afaf463fe",
-      "size": 1525
-    },
-    {
       "path": "cells/ic/LT3042.scs",
-      "sha256": "5a2ee4d9f802a8edf409dce0e5c41c899308285269a08983035fd735d7259702",
-      "size": 2650
+      "sha256": "1c0ae6b9988749a80e3cede1a032215a5eeaa6dacf4800e10345eae13485580f",
+      "size": 2654
     },
     {
-      "path": "cells/ic/LTC2972_SET.scs",
-      "sha256": "b3fffdc7345ce770e3e8098ccf1a70a9616119599813456d5272a0b4758648ba",
-      "size": 1110
+      "path": "Shared/CAP.scs",
+      "sha256": "6ea05c90ab6f97fb60155e0fc3a081ee4ce81cf0c6f1b8e5ee37791d11f65775",
+      "size": 3512
+    },
+    {
+      "path": "Shared/CARD_PCB.scs",
+      "sha256": "49b5163c34152fcb7e651055b7fdd94affda6f1b2e8034b2c2c0e31971e9ece1",
+      "size": 2934
+    },
+    {
+      "path": "Shared/LINE.scs",
+      "sha256": "6cf09b11814106f94d7e28f4f7075be30ed83a722de360f628afd31124e879bf",
+      "size": 1914
+    },
+    {
+      "path": "Shared/LTC2972_SET.scs",
+      "sha256": "0e14ddf550bbf57d2230a8a170b9d30e63c1b19527a9497c969a455fff0be511",
+      "size": 1117
+    },
+    {
+      "path": "Shared/NOISE.scs",
+      "sha256": "368f66e1c9c4df80e5422dccd5af11f1db5d45e5917e45ef63943fedfe165add",
+      "size": 1273
+    },
+    {
+      "path": "Shared/PI_SECTION.scs",
+      "sha256": "35da9f59ad848b11b47055ab8c0347610af5899958b59ff5ad484e8cd46590e5",
+      "size": 1532
+    },
+    {
+      "path": "Shared/RES.scs",
+      "sha256": "809e61d88b54ed0ba06a0f051bb98e31440b7dd36b9c58bfb40e954ca7dea2f6",
+      "size": 2660
     },
     {
       "path": "stages/CARD_CHANNEL.scs",
-      "sha256": "09f83c6b424165eca88531380d300756eea7649c15fd30dc5608e49bc31a4f7e",
-      "size": 2177
+      "sha256": "087652cb559462c9de262f6a4b5e7d5d26f17ebeded8ee21f7f31ab504c1ee33",
+      "size": 2405
     },
     {
       "path": "stages/CARD_ONLY.scs",
-      "sha256": "74b45127d26c54af010731c7d45608e6754e34c12f78b6eb880e8a05865521bb",
-      "size": 2822
-    },
-    {
-      "path": "stages/input/PVR_SET.scs",
-      "sha256": "d14fe91ed93a30266ad10ce9a89bd8b65b687978d20d8b9264f50a9bb6413508",
-      "size": 854
-    },
-    {
-      "path": "stages/output/CARD_PATH.scs",
-      "sha256": "d00aaabeae5d1a5b861c04ea58c08287ff7611b6482f2961d2cfd686db205d9b",
-      "size": 1409
-    },
-    {
-      "path": "stages/output/CARD_PCB.scs",
-      "sha256": "d0fb8fa9bb2d449f25c7b0910c1e845b0c7f8e4c0c146ba0ad9c95721423b5ff",
-      "size": 3147
+      "sha256": "104e8831787e1778366d09e0c72f4c1aff1b3efe6d5593dd84c0f0933054038a",
+      "size": 2823
     },
     {
       "path": "stages/PVR_CH.scs",
-      "sha256": "99a70aeefd4e5561aa57ab9ce3390ed1f20b610e48d3dbc670fb54f523bb324a",
-      "size": 1803
+      "sha256": "93d9b978da87787a3328902885a8154766947f61e29229995f8efa0f1544817d",
+      "size": 2401
     },
     {
       "path": "symbols.rnl",
-      "sha256": "54f2e61ba1cf4f6390da44e0bed6a39f0ec396a57fd262ed6271df04624f8182",
-      "size": 17684
+      "sha256": "4938cc48599eedabbed3c5083ae9fda3b09bf6a056e79df20f198f78b68a6ded",
+      "size": 16672
     },
     {
       "path": "top.scs",
-      "sha256": "34f6590c029b65c0e38efdede60780fb4c544df85b472a87f202cc43397ab032",
-      "size": 3476
+      "sha256": "18bdb21c68d98d05a5bec26cfcb9213494f14bb4765732b2bbfc0c8d2e1f36f9",
+      "size": 3429
     }
   ],
   "pool": [

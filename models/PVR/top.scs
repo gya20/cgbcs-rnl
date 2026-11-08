@@ -1,16 +1,16 @@
 simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-pvr", version="1.0", path="symbols.rnl") }
-include "cells/basic/NOISE.scs"
-include "cells/ic/LTC2972_SET.scs"
-include "stages/input/PVR_SET.scs"
+include "Shared/NOISE.scs"
+include "Shared/LTC2972_SET.scs"
+include "Shared/RES.scs"
 include "cells/ic/LT3042.scs"
-include "cells/basic/LINE.scs"
-include "cells/basic/PI_SECTION.scs"
-include "stages/output/CARD_PCB.scs"
+include "Shared/CAP.scs"
+include "Shared/LINE.scs"
+include "Shared/PI_SECTION.scs"
+include "Shared/CARD_PCB.scs"
 include "stages/CARD_CHANNEL.scs"
-include "stages/output/CARD_PATH.scs"
-include "stages/PVR_CH.scs"
 include "stages/CARD_ONLY.scs"
+include "stages/PVR_CH.scs"
 
 subckt L0_TM_PVR_PVR (cmd1 cmd2 bias buf1 card1 pad1 die1 buf2 card2 pad2 die2 g)
 parameters ccard=100u len1=27.5 len2=44.37 sq1=18.29 sq2=29.11 cum=35 rreturn=5m lmm=0.5n cmm=0.12p rcontact=10m lcontact=1n rneck=2m lneck=1n lcap=0.7n esr=10m ecmd=0 cpad=11.1u

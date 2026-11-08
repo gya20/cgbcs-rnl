@@ -1,13 +1,14 @@
 simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-pvre", version="1.0", path="../symbols.rnl") }
+
 subckt L2_TM_PVRE_CARD_CHANNEL (cm dac bias buf card plug g)
 parameters rin=1k edac=0 ccard=100u ratiosq=42.86 lenmm=76.2 cum=35 rreturn=5m lmm=0.5n cmm=0.12p rcontact=10m lcontact=1n rneck=2m lneck=1n lcap=0.7n esr=10m
-Xdn (dac d g) L3_TM_PVRE_LTC2972_SET ecmd=edac
-Rin (d sum) resistor r=rin
-Rf (buf sum) resistor r=3k
-Cf (buf sum) capacitor c=10n
+Xdn (dac d g) L3_TM_COMMON_LTC2972_SET ecmd=edac
+Rin (d sum) L5_TM_COMMON_RES r=rin
+Rf (buf sum) L5_TM_COMMON_RES r=3k
+Cf (buf sum) L5_TM_COMMON_CAP c=10n esr=30m esl=0.25n
 X_LT1355 (cm sum buf bias g) L3_TM_PVRE_LT1355
-Xpcb (buf card plug g) L3_TM_PVRE_CARD_PCB ccard=ccard ratiosq=ratiosq lenmm=lenmm cum=cum rreturn=rreturn lmm=lmm cmm=cmm rcontact=rcontact lcontact=lcontact rneck=rneck lneck=lneck lcap=lcap esr=esr
+Xpcb (buf card plug g) L3_TM_COMMON_CARD_PCB ccard=ccard ratiosq=ratiosq lenmm=lenmm cum=cum rreturn=rreturn lmm=lmm cmm=cmm rcontact=rcontact lcontact=lcontact rneck=rneck lneck=lneck lcap=lcap esr=esr
 // @RNL {
 //   #Xdn @PLACE(-38, 2);
 //   #Rin @PLACE(-19, 2);

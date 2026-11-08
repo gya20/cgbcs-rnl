@@ -1,8 +1,9 @@
 simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-pvre", version="1.0", path="../../symbols.rnl") }
+
 subckt L3_TM_PVRE_LT1355 (p n o bias g)
 parameters a0=100k fu=12M ro=10 ew=10n vos=0
-Xn (pn p g) L4_TM_PVRE_NOISE ew=ew
+Xn (pn p g) L4_TM_COMMON_NOISE ew=ew
 Eos (pi pn bias g) vcvs gain=vos
 Gerr (g x pi n) vccs gm=a0/1M
 Rd (x g) resistor r=1M isnoisy=no

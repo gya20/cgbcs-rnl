@@ -1,33 +1,64 @@
 simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-vpfb-vmfb", version="1.0", path="../../symbols.rnl") }
+
 subckt L2_TM_REF_LTC6655B (vin bias ref g)
 parameters vnom=2.048 errppm=0 ew=39n fc=1 ro=10m
 Eref (b g bias g) vcvs gain=vnom*(1+errppm*1u)
-Xlf (bl b g) L3_TM_REF_REF_NOISE en=ew fc=fc
-Xn (bn bl g) L4_TM_REF_NOISE ew=ew
+X1 (n1 b g) L4_TM_REF_NOISE_DECADE fj=1*0.001 en=ew fc=fc
+X2 (n2 n1 g) L4_TM_REF_NOISE_DECADE fj=1*0.01 en=ew fc=fc
+X3 (n3 n2 g) L4_TM_REF_NOISE_DECADE fj=1*0.1 en=ew fc=fc
+X4 (n4 n3 g) L4_TM_REF_NOISE_DECADE fj=1*1 en=ew fc=fc
+X5 (n5 n4 g) L4_TM_REF_NOISE_DECADE fj=1*10 en=ew fc=fc
+X6 (n6 n5 g) L4_TM_REF_NOISE_DECADE fj=1*100 en=ew fc=fc
+X7 (bl n6 g) L4_TM_REF_NOISE_DECADE fj=1*1000 en=ew fc=fc
+Xn (bn bl g) L4_TM_COMMON_NOISE ew=ew
 Ro (bn ref) resistor r=ro isnoisy=no
 // @RNL {
 //   #Eref @PLACE(0, 0);
 //   (2.4, 1.4) @TEXT("Eref  vnom*(1+errppm*1u)", size=0.76, halign="start");
-//   #Xlf @PLACE(16, 4);
-//   #Xn @PLACE(32, 4);
-//   #Ro @PLACE(47, 4);
-//   (47, 5.45) @TEXT("Ro  ro", size=0.76, halign="middle");
+//   #X1 @PLACE(20, 4);
+//   #X2 @PLACE(35, 4);
+//   #X3 @PLACE(50, 4);
+//   #X4 @PLACE(65, 4);
+//   #X5 @PLACE(80, 4);
+//   #X6 @PLACE(95, 4);
+//   #X7 @PLACE(110, 4);
+//   #Xn @PLACE(125, 4);
+//   #Ro @PLACE(138, 4);
+//   (138, 5.45) @TEXT("Ro  ro", size=0.76, halign="middle");
 //   %io_vin = $IO_PORT @ATTACH &vin => @PLACE(-16, -22);
 //   %io_bias = $IO_PORT @ATTACH &bias => @PLACE(-10, 1) => @ORIENT("R0");
 //   &bias @WIRE(mode="straight") {%io_bias:p #Eref:3};
-//   %io_ref = $IO_PORT @ATTACH &ref => @PLACE(56, 4) => @ORIENT("R180");
+//   %io_ref = $IO_PORT @ATTACH &ref => @PLACE(147, 4) => @ORIENT("R180");
 //   &ref @WIRE(mode="straight") {%io_ref:p #Ro:2};
 //   %io_g = $IO_PORT @ATTACH &g => @PLACE(0, -9) => @ORIENT("R90");
 //   &g @WIRE(mode="straight") {%io_g:p #Eref:2};
-//   &b @WIRE(mode="straight") {#Eref:1 (0, 5) (9, 5) (9, 4) #Xlf:2};
-//   &bl @WIRE(mode="straight") {#Xlf:1 #Xn:2};
+//   &b @WIRE(mode="straight") {#Eref:1 (0, 5) (13, 5) (13, 4) #X1:2};
+//   &n1 @WIRE(mode="straight") {#X1:1 #X2:2};
+//   &n2 @WIRE(mode="straight") {#X2:1 #X3:2};
+//   &n3 @WIRE(mode="straight") {#X3:1 #X4:2};
+//   &n4 @WIRE(mode="straight") {#X4:1 #X5:2};
+//   &n5 @WIRE(mode="straight") {#X5:1 #X6:2};
+//   &n6 @WIRE(mode="straight") {#X6:1 #X7:2};
+//   &bl @WIRE(mode="straight") {#X7:1 #Xn:2};
 //   &bn @WIRE(mode="straight") {#Xn:1 #Ro:1};
 //   %ground0 = $GROUND @ATTACH &g => @PLACE(-6, -1);
 //   &g @WIRE(mode="straight") {#Eref:4 %ground0:p};
-//   %ground1 = $GROUND @ATTACH &g => @PLACE(16, -2);
-//   &g @WIRE(mode="straight") {#Xlf:3 %ground1:p};
-//   %ground2 = $GROUND @ATTACH &g => @PLACE(32, -2);
-//   &g @WIRE(mode="straight") {#Xn:3 %ground2:p}
+//   %ground1 = $GROUND @ATTACH &g => @PLACE(20, -2);
+//   &g @WIRE(mode="straight") {#X1:3 %ground1:p};
+//   %ground2 = $GROUND @ATTACH &g => @PLACE(35, -2);
+//   &g @WIRE(mode="straight") {#X2:3 %ground2:p};
+//   %ground3 = $GROUND @ATTACH &g => @PLACE(50, -2);
+//   &g @WIRE(mode="straight") {#X3:3 %ground3:p};
+//   %ground4 = $GROUND @ATTACH &g => @PLACE(65, -2);
+//   &g @WIRE(mode="straight") {#X4:3 %ground4:p};
+//   %ground5 = $GROUND @ATTACH &g => @PLACE(80, -2);
+//   &g @WIRE(mode="straight") {#X5:3 %ground5:p};
+//   %ground6 = $GROUND @ATTACH &g => @PLACE(95, -2);
+//   &g @WIRE(mode="straight") {#X6:3 %ground6:p};
+//   %ground7 = $GROUND @ATTACH &g => @PLACE(110, -2);
+//   &g @WIRE(mode="straight") {#X7:3 %ground7:p};
+//   %ground8 = $GROUND @ATTACH &g => @PLACE(125, -2);
+//   &g @WIRE(mode="straight") {#Xn:3 %ground8:p}
 // }
 ends L2_TM_REF_LTC6655B

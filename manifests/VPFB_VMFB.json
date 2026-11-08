@@ -20,94 +20,69 @@
   "entry": "top.scs",
   "files": [
     {
-      "path": "cells/basic/AMP.scs",
-      "sha256": "6813f1ab18b4ed89286ca7de80e8e5aad9f7553621e193bf626759153d914406",
-      "size": 4054
-    },
-    {
-      "path": "cells/basic/CAPBR.scs",
-      "sha256": "9ca9dfd79d95ff944151b38b13d2866b4cc49de22045aaddfc268ccd87277b74",
-      "size": 856
-    },
-    {
-      "path": "cells/basic/LINE.scs",
-      "sha256": "54d62a73df2147f662d77759fafd74a6460fd55964c315c58b4218574bf48611",
-      "size": 1916
-    },
-    {
-      "path": "cells/basic/NOISE.scs",
-      "sha256": "9db88af8df567bf05460fc09453023ded84a707dbfa3b1619ae9461396243309",
-      "size": 1275
-    },
-    {
       "path": "cells/basic/NOISE_DECADE.scs",
-      "sha256": "449caaf4c32d40f60a8db1fb1748f9ef6f272b81ad001d7a6c5519283102dd7f",
-      "size": 1401
+      "sha256": "37c7f0ad0721de23a5124123bd8fa209bb365d21165a0268a55dfcb2bf140271",
+      "size": 1402
     },
     {
       "path": "cells/basic/NOISE_POLE.scs",
-      "sha256": "86d9e74b71a76e8ae80778131e4d0ba9e85f90cedd06ecc410457e8136ae799e",
-      "size": 1663
-    },
-    {
-      "path": "cells/basic/REF_NOISE.scs",
-      "sha256": "00f0e3a6ee07a97b42e732e4e772656bb9e29d9694d470c7c9dec2f25016cb50",
-      "size": 2135
+      "sha256": "66ddd29cee615836e2cd1577d7dfe00aa1b04f8a474b6a7ef027a6d538a1e8df",
+      "size": 1664
     },
     {
       "path": "cells/ic/ADA4522.scs",
-      "sha256": "a91b8a46b48aa96c158771bed7f1e5bea7f6a00dfbe81a9f98db578597ce27a8",
-      "size": 4055
+      "sha256": "d061fffc8488ddfc23b83fecbb6415da900ae747832623c3449bb9d1429b17f3",
+      "size": 4059
     },
     {
       "path": "cells/ic/LT6202.scs",
-      "sha256": "6608f438aa81eef10c8cbb1f7e81874f36954bae18ea7256558dbd2807b97f07",
-      "size": 1700
+      "sha256": "2ca6e7663091c7fd6bbb0e4666173468be240eb6ae8a4a271eef9915bfcfc446",
+      "size": 4595
     },
     {
       "path": "cells/ic/LTC6655B.scs",
-      "sha256": "d86b4e701c510ce1c9f435788377e6191429fc34bdc9812fa54bec57cd0e7f23",
-      "size": 1594
+      "sha256": "70606fe8356930686f9fcfe4475c27f2851a62a1dc7fd1583c97830a05530b9d",
+      "size": 3013
     },
     {
-      "path": "stages/driver/FAST.scs",
-      "sha256": "0238241537c586f81f0022e544ab6c50f9fb9e958e2c20d3bc05212d3452fa43",
-      "size": 1930
+      "path": "Shared/CAP.scs",
+      "sha256": "aafeab613c685d1a00f6005b600f9113841c803205e6df9c17c033f7005c6f2d",
+      "size": 3518
     },
     {
-      "path": "stages/driver/SERVO.scs",
-      "sha256": "84d536052c878ddc05c7e8ef70e5a33cfde6dc00463c9f42101d7ff28816f90b",
-      "size": 1695
+      "path": "Shared/LINE.scs",
+      "sha256": "882bf479b4637febec1796e6470af4fbcfe80f3c34701d426934312a1995ad32",
+      "size": 1920
+    },
+    {
+      "path": "Shared/NOISE.scs",
+      "sha256": "7d367b86f032ebe319e29ba48288066f9bd1194d0dbf488f7fdab1a0b0354c65",
+      "size": 1279
+    },
+    {
+      "path": "Shared/RES.scs",
+      "sha256": "f218ddecce3be47b4b41e4ef374622a82e820f75cc40b81d511b10806122bbae",
+      "size": 2666
     },
     {
       "path": "stages/input/REF_INPUT.scs",
-      "sha256": "c08deb2aeef93f057c7e2beee3818c84951b425fbb5ef122d26bf2b23ab41e55",
-      "size": 2181
-    },
-    {
-      "path": "stages/input/REF_SET.scs",
-      "sha256": "606ba70472ac787e827706b73b3da95fc460726903e3341009cd07333df82673",
-      "size": 1955
-    },
-    {
-      "path": "stages/output/REF_PATH.scs",
-      "sha256": "636c94ff5c6d67e8befcd9d3f87488ec1f6c2856c623d7fa2bb8c8b8d45bae7a",
-      "size": 1855
+      "sha256": "f841bee6fd37119c758c7d6349dc46cec3d81c233b37ffe87c531bf7827384c8",
+      "size": 2288
     },
     {
       "path": "stages/REF_CH.scs",
-      "sha256": "1c6651c5251a073f6d6057647c281a3681a07c25ef86fabc7e168ca6c232d747",
-      "size": 6522
+      "sha256": "85ce1ddbc451786d33a8986346ede637b84cb4fd9090d52b8f8a82fe1d01a8fa",
+      "size": 6550
     },
     {
       "path": "symbols.rnl",
-      "sha256": "f8c7a3001cf5f671ff1b69c007e9d48bdf53a960ac4a48a0ffef710e1c114d3b",
-      "size": 19842
+      "sha256": "1ae57b16db4622d92c9d17ead056bfe5f128c2b697382a1114007b888db8fef6",
+      "size": 13684
     },
     {
       "path": "top.scs",
-      "sha256": "0429e05bacc8bfe5b4583e4d920000c6e0223ac263964a78bba3330c60b73691",
-      "size": 3020
+      "sha256": "b58447f32a9b0304b4ef58c0d404044717ef171345d6161545fc4cedcc0a1d3d",
+      "size": 3398
     }
   ],
   "pool": [

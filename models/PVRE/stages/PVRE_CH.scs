@@ -1,12 +1,18 @@
 simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-pvre", version="1.0", path="../symbols.rnl") }
+
 subckt L1_TM_PVRE_PVRE_CH (cm dac bias buf card pad die g)
 parameters rin=1k edac=0 ccard=100u cpad=1p ratiosq=42.86 lenmm=76.2 cum=35 rreturn=5m lmm=0.5n cmm=0.12p rcontact=10m lcontact=1n rneck=2m lneck=1n lcap=0.7n esr=10m
 Xcard (cm dac bias buf card plug g) L2_TM_PVRE_CARD_CHANNEL rin=rin edac=edac ccard=ccard ratiosq=ratiosq lenmm=lenmm cum=cum rreturn=rreturn lmm=lmm cmm=cmm rcontact=rcontact lcontact=lcontact rneck=rneck lneck=lneck lcap=lcap esr=esr
-Xport (plug pad die g) L2_TM_PVRE_CARD_PATH cpad=cpad
+Xfeed (plug pad g) L4_TM_COMMON_LINE rs=20m le=1n
+Cboard (pad g) capacitor c=cpad
+Xbond (pad die g) L4_TM_COMMON_LINE rs=50m le=2n
 // @RNL {
 //   #Xcard @PLACE(0, 0);
-//   #Xport @PLACE(35, 0);
+//   #Xfeed @PLACE(35, -4);
+//   #Cboard @PLACE(50, -12) => @ORIENT("R270");
+//   (51.5, -12) @TEXT("Cboard  cpad", size=0.76, halign="start");
+//   #Xbond @PLACE(64, -4);
 //   %io_cm = $IO_PORT @ATTACH &cm => @PLACE(-21, 2) => @ORIENT("R0");
 //   &cm @WIRE(mode="straight") {%io_cm:p #Xcard:1};
 //   %io_dac = $IO_PORT @ATTACH &dac => @PLACE(-21, -2) => @ORIENT("R0");
@@ -17,14 +23,20 @@ Xport (plug pad die g) L2_TM_PVRE_CARD_PATH cpad=cpad
 //   &buf @WIRE(mode="straight") {%io_buf:p #Xcard:4};
 //   %io_card = $IO_PORT @ATTACH &card => @PLACE(21, 0) => @ORIENT("R180");
 //   &card @WIRE(mode="straight") {%io_card:p #Xcard:5};
-//   %io_pad = $IO_PORT @ATTACH &pad => @PLACE(49, 2) => @ORIENT("R180");
-//   &pad @WIRE(mode="straight") {%io_pad:p #Xport:2};
-//   %io_die = $IO_PORT @ATTACH &die => @PLACE(49, -2) => @ORIENT("R180");
-//   &die @WIRE(mode="straight") {%io_die:p #Xport:3};
+//   %io_pad = $IO_PORT @ATTACH &pad => @PLACE(49, -4) => @ORIENT("R180");
+//   &pad @WIRE(mode="straight") {%io_pad:p #Xfeed:2};
+//   %io_die = $IO_PORT @ATTACH &die => @PLACE(78, -4) => @ORIENT("R180");
+//   &die @WIRE(mode="straight") {%io_die:p #Xbond:2};
 //   %io_g = $IO_PORT @ATTACH &g => @PLACE(5, -14) => @ORIENT("R90");
 //   &g @WIRE(mode="straight") {%io_g:p #Xcard:7};
-//   &plug @WIRE(mode="straight") {#Xcard:6 (25, -4) (25, 0) #Xport:1};
-//   %ground0 = $GROUND @ATTACH &g => @PLACE(35, -7);
-//   &g @WIRE(mode="straight") {#Xport:4 %ground0:p}
+//   &plug @WIRE(mode="straight") {#Xcard:6 #Xfeed:1};
+//   &pad @WIRE(mode="straight") {#Xfeed:2 (50, -4) #Cboard:1};
+//   &pad @WIRE(mode="straight") {#Cboard:1 (50, -7) (54, -7) (54, -4) #Xbond:1};
+//   %ground0 = $GROUND @ATTACH &g => @PLACE(35, -11);
+//   &g @WIRE(mode="straight") {#Xfeed:3 %ground0:p};
+//   %ground1 = $GROUND @ATTACH &g => @PLACE(50, -17);
+//   &g @WIRE(mode="straight") {#Cboard:2 %ground1:p};
+//   %ground2 = $GROUND @ATTACH &g => @PLACE(64, -11);
+//   &g @WIRE(mode="straight") {#Xbond:3 %ground2:p}
 // }
 ends L1_TM_PVRE_PVRE_CH

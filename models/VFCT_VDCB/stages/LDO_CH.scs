@@ -1,34 +1,84 @@
 simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-vfct-vdcb", version="1.0", path="../symbols.rnl") }
-subckt L1_TM_LDO_LDO_CH (vin bias out pad die g)
+
+subckt L1_TM_LDO_LDO_CH (vin bias out pad die g setret)
 parameters rt=20k iset=100u rreg=50m
-Xset (vin bias set localin g) L2_TM_LDO_LDO_SET rt=rt
+Rin (vin localin) L5_TM_COMMON_RES r=1
+Cin (localin g) L5_TM_COMMON_CAP c=22u esr=20m esl=0.5n
+Chf (localin g) L5_TM_COMMON_CAP c=100n
+Rset (set setret) L5_TM_COMMON_RES r=rt
+Cset (set g) L5_TM_COMMON_CAP c=4.7u esr=20m esl=0.5n
 Xreg (localin set out bias g) L2_TM_LDO_LT3042 rreg=rreg iset=iset
-XPath (out pad die g) L2_TM_LDO_LDO_PATH
+CoutBulk (out g) L5_TM_COMMON_CAP c=22u esr=10m esl=0.5n
+CoutHF (out g) L5_TM_COMMON_CAP c=100n esr=30m esl=0.25n
+Xfeed (out pad g) L4_TM_COMMON_LINE rs=20m le=1n
+CpadBulk (pad g) L5_TM_COMMON_CAP c=22u esr=10m esl=0.5n
+CpadHF (pad g) L5_TM_COMMON_CAP c=100n esr=30m esl=0.25n
+Xbond (pad die g) L4_TM_COMMON_LINE rs=50m le=2n
 // @RNL {
-//   #Xset @PLACE(0, 0);
-//   #Xreg @PLACE(32, 0);
-//   #XPath @PLACE(62, 0);
-//   %io_vin = $IO_PORT @ATTACH &vin => @PLACE(-16, 0) => @ORIENT("R0");
-//   &vin @WIRE(mode="straight") {%io_vin:p #Xset:1};
-//   %io_bias = $IO_PORT @ATTACH &bias => @PLACE(-3, -11) => @ORIENT("R90");
-//   &bias @WIRE(mode="straight") {%io_bias:p #Xset:2};
-//   %io_out = $IO_PORT @ATTACH &out => @PLACE(48, 0) => @ORIENT("R180");
+//   #Rin @PLACE(-25, 3);
+//   (-25, 4.45) @TEXT("Rin  1", size=0.76, halign="middle");
+//   #Cin @PLACE(-16, -6) => @ORIENT("R270");
+//   (-14.5, -6) @TEXT("Cin  22u", size=0.76, halign="start");
+//   #Chf @PLACE(-5, -6) => @ORIENT("R270");
+//   (-3.5, -6) @TEXT("Chf  100n", size=0.76, halign="start");
+//   #Rset @PLACE(8, -17) => @ORIENT("R270");
+//   (9.5, -17) @TEXT("Rset  rt", size=0.76, halign="start");
+//   #Cset @PLACE(20, -17) => @ORIENT("R270");
+//   (21.5, -17) @TEXT("Cset  4.7u", size=0.76, halign="start");
+//   #Xreg @PLACE(37, 1);
+//   #CoutBulk @PLACE(56, -8) => @ORIENT("R270");
+//   (57.5, -8) @TEXT("CoutBulk  22u", size=0.76, halign="start");
+//   #CoutHF @PLACE(67, -8) => @ORIENT("R270");
+//   (68.5, -8) @TEXT("CoutHF  100n", size=0.76, halign="start");
+//   #Xfeed @PLACE(84, 1);
+//   #CpadBulk @PLACE(100, -8) => @ORIENT("R270");
+//   (101.5, -8) @TEXT("CpadBulk  22u", size=0.76, halign="start");
+//   #CpadHF @PLACE(112, -8) => @ORIENT("R270");
+//   (113.5, -8) @TEXT("CpadHF  100n", size=0.76, halign="start");
+//   #Xbond @PLACE(128, 1);
+//   %io_vin = $IO_PORT @ATTACH &vin => @PLACE(-34, 3) => @ORIENT("R0");
+//   &vin @WIRE(mode="straight") {%io_vin:p #Rin:1};
+//   %io_bias = $IO_PORT @ATTACH &bias => @PLACE(34, -10) => @ORIENT("R90");
+//   &bias @WIRE(mode="straight") {%io_bias:p #Xreg:4};
+//   %io_out = $IO_PORT @ATTACH &out => @PLACE(53, 1) => @ORIENT("R180");
 //   &out @WIRE(mode="straight") {%io_out:p #Xreg:3};
-//   %io_pad = $IO_PORT @ATTACH &pad => @PLACE(76, 2) => @ORIENT("R180");
-//   &pad @WIRE(mode="straight") {%io_pad:p #XPath:2};
-//   %io_die = $IO_PORT @ATTACH &die => @PLACE(76, -2) => @ORIENT("R180");
-//   &die @WIRE(mode="straight") {%io_die:p #XPath:3};
-//   %io_g = $IO_PORT @ATTACH &g => @PLACE(3, -11) => @ORIENT("R90");
-//   &g @WIRE(mode="straight") {%io_g:p #Xset:5};
-//   &set @WIRE(mode="straight") {#Xset:3 (20, 1) (20, -1) #Xreg:2};
-//   &localin @WIRE(mode="straight") {#Xset:4 (12, -1) (12, -2) (21, -2) (21, 1) #Xreg:1};
-//   &out @WIRE(mode="straight") {#Xreg:3 #XPath:1};
-//   &bias @WIRE(mode="straight") {#Xreg:4 (29, -7)};
-//   (29, -8) @TEXT("bias", size=0.7, halign="middle", valign="middle");
-//   %ground0 = $GROUND @ATTACH &g => @PLACE(35, -7);
-//   &g @WIRE(mode="straight") {#Xreg:5 %ground0:p};
-//   %ground1 = $GROUND @ATTACH &g => @PLACE(62, -7);
-//   &g @WIRE(mode="straight") {#XPath:4 %ground1:p}
+//   %io_pad = $IO_PORT @ATTACH &pad => @PLACE(98, 1) => @ORIENT("R180");
+//   &pad @WIRE(mode="straight") {%io_pad:p #Xfeed:2};
+//   %io_die = $IO_PORT @ATTACH &die => @PLACE(142, 1) => @ORIENT("R180");
+//   &die @WIRE(mode="straight") {%io_die:p #Xbond:2};
+//   %io_g = $IO_PORT @ATTACH &g => @PLACE(-16, -15) => @ORIENT("R90");
+//   &g @WIRE(mode="straight") {%io_g:p #Cin:2};
+//   %io_setret = $IO_PORT @ATTACH &setret => @PLACE(8, -26) => @ORIENT("R90");
+//   &setret @WIRE(mode="straight") {%io_setret:p #Rset:2};
+//   &set @WIRE(mode="straight") {#Rset:1 (8, -12) (20, -12) #Cset:1};
+//   &set @WIRE(mode="straight") {#Cset:1 (20, 0) #Xreg:2};
+//   &localin @WIRE(mode="straight") {#Rin:2 (-16, 3) #Cin:1};
+//   &localin @WIRE(mode="straight") {#Cin:1 (-16, -1) (-5, -1) #Chf:1};
+//   &localin @WIRE(mode="straight") {#Chf:1 (-5, 2) #Xreg:1};
+//   &out @WIRE(mode="straight") {#Xreg:3 (56, 1) #CoutBulk:1};
+//   &out @WIRE(mode="straight") {#CoutBulk:1 (56, -3) (67, -3) #CoutHF:1};
+//   &out @WIRE(mode="straight") {#CoutHF:1 (67, -3) (74, -3) (74, 1) #Xfeed:1};
+//   &pad @WIRE(mode="straight") {#Xfeed:2 (100, 1) #CpadBulk:1};
+//   &pad @WIRE(mode="straight") {#CpadBulk:1 (100, -3) (112, -3) #CpadHF:1};
+//   &pad @WIRE(mode="straight") {#CpadHF:1 (112, -3) (118, -3) (118, 1) #Xbond:1};
+//   %ground0 = $GROUND @ATTACH &g => @PLACE(-5, -11);
+//   &g @WIRE(mode="straight") {#Chf:2 %ground0:p};
+//   %ground1 = $GROUND @ATTACH &g => @PLACE(20, -22);
+//   &g @WIRE(mode="straight") {#Cset:2 %ground1:p};
+//   %ground2 = $GROUND @ATTACH &g => @PLACE(40, -6);
+//   &g @WIRE(mode="straight") {#Xreg:5 %ground2:p};
+//   %ground3 = $GROUND @ATTACH &g => @PLACE(56, -13);
+//   &g @WIRE(mode="straight") {#CoutBulk:2 %ground3:p};
+//   %ground4 = $GROUND @ATTACH &g => @PLACE(67, -13);
+//   &g @WIRE(mode="straight") {#CoutHF:2 %ground4:p};
+//   %ground5 = $GROUND @ATTACH &g => @PLACE(84, -6);
+//   &g @WIRE(mode="straight") {#Xfeed:3 %ground5:p};
+//   %ground6 = $GROUND @ATTACH &g => @PLACE(100, -13);
+//   &g @WIRE(mode="straight") {#CpadBulk:2 %ground6:p};
+//   %ground7 = $GROUND @ATTACH &g => @PLACE(112, -13);
+//   &g @WIRE(mode="straight") {#CpadHF:2 %ground7:p};
+//   %ground8 = $GROUND @ATTACH &g => @PLACE(128, -6);
+//   &g @WIRE(mode="straight") {#Xbond:3 %ground8:p}
 // }
 ends L1_TM_LDO_LDO_CH

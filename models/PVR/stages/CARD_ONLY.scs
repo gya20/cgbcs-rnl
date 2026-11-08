@@ -1,5 +1,6 @@
 simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-pvr", version="1.0", path="../symbols.rnl") }
+
 subckt L0_TM_PVR_CARD_ONLY (cmd1 cmd2 bias buf1 card1 plug1 buf2 card2 plug2 g)
 parameters ccard=100u len1=27.5 len2=44.37 sq1=18.29 sq2=29.11 cum=35 rreturn=5m lmm=0.5n cmm=0.12p rcontact=10m lcontact=1n rneck=2m lneck=1n lcap=0.7n esr=10m ecmd=0
 Xch1 (cmd1 bias buf1 card1 plug1 g) L2_TM_PVR_CARD_CHANNEL ecmd=ecmd ccard=ccard lenmm=len1 ratiosq=sq1 cum=cum rreturn=rreturn lmm=lmm cmm=cmm rcontact=rcontact lcontact=lcontact rneck=rneck lneck=lneck lcap=lcap esr=esr

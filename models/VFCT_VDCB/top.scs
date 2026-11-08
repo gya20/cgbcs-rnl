@@ -1,21 +1,22 @@
 simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-vfct-vdcb", version="1.0", path="symbols.rnl") }
-include "stages/input/LDO_SET.scs"
-include "cells/basic/NOISE.scs"
+include "Shared/RES.scs"
+include "Shared/CAP.scs"
+include "Shared/NOISE.scs"
 include "cells/ic/LT3042.scs"
-include "cells/basic/LINE.scs"
-include "cells/basic/CAPBR.scs"
-include "stages/output/DECOUPLE.scs"
-include "stages/output/LDO_PATH.scs"
+include "Shared/LINE.scs"
 include "stages/LDO_CH.scs"
 
 subckt L0_TM_LDO_LDO (vin bias outcb padcb diecb outfct padfct diefct g)
-parameters rcb=20k rfct=21k
-Xcb (vin bias outcb padcb diecb g) L1_TM_LDO_LDO_CH rt=rcb
-Xfct (vin bias outfct padfct diefct g) L1_TM_LDO_LDO_CH rt=rfct
+parameters rcb=20k rfct=21k rtrim=1k
+Xcb (vin bias outcb padcb diecb g g) L1_TM_LDO_LDO_CH rt=rcb
+Xfct (vin bias outfct padfct diefct g trim) L1_TM_LDO_LDO_CH rt=rfct-rtrim
+Rtrim (trim g) L5_TM_COMMON_RES r=rtrim
 // @RNL {
 //   #Xcb @PLACE(0, 19);
 //   #Xfct @PLACE(0, -19);
+//   #Rtrim @PLACE(12, -38) => @ORIENT("R270");
+//   (13.5, -38) @TEXT("Rtrim  rtrim", size=0.76, halign="start");
 //   (0, 31) @TEXT("VDCB  /  2.0 V", size=1.24, halign="middle", valign="middle");
 //   (0, -7) @TEXT("VFCT  /  2.1 V", size=1.24, halign="middle", valign="middle");
 //   %j1 = (-20, 0);
@@ -40,13 +41,18 @@ Xfct (vin bias outfct padfct diefct g) L1_TM_LDO_LDO_CH rt=rfct
 //   &g @WIRE(mode="straight") {#Xcb:6 %j2 %port_g:p};
 //   %return = $GROUND @ATTACH &g => @PLACE(5,7);
 //   &g @WIRE(mode="straight") {%j2 %return:p};
-//   %ground3 = $GROUND @ATTACH &g => @PLACE(5,-29);
-//   &g @WIRE(mode="straight") {#Xfct:6 %ground3:p};
+//   %ground3 = $GROUND @ATTACH &g => @PLACE(12,9);
+//   &g @WIRE(mode="straight") {#Xcb:7 %ground3:p};
+//   %ground4 = $GROUND @ATTACH &g => @PLACE(5,-29);
+//   &g @WIRE(mode="straight") {#Xfct:6 %ground4:p};
+//   %ground5 = $GROUND @ATTACH &g => @PLACE(12,-43);
+//   &g @WIRE(mode="straight") {#Rtrim:2 %ground5:p};
 //   %port_outfct = $IO_PORT @ATTACH &outfct => @PLACE(22,-15) => @ORIENT("R180");
 //   &outfct @WIRE(mode="straight") {%port_outfct:p #Xfct:3};
 //   %port_padfct = $IO_PORT @ATTACH &padfct => @PLACE(22,-19) => @ORIENT("R180");
 //   &padfct @WIRE(mode="straight") {%port_padfct:p #Xfct:4};
 //   %port_diefct = $IO_PORT @ATTACH &diefct => @PLACE(22,-23) => @ORIENT("R180");
-//   &diefct @WIRE(mode="straight") {%port_diefct:p #Xfct:5}
+//   &diefct @WIRE(mode="straight") {%port_diefct:p #Xfct:5};
+//   &trim @WIRE(mode="straight") {#Xfct:7 #Rtrim:1}
 // }
 ends L0_TM_LDO_LDO

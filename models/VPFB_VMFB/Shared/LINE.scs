@@ -1,0 +1,41 @@
+simulator lang=spectre
+// @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-vpfb-vmfb", version="1.0", path="../symbols.rnl") }
+
+subckt L4_TM_COMMON_LINE (a b g)
+parameters rs=50m le=2n
+Rwire (a t) resistor r=rs
+Gs (g h t b) vccs gm=0.1
+Cx (h g) capacitor c=le*0.01
+Rx (h g) resistor r=1T isnoisy=no
+Gi (t b h g) vccs gm=0.1
+// @RNL {
+//   #Rwire @PLACE(0, 0);
+//   (0, 1.45) @TEXT("Rwire  rs", size=0.76, halign="middle");
+//   #Gs @PLACE(15, -4);
+//   (17.4, -2.6) @TEXT("Gs  0.1", size=0.76, halign="start");
+//   #Cx @PLACE(26, -4) => @ORIENT("R270");
+//   (27.5, -4) @TEXT("Cx  le*0.01", size=0.76, halign="start");
+//   #Rx @PLACE(36, -4) => @ORIENT("R270");
+//   (37.5, -4) @TEXT("Rx  1T", size=0.76, halign="start");
+//   #Gi @PLACE(52, 0);
+//   (54.4, 1.4) @TEXT("Gi  0.1", size=0.76, halign="start");
+//   %io_a = $IO_PORT @ATTACH &a => @PLACE(-9, 0) => @ORIENT("R0");
+//   &a @WIRE(mode="straight") {%io_a:p #Rwire:1};
+//   %io_b = $IO_PORT @ATTACH &b => @PLACE(5, -5) => @ORIENT("R0");
+//   &b @WIRE(mode="straight") {%io_b:p #Gs:4};
+//   %io_g = $IO_PORT @ATTACH &g => @PLACE(15, 5) => @ORIENT("R270");
+//   &g @WIRE(mode="straight") {%io_g:p #Gs:1};
+//   &b @WIRE(mode="straight") {#Gs:4 (9, -5) (9, -8) (52, -8) #Gi:2};
+//   &t @WIRE(mode="straight") {#Rwire:2 (9, 0) (9, -3) #Gs:3};
+//   &t @WIRE(mode="straight") {#Gs:3 (9, -3) (9, 6) (52, 6) #Gi:1};
+//   &h @WIRE(mode="straight") {#Gs:2 (15, -9) (23, -9) (23, 1) (26, 1) #Cx:1};
+//   &h @WIRE(mode="straight") {#Cx:1 (26, 1) (36, 1) #Rx:1};
+//   &h @WIRE(mode="straight") {#Rx:1 (36, 1) #Gi:3};
+//   %ground0 = $GROUND @ATTACH &g => @PLACE(26, -9);
+//   &g @WIRE(mode="straight") {#Cx:2 %ground0:p};
+//   %ground1 = $GROUND @ATTACH &g => @PLACE(36, -9);
+//   &g @WIRE(mode="straight") {#Rx:2 %ground1:p};
+//   %ground2 = $GROUND @ATTACH &g => @PLACE(46, -1);
+//   &g @WIRE(mode="straight") {#Gi:4 %ground2:p}
+// }
+ends L4_TM_COMMON_LINE

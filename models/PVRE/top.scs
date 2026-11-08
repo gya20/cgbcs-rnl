@@ -1,21 +1,20 @@
 simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-pvre", version="1.0", path="symbols.rnl") }
-include "cells/basic/NOISE.scs"
-include "cells/ic/LTC2972_SET.scs"
-include "cells/basic/AMP.scs"
+include "Shared/NOISE.scs"
+include "Shared/LTC2972_SET.scs"
+include "Shared/RES.scs"
+include "Shared/CAP.scs"
 include "cells/ic/LT1355.scs"
-include "stages/driver/PVRE_DRV.scs"
-include "cells/basic/LINE.scs"
-include "cells/basic/PI_SECTION.scs"
-include "stages/output/CARD_PCB.scs"
+include "Shared/LINE.scs"
+include "Shared/PI_SECTION.scs"
+include "Shared/CARD_PCB.scs"
 include "stages/CARD_CHANNEL.scs"
-include "stages/output/CARD_PATH.scs"
-include "stages/PVRE_CH.scs"
 include "stages/CARD_ONLY.scs"
+include "stages/PVRE_CH.scs"
 
 subckt L0_TM_PVRE_PVRE (cmop dac1 dac2 bias buf1 card1 pad1 die1 buf2 card2 pad2 die2 g)
 parameters ccard=100u len1=76.2 len2=82.96 sq1=42.86 sq2=46.66 cum=35 rreturn=5m lmm=0.5n cmm=0.12p rcontact=10m lcontact=1n rneck=2m lneck=1n lcap=0.7n esr=10m rin=1k edac=0 ecm=0 cpad=1p
-Xcm (cm cmop g) L4_TM_PVRE_NOISE ew=ecm
+Xcm (cm cmop g) L4_TM_COMMON_NOISE ew=ecm
 Xch1 (cm dac1 bias buf1 card1 pad1 die1 g) L1_TM_PVRE_PVRE_CH rin=rin edac=edac ccard=ccard lenmm=len1 ratiosq=sq1 cum=cum rreturn=rreturn lmm=lmm cmm=cmm rcontact=rcontact lcontact=lcontact rneck=rneck lneck=lneck lcap=lcap esr=esr cpad=cpad
 Xch2 (cm dac2 bias buf2 card2 pad2 die2 g) L1_TM_PVRE_PVRE_CH rin=rin edac=edac ccard=ccard lenmm=len2 ratiosq=sq2 cum=cum rreturn=rreturn lmm=lmm cmm=cmm rcontact=rcontact lcontact=lcontact rneck=rneck lneck=lneck lcap=lcap esr=esr cpad=cpad
 // @RNL {

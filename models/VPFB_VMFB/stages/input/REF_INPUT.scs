@@ -1,12 +1,13 @@
 simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-vpfb-vmfb", version="1.0", path="../../symbols.rnl") }
+
 subckt L1_TM_REF_REF_INPUT (vin bias ref g)
-Rs (vin vf) resistor r=10
-Cin (vf g) capacitor c=10u
-Ch (vf g) capacitor c=100n
+Rs (vin vf) L5_TM_COMMON_RES r=10
+Cin (vf g) L5_TM_COMMON_CAP c=10u esr=20m esl=0.5n
+Ch (vf g) L5_TM_COMMON_CAP c=100n esr=30m esl=0.25n
 Xu1 (vf bias ref g) L2_TM_REF_LTC6655B
-Co (ref g) capacitor c=10u
-Coh (ref g) capacitor c=100n
+Co (ref g) L5_TM_COMMON_CAP c=10u esr=20m esl=0.5n
+Coh (ref g) L5_TM_COMMON_CAP c=100n esr=30m esl=0.25n
 // @RNL {
 //   #Rs @PLACE(0, 0);
 //   (0, 1.45) @TEXT("Rs  10", size=0.76, halign="middle");

@@ -1,12 +1,18 @@
 simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-pvr", version="1.0", path="../symbols.rnl") }
+
 subckt L1_TM_PVR_PVR_CH (cmd bias buf card pad die g)
 parameters ecmd=0 ccard=100u cpad=11.1u ratiosq=18.29 lenmm=27.5 cum=35 rreturn=5m lmm=0.5n cmm=0.12p rcontact=10m lcontact=1n rneck=2m lneck=1n lcap=0.7n esr=10m
 Xcard (cmd bias buf card plug g) L2_TM_PVR_CARD_CHANNEL ecmd=ecmd ccard=ccard ratiosq=ratiosq lenmm=lenmm cum=cum rreturn=rreturn lmm=lmm cmm=cmm rcontact=rcontact lcontact=lcontact rneck=rneck lneck=lneck lcap=lcap esr=esr
-Xport (plug pad die g) L2_TM_PVR_CARD_PATH cpad=cpad
+Xfeed (plug pad g) L4_TM_COMMON_LINE rs=20m le=1n
+Cboard (pad g) L5_TM_COMMON_CAP c=cpad esr=20m esl=0.5n
+Xbond (pad die g) L4_TM_COMMON_LINE rs=50m le=2n
 // @RNL {
 //   #Xcard @PLACE(0, 0);
-//   #Xport @PLACE(35, 0);
+//   #Xfeed @PLACE(35, -4);
+//   #Cboard @PLACE(50, -12) => @ORIENT("R270");
+//   (51.5, -12) @TEXT("Cboard  cpad", size=0.76, halign="start");
+//   #Xbond @PLACE(64, -4);
 //   %io_cmd = $IO_PORT @ATTACH &cmd => @PLACE(-21, 0) => @ORIENT("R0");
 //   &cmd @WIRE(mode="straight") {%io_cmd:p #Xcard:1};
 //   %io_bias = $IO_PORT @ATTACH &bias => @PLACE(-5, -14) => @ORIENT("R90");
@@ -15,14 +21,20 @@ Xport (plug pad die g) L2_TM_PVR_CARD_PATH cpad=cpad
 //   &buf @WIRE(mode="straight") {%io_buf:p #Xcard:3};
 //   %io_card = $IO_PORT @ATTACH &card => @PLACE(21, 0) => @ORIENT("R180");
 //   &card @WIRE(mode="straight") {%io_card:p #Xcard:4};
-//   %io_pad = $IO_PORT @ATTACH &pad => @PLACE(49, 2) => @ORIENT("R180");
-//   &pad @WIRE(mode="straight") {%io_pad:p #Xport:2};
-//   %io_die = $IO_PORT @ATTACH &die => @PLACE(49, -2) => @ORIENT("R180");
-//   &die @WIRE(mode="straight") {%io_die:p #Xport:3};
+//   %io_pad = $IO_PORT @ATTACH &pad => @PLACE(49, -4) => @ORIENT("R180");
+//   &pad @WIRE(mode="straight") {%io_pad:p #Xfeed:2};
+//   %io_die = $IO_PORT @ATTACH &die => @PLACE(78, -4) => @ORIENT("R180");
+//   &die @WIRE(mode="straight") {%io_die:p #Xbond:2};
 //   %io_g = $IO_PORT @ATTACH &g => @PLACE(5, -14) => @ORIENT("R90");
 //   &g @WIRE(mode="straight") {%io_g:p #Xcard:6};
-//   &plug @WIRE(mode="straight") {#Xcard:5 (25, -4) (25, 0) #Xport:1};
-//   %ground0 = $GROUND @ATTACH &g => @PLACE(35, -7);
-//   &g @WIRE(mode="straight") {#Xport:4 %ground0:p}
+//   &plug @WIRE(mode="straight") {#Xcard:5 #Xfeed:1};
+//   &pad @WIRE(mode="straight") {#Xfeed:2 (50, -4) #Cboard:1};
+//   &pad @WIRE(mode="straight") {#Cboard:1 (50, -7) (54, -7) (54, -4) #Xbond:1};
+//   %ground0 = $GROUND @ATTACH &g => @PLACE(35, -11);
+//   &g @WIRE(mode="straight") {#Xfeed:3 %ground0:p};
+//   %ground1 = $GROUND @ATTACH &g => @PLACE(50, -17);
+//   &g @WIRE(mode="straight") {#Cboard:2 %ground1:p};
+//   %ground2 = $GROUND @ATTACH &g => @PLACE(64, -11);
+//   &g @WIRE(mode="straight") {#Xbond:3 %ground2:p}
 // }
 ends L1_TM_PVR_PVR_CH

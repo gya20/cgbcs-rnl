@@ -1,19 +1,23 @@
 simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-pvr", version="1.0", path="../symbols.rnl") }
+
 subckt L2_TM_PVR_CARD_CHANNEL (cmd bias buf card plug g)
 parameters ecmd=0 ccard=100u ratiosq=18.29 lenmm=27.5 cum=35 rreturn=5m lmm=0.5n cmm=0.12p rcontact=10m lcontact=1n rneck=2m lneck=1n lcap=0.7n esr=10m
-Xset (cmd set g) L3_TM_PVR_PVR_SET ecmd=ecmd
+Xnoise (cmd trim g) L3_TM_COMMON_LTC2972_SET ecmd=ecmd
+Rset (trim set) L5_TM_COMMON_RES r=10
 Xreg (set buf bias g) L3_TM_PVR_LT3042
-Cnear (buf g) capacitor c=10u
-Xpcb (buf card plug g) L3_TM_PVR_CARD_PCB ccard=ccard ratiosq=ratiosq lenmm=lenmm cum=cum rreturn=rreturn lmm=lmm cmm=cmm rcontact=rcontact lcontact=lcontact rneck=rneck lneck=lneck lcap=lcap esr=esr
+Cnear (buf g) L5_TM_COMMON_CAP c=10u esr=20m esl=0.5n
+Xpcb (buf card plug g) L3_TM_COMMON_CARD_PCB ccard=ccard ratiosq=ratiosq lenmm=lenmm cum=cum rreturn=rreturn lmm=lmm cmm=cmm rcontact=rcontact lcontact=lcontact rneck=rneck lneck=lneck lcap=lcap esr=esr
 // @RNL {
-//   #Xset @PLACE(0, 0);
+//   #Xnoise @PLACE(-5, 0);
+//   #Rset @PLACE(12, 0);
+//   (12, 1.45) @TEXT("Rset  10", size=0.76, halign="middle");
 //   #Xreg @PLACE(32, 0);
 //   #Cnear @PLACE(48, -7) => @ORIENT("R270");
 //   (49.5, -7) @TEXT("Cnear  10u", size=0.76, halign="start");
 //   #Xpcb @PLACE(65, 0);
-//   %io_cmd = $IO_PORT @ATTACH &cmd => @PLACE(-14, 0) => @ORIENT("R0");
-//   &cmd @WIRE(mode="straight") {%io_cmd:p #Xset:1};
+//   %io_cmd = $IO_PORT @ATTACH &cmd => @PLACE(-21, 0) => @ORIENT("R0");
+//   &cmd @WIRE(mode="straight") {%io_cmd:p #Xnoise:1};
 //   %io_bias = $IO_PORT @ATTACH &bias => @PLACE(29, -11) => @ORIENT("R90");
 //   &bias @WIRE(mode="straight") {%io_bias:p #Xreg:3};
 //   %io_buf = $IO_PORT @ATTACH &buf => @PLACE(48, 0) => @ORIENT("R180");
@@ -22,9 +26,10 @@ Xpcb (buf card plug g) L3_TM_PVR_CARD_PCB ccard=ccard ratiosq=ratiosq lenmm=lenm
 //   &card @WIRE(mode="straight") {%io_card:p #Xpcb:2};
 //   %io_plug = $IO_PORT @ATTACH &plug => @PLACE(79, -2) => @ORIENT("R180");
 //   &plug @WIRE(mode="straight") {%io_plug:p #Xpcb:3};
-//   %io_g = $IO_PORT @ATTACH &g => @PLACE(0, -11) => @ORIENT("R90");
-//   &g @WIRE(mode="straight") {%io_g:p #Xset:3};
-//   &set @WIRE(mode="straight") {#Xset:2 #Xreg:1};
+//   %io_g = $IO_PORT @ATTACH &g => @PLACE(-5, -11) => @ORIENT("R90");
+//   &g @WIRE(mode="straight") {%io_g:p #Xnoise:3};
+//   &trim @WIRE(mode="straight") {#Xnoise:2 #Rset:1};
+//   &set @WIRE(mode="straight") {#Rset:2 #Xreg:1};
 //   &buf @WIRE(mode="straight") {#Xreg:2 (48, 0) #Cnear:1};
 //   &buf @WIRE(mode="straight") {#Cnear:1 (48, -2) (55, -2) (55, 0) #Xpcb:1};
 //   %ground0 = $GROUND @ATTACH &g => @PLACE(35, -7);

@@ -1,0 +1,53 @@
+simulator lang=spectre
+// @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-pvre", version="1.0", path="../symbols.rnl") }
+
+subckt L3_TM_COMMON_CARD_PCB (buf card plug g)
+parameters ccard=100u ratiosq=18.29 lenmm=27.5 cum=35 rreturn=5m lmm=0.5n cmm=0.12p rcontact=10m lcontact=1n rneck=2m lneck=1n lcap=0.7n esr=10m
+Rsense (buf after10) L5_TM_COMMON_RES r=10
+Xneck (after10 card g) L4_TM_COMMON_LINE rs=rneck le=lneck
+Ccard (card g) L5_TM_COMMON_CAP c=ccard esr=esr esl=lcap
+Xs1 (card n1 g) L4_TM_COMMON_PI_SECTION rr=(0.01724*ratiosq/cum+rreturn)/4 ll=lmm*lenmm/4 cc=cmm*lenmm/4
+Xs2 (n1 n2 g) L4_TM_COMMON_PI_SECTION rr=(0.01724*ratiosq/cum+rreturn)/4 ll=lmm*lenmm/4 cc=cmm*lenmm/4
+Xs3 (n2 n3 g) L4_TM_COMMON_PI_SECTION rr=(0.01724*ratiosq/cum+rreturn)/4 ll=lmm*lenmm/4 cc=cmm*lenmm/4
+Xs4 (n3 pin g) L4_TM_COMMON_PI_SECTION rr=(0.01724*ratiosq/cum+rreturn)/4 ll=lmm*lenmm/4 cc=cmm*lenmm/4
+Xcontact (pin plug g) L4_TM_COMMON_LINE rs=rcontact le=lcontact
+// @RNL {
+//   #Rsense @PLACE(0, 0);
+//   (0, 1.45) @TEXT("Rsense  10", size=0.76, halign="middle");
+//   #Xneck @PLACE(16, 0);
+//   #Ccard @PLACE(46, -18) => @ORIENT("R270");
+//   (47.5, -18) @TEXT("Ccard  ccard", size=0.76, halign="start");
+//   #Xs1 @PLACE(50, 0);
+//   #Xs2 @PLACE(74, 0);
+//   #Xs3 @PLACE(98, 0);
+//   #Xs4 @PLACE(122, 0);
+//   #Xcontact @PLACE(146, 0);
+//   %io_buf = $IO_PORT @ATTACH &buf => @PLACE(-9, 0) => @ORIENT("R0");
+//   &buf @WIRE(mode="straight") {%io_buf:p #Rsense:1};
+//   %io_card = $IO_PORT @ATTACH &card => @PLACE(30, 0) => @ORIENT("R180");
+//   &card @WIRE(mode="straight") {%io_card:p #Xneck:2};
+//   %io_plug = $IO_PORT @ATTACH &plug => @PLACE(160, 0) => @ORIENT("R180");
+//   &plug @WIRE(mode="straight") {%io_plug:p #Xcontact:2};
+//   %io_g = $IO_PORT @ATTACH &g => @PLACE(16, -11) => @ORIENT("R90");
+//   &g @WIRE(mode="straight") {%io_g:p #Xneck:3};
+//   &after10 @WIRE(mode="straight") {#Rsense:2 #Xneck:1};
+//   &n1 @WIRE(mode="straight") {#Xs1:2 #Xs2:1};
+//   &n2 @WIRE(mode="straight") {#Xs2:2 #Xs3:1};
+//   &n3 @WIRE(mode="straight") {#Xs3:2 #Xs4:1};
+//   &pin @WIRE(mode="straight") {#Xs4:2 #Xcontact:1};
+//   &card @WIRE(mode="straight") {#Xneck:2 #Xs1:1};
+//   &card @WIRE(mode="straight") {#Xs1:1 (40, 0) (40, -13) (46, -13) #Ccard:1};
+//   %ground0 = $GROUND @ATTACH &g => @PLACE(46, -23);
+//   &g @WIRE(mode="straight") {#Ccard:2 %ground0:p};
+//   %ground1 = $GROUND @ATTACH &g => @PLACE(50, -7);
+//   &g @WIRE(mode="straight") {#Xs1:3 %ground1:p};
+//   %ground2 = $GROUND @ATTACH &g => @PLACE(74, -7);
+//   &g @WIRE(mode="straight") {#Xs2:3 %ground2:p};
+//   %ground3 = $GROUND @ATTACH &g => @PLACE(98, -7);
+//   &g @WIRE(mode="straight") {#Xs3:3 %ground3:p};
+//   %ground4 = $GROUND @ATTACH &g => @PLACE(122, -7);
+//   &g @WIRE(mode="straight") {#Xs4:3 %ground4:p};
+//   %ground5 = $GROUND @ATTACH &g => @PLACE(146, -7);
+//   &g @WIRE(mode="straight") {#Xcontact:3 %ground5:p}
+// }
+ends L3_TM_COMMON_CARD_PCB

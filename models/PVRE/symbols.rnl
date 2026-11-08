@@ -10,15 +10,14 @@
   @DEVICE(name="*", model="L2_TM_PVRE_CARD_CHANNEL", terminals=["cm", "dac", "bias", "buf", "card", "plug", "g"]);
   @DEVICE(name="*", model="L0_TM_PVRE_CARD_ONLY", terminals=["cmop", "dac1", "dac2", "bias", "buf1", "card1", "plug1", "buf2", "card2", "plug2", "g"]);
   @DEVICE(name="*", model="L1_TM_PVRE_PVRE_CH", terminals=["cm", "dac", "bias", "buf", "card", "pad", "die", "g"]);
-  @DEVICE(name="*", model="L3_TM_PVRE_AMP", terminals=["p", "n", "out", "bias", "g"]);
-  @DEVICE(name="*", model="L4_TM_PVRE_LINE", terminals=["a", "b", "g"]);
-  @DEVICE(name="*", model="L4_TM_PVRE_NOISE", terminals=["p", "q", "g"]);
-  @DEVICE(name="*", model="L4_TM_PVRE_PI_SECTION", terminals=["p", "q", "g"]);
   @DEVICE(name="*", model="L3_TM_PVRE_LT1355", terminals=["p", "n", "o", "bias", "g"]);
-  @DEVICE(name="*", model="L3_TM_PVRE_LTC2972_SET", terminals=["code", "analog", "g"]);
-  @DEVICE(name="*", model="L2_TM_PVRE_PVRE_DRV", terminals=["cm", "dac", "bias", "buf", "g"]);
-  @DEVICE(name="*", model="L2_TM_PVRE_CARD_PATH", terminals=["plug", "pad", "die", "g"]);
-  @DEVICE(name="*", model="L3_TM_PVRE_CARD_PCB", terminals=["buf", "card", "plug", "g"])
+  @DEVICE(name="*", model="L4_TM_COMMON_NOISE", terminals=["p", "q", "g"]);
+  @DEVICE(name="*", model="L3_TM_COMMON_LTC2972_SET", terminals=["code", "analog", "g"]);
+  @DEVICE(name="*", model="L5_TM_COMMON_RES", terminals=["a", "b"]);
+  @DEVICE(name="*", model="L5_TM_COMMON_CAP", terminals=["a", "b"]);
+  @DEVICE(name="*", model="L4_TM_COMMON_LINE", terminals=["a", "b", "g"]);
+  @DEVICE(name="*", model="L4_TM_COMMON_PI_SECTION", terminals=["p", "q", "g"]);
+  @DEVICE(name="*", model="L3_TM_COMMON_CARD_PCB", terminals=["buf", "card", "plug", "g"])
 }
 @RNL {
   $SYM_RESISTOR = @DEFINE-SYMBOL(box=[-3,-2,3,2]) {
@@ -209,71 +208,6 @@
     ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 11.35)
   };
   # @SELECT-INSTANCE(model="L1_TM_PVRE_PVRE_CH") => @SET-SYMBOL $SYM_L1_TM_PVRE_PVRE_CH;
-  $SYM_L3_TM_PVRE_AMP = @DEFINE-SYMBOL(box=[-7,-6,7,6]) {
-    @LINE {(-6, -5) (6, -5) (6, 5) (-6, 5) (-6, -5)};
-    @LINE {(-7, -2) (-6, -2)};
-    (-5.5, -2) @TEXT("+", size=0.74, halign="start", valign="middle");
-    @LINE {(-7, 2) (-6, 2)};
-    (-5.5, 2) @TEXT("−", size=0.74, halign="start", valign="middle");
-    @LINE {(7, 0) (6, 0)};
-    (5.5, 0) @TEXT("out", size=0.74, halign="end", valign="middle");
-    @LINE {(-2, 6) (-2, 5)};
-    (-2, 4.3) @TEXT("bias", size=0.74, halign="middle", valign="middle");
-    @LINE {(-2, -6) (-2, -5)};
-    (-2, -4.3) @TEXT("g", size=0.74, halign="middle", valign="middle");
-    (0, 1) @TEXT("A(s)", size=0.99, halign="middle", valign="middle");
-    (-7, -2) @PIN(terminal=1, direction="left");
-    (-7, 2) @PIN(terminal=2, direction="left");
-    (7, 0) @PIN(terminal=3, direction="right");
-    (-2, 6) @PIN(terminal=4, direction="up");
-    (-2, -6) @PIN(terminal=5, direction="down");
-    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 7.35)
-  };
-  # @SELECT-INSTANCE(model="L3_TM_PVRE_AMP") => @SET-SYMBOL $SYM_L3_TM_PVRE_AMP;
-  $SYM_L4_TM_PVRE_LINE = @DEFINE-SYMBOL(box=[-8,-5,8,5]) {
-    @LINE {(-7, -4) (7, -4) (7, 4) (-7, 4) (-7, -4)};
-    @LINE {(-8, 0) (-7, 0)};
-    (-6.5, 0) @TEXT("a", size=0.74, halign="start", valign="middle");
-    @LINE {(8, 0) (7, 0)};
-    (6.5, 0) @TEXT("b", size=0.74, halign="end", valign="middle");
-    @LINE {(0, -5) (0, -4)};
-    (0, -3.3) @TEXT("g", size=0.74, halign="middle", valign="middle");
-    (0, 1.5) @TEXT("R + L", size=0.99, halign="middle", valign="middle");
-    (-8, 0) @PIN(terminal=1, direction="left");
-    (8, 0) @PIN(terminal=2, direction="right");
-    (0, -5) @PIN(terminal=3, direction="down");
-    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 6.35)
-  };
-  # @SELECT-INSTANCE(model="L4_TM_PVRE_LINE") => @SET-SYMBOL $SYM_L4_TM_PVRE_LINE;
-  $SYM_L4_TM_PVRE_NOISE = @DEFINE-SYMBOL(box=[-5,-4,5,4]) {
-    (0, 0) @CIRCLE(radius=2.2);
-    @LINE {(-5, 0) (-2.2, 0)};
-    @LINE {(2.2, 0) (5, 0)};
-    @LINE {(0, -2.2) (0, -4)};
-    @LINE {(-1.55, 0) (-1.1, 0.3) (-0.75, -0.6) (-0.3, 1.05) (0.15, -0.95) (0.6, 0.55) (1, 0.05) (1.5, 0.3)};
-    (-2.8, 0.8) @TEXT("−", size=0.8, halign="middle", valign="middle");
-    (2.8, 0.8) @TEXT("+", size=0.8, halign="middle", valign="middle");
-    (5, 0) @PIN(terminal=1, direction="right");
-    (-5, 0) @PIN(terminal=2, direction="left");
-    (0, -4) @PIN(terminal=3, direction="down");
-    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 5.35)
-  };
-  # @SELECT-INSTANCE(model="L4_TM_PVRE_NOISE") => @SET-SYMBOL $SYM_L4_TM_PVRE_NOISE;
-  $SYM_L4_TM_PVRE_PI_SECTION = @DEFINE-SYMBOL(box=[-8,-5,8,5]) {
-    @LINE {(-7, -4) (7, -4) (7, 4) (-7, 4) (-7, -4)};
-    @LINE {(-8, 0) (-7, 0)};
-    (-6.5, 0) @TEXT("p", size=0.74, halign="start", valign="middle");
-    @LINE {(8, 0) (7, 0)};
-    (6.5, 0) @TEXT("q", size=0.74, halign="end", valign="middle");
-    @LINE {(0, -5) (0, -4)};
-    (0, -3.3) @TEXT("g", size=0.74, halign="middle", valign="middle");
-    (0, 1.5) @TEXT("π section", size=0.99, halign="middle", valign="middle");
-    (-8, 0) @PIN(terminal=1, direction="left");
-    (8, 0) @PIN(terminal=2, direction="right");
-    (0, -5) @PIN(terminal=3, direction="down");
-    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 6.35)
-  };
-  # @SELECT-INSTANCE(model="L4_TM_PVRE_PI_SECTION") => @SET-SYMBOL $SYM_L4_TM_PVRE_PI_SECTION;
   $SYM_L3_TM_PVRE_LT1355 = @DEFINE-SYMBOL(box=[-7,-6,7,6]) {
     @LINE {(-5, -5) (-5, 5) (5, 0) (-5, -5)};
     @LINE {(-7, 2) (-5, 2)};
@@ -291,7 +225,21 @@
     (-2, -6) @PIN(terminal=5, direction="down")
   };
   # @SELECT-INSTANCE(model="L3_TM_PVRE_LT1355") => @SET-SYMBOL $SYM_L3_TM_PVRE_LT1355;
-  $SYM_L3_TM_PVRE_LTC2972_SET = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
+  $SYM_L4_TM_COMMON_NOISE = @DEFINE-SYMBOL(box=[-5,-4,5,4]) {
+    (0, 0) @CIRCLE(radius=2.2);
+    @LINE {(-5, 0) (-2.2, 0)};
+    @LINE {(2.2, 0) (5, 0)};
+    @LINE {(0, -2.2) (0, -4)};
+    @LINE {(-1.55, 0) (-1.1, 0.3) (-0.75, -0.6) (-0.3, 1.05) (0.15, -0.95) (0.6, 0.55) (1, 0.05) (1.5, 0.3)};
+    (-2.8, 0.8) @TEXT("−", size=0.8, halign="middle", valign="middle");
+    (2.8, 0.8) @TEXT("+", size=0.8, halign="middle", valign="middle");
+    (5, 0) @PIN(terminal=1, direction="right");
+    (-5, 0) @PIN(terminal=2, direction="left");
+    (0, -4) @PIN(terminal=3, direction="down");
+    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 5.35)
+  };
+  # @SELECT-INSTANCE(model="L4_TM_COMMON_NOISE") => @SET-SYMBOL $SYM_L4_TM_COMMON_NOISE;
+  $SYM_L3_TM_COMMON_LTC2972_SET = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
     @LINE {(-9, -4) (9, -4) (9, 4) (-9, 4) (-9, -4)};
     @LINE {(-10, 0) (-9, 0)};
     (-8.5, 0) @TEXT("code", size=0.74, halign="start", valign="middle");
@@ -305,47 +253,53 @@
     (0, -5) @PIN(terminal=3, direction="down");
     ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 6.35)
   };
-  # @SELECT-INSTANCE(model="L3_TM_PVRE_LTC2972_SET") => @SET-SYMBOL $SYM_L3_TM_PVRE_LTC2972_SET;
-  $SYM_L2_TM_PVRE_PVRE_DRV = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
-    @LINE {(-9, -4) (9, -4) (9, 4) (-9, 4) (-9, -4)};
-    @LINE {(-10, 1) (-9, 1)};
-    (-8.5, 1) @TEXT("cm", size=0.74, halign="start", valign="middle");
-    @LINE {(-10, -1) (-9, -1)};
-    (-8.5, -1) @TEXT("dac", size=0.74, halign="start", valign="middle");
-    @LINE {(-3, -5) (-3, -4)};
-    (-3, -3.3) @TEXT("bias", size=0.74, halign="middle", valign="middle");
-    @LINE {(10, 0) (9, 0)};
-    (8.5, 0) @TEXT("buf", size=0.74, halign="end", valign="middle");
-    @LINE {(3, -5) (3, -4)};
-    (3, -3.3) @TEXT("g", size=0.74, halign="middle", valign="middle");
-    (0, 1.5) @TEXT("Card driver", size=0.99, halign="middle", valign="middle");
-    (-10, 1) @PIN(terminal=1, direction="left");
-    (-10, -1) @PIN(terminal=2, direction="left");
-    (-3, -5) @PIN(terminal=3, direction="down");
-    (10, 0) @PIN(terminal=4, direction="right");
-    (3, -5) @PIN(terminal=5, direction="down");
-    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 6.35)
+  # @SELECT-INSTANCE(model="L3_TM_COMMON_LTC2972_SET") => @SET-SYMBOL $SYM_L3_TM_COMMON_LTC2972_SET;
+  $SYM_L5_TM_COMMON_RES = @DEFINE-SYMBOL(box=[-3,-2,3,2]) {
+    @LINE {(-3, 0) (-1.7, 0) (-1.4, 0.55) (-0.9, -0.55) (-0.45, 0.55) (0, -0.55) (0.45, 0.55) (0.9, -0.55) (1.4, 0.55) (1.7, 0) (3, 0)};
+    (-3, 0) @PIN(terminal=1, direction="left");
+    (3, 0) @PIN(terminal=2, direction="right")
   };
-  # @SELECT-INSTANCE(model="L2_TM_PVRE_PVRE_DRV") => @SET-SYMBOL $SYM_L2_TM_PVRE_PVRE_DRV;
-  $SYM_L2_TM_PVRE_CARD_PATH = @DEFINE-SYMBOL(box=[-8,-5,8,5]) {
+  # @SELECT-INSTANCE(model="L5_TM_COMMON_RES") => @SET-SYMBOL $SYM_L5_TM_COMMON_RES;
+  $SYM_L5_TM_COMMON_CAP = @DEFINE-SYMBOL(box=[-3,-2,3,2]) {
+    @LINE {(-3, 0) (-0.28, 0)};
+    @LINE {(0.28, 0) (3, 0)};
+    @LINE {(-0.28, -1) (-0.28, 1)};
+    @LINE {(0.28, -1) (0.28, 1)};
+    (-3, 0) @PIN(terminal=1, direction="left");
+    (3, 0) @PIN(terminal=2, direction="right")
+  };
+  # @SELECT-INSTANCE(model="L5_TM_COMMON_CAP") => @SET-SYMBOL $SYM_L5_TM_COMMON_CAP;
+  $SYM_L4_TM_COMMON_LINE = @DEFINE-SYMBOL(box=[-8,-5,8,5]) {
     @LINE {(-7, -4) (7, -4) (7, 4) (-7, 4) (-7, -4)};
     @LINE {(-8, 0) (-7, 0)};
-    (-6.5, 0) @TEXT("plug", size=0.74, halign="start", valign="middle");
-    @LINE {(8, 2) (7, 2)};
-    (6.5, 2) @TEXT("pad", size=0.74, halign="end", valign="middle");
-    @LINE {(8, -2) (7, -2)};
-    (6.5, -2) @TEXT("die", size=0.74, halign="end", valign="middle");
+    (-6.5, 0) @TEXT("a", size=0.74, halign="start", valign="middle");
+    @LINE {(8, 0) (7, 0)};
+    (6.5, 0) @TEXT("b", size=0.74, halign="end", valign="middle");
     @LINE {(0, -5) (0, -4)};
     (0, -3.3) @TEXT("g", size=0.74, halign="middle", valign="middle");
-    (0, 1.5) @TEXT("DUT path", size=0.99, halign="middle", valign="middle");
+    (0, 1.5) @TEXT("R + L", size=0.99, halign="middle", valign="middle");
     (-8, 0) @PIN(terminal=1, direction="left");
-    (8, 2) @PIN(terminal=2, direction="right");
-    (8, -2) @PIN(terminal=3, direction="right");
-    (0, -5) @PIN(terminal=4, direction="down");
+    (8, 0) @PIN(terminal=2, direction="right");
+    (0, -5) @PIN(terminal=3, direction="down");
     ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 6.35)
   };
-  # @SELECT-INSTANCE(model="L2_TM_PVRE_CARD_PATH") => @SET-SYMBOL $SYM_L2_TM_PVRE_CARD_PATH;
-  $SYM_L3_TM_PVRE_CARD_PCB = @DEFINE-SYMBOL(box=[-8,-5,8,5]) {
+  # @SELECT-INSTANCE(model="L4_TM_COMMON_LINE") => @SET-SYMBOL $SYM_L4_TM_COMMON_LINE;
+  $SYM_L4_TM_COMMON_PI_SECTION = @DEFINE-SYMBOL(box=[-8,-5,8,5]) {
+    @LINE {(-7, -4) (7, -4) (7, 4) (-7, 4) (-7, -4)};
+    @LINE {(-8, 0) (-7, 0)};
+    (-6.5, 0) @TEXT("p", size=0.74, halign="start", valign="middle");
+    @LINE {(8, 0) (7, 0)};
+    (6.5, 0) @TEXT("q", size=0.74, halign="end", valign="middle");
+    @LINE {(0, -5) (0, -4)};
+    (0, -3.3) @TEXT("g", size=0.74, halign="middle", valign="middle");
+    (0, 1.5) @TEXT("π section", size=0.99, halign="middle", valign="middle");
+    (-8, 0) @PIN(terminal=1, direction="left");
+    (8, 0) @PIN(terminal=2, direction="right");
+    (0, -5) @PIN(terminal=3, direction="down");
+    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 6.35)
+  };
+  # @SELECT-INSTANCE(model="L4_TM_COMMON_PI_SECTION") => @SET-SYMBOL $SYM_L4_TM_COMMON_PI_SECTION;
+  $SYM_L3_TM_COMMON_CARD_PCB = @DEFINE-SYMBOL(box=[-8,-5,8,5]) {
     @LINE {(-7, -4) (7, -4) (7, 4) (-7, 4) (-7, -4)};
     @LINE {(-8, 0) (-7, 0)};
     (-6.5, 0) @TEXT("buf", size=0.74, halign="start", valign="middle");
@@ -362,5 +316,5 @@
     (0, -5) @PIN(terminal=4, direction="down");
     ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 6.35)
   };
-  # @SELECT-INSTANCE(model="L3_TM_PVRE_CARD_PCB") => @SET-SYMBOL $SYM_L3_TM_PVRE_CARD_PCB
+  # @SELECT-INSTANCE(model="L3_TM_COMMON_CARD_PCB") => @SET-SYMBOL $SYM_L3_TM_COMMON_CARD_PCB
 }

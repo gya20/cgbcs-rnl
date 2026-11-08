@@ -1,5 +1,6 @@
 simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-vpfb-vmfb", version="1.0", path="../../symbols.rnl") }
+
 subckt L4_TM_REF_NOISE_POLE (p q g)
 parameters fj=1 en=39n fc=1
 Rn (w g) resistor r=1k
