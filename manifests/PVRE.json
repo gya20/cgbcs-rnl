@@ -41,8 +41,8 @@
     },
     {
       "path": "cells/ic/LT1355.scs",
-      "sha256": "7b530292fcdfef1d8599ca8e7ad87045ea62d4e963b9fb69b3b66551234afb68",
-      "size": 958
+      "sha256": "77af6da8a53553150cff7d1c22a326bd736ace5c3bb2dc5ad899a236453ff828",
+      "size": 3068
     },
     {
       "path": "cells/ic/LTC2972_SET.scs",
@@ -51,18 +51,18 @@
     },
     {
       "path": "stages/CARD_CHANNEL.scs",
-      "sha256": "966788b9370445d1b89ac49fa5bbcd28c5147ecba5e1117f8e0fe0a9d5ef1e4d",
-      "size": 1760
+      "sha256": "f94b5a1ee44e7542c88f7fd4d8561e515d277728b1e6c0e40c2479faf53e033e",
+      "size": 3192
     },
     {
       "path": "stages/CARD_ONLY.scs",
-      "sha256": "d26d0f7389b6e8ad705477bdae3c9c236507bf5fd14d2ad56bd78fb8a47ee435",
-      "size": 3366
+      "sha256": "cdd2ba05bb60f357dc3867d20bc2444c59df69a2d5d5eb19922dc31a838ee496",
+      "size": 3364
     },
     {
       "path": "stages/driver/PVRE_DRV.scs",
-      "sha256": "2b3af7473d06d094a926e85b8813b984568b637a327a3e6acabafd2def45daa7",
-      "size": 2256
+      "sha256": "affed7e47863a80a647401d87e34f1f075fb3cfd8bdc3850b34fab792e731563",
+      "size": 2297
     },
     {
       "path": "stages/output/CARD_PATH.scs",
@@ -76,17 +76,17 @@
     },
     {
       "path": "stages/PVRE_CH.scs",
-      "sha256": "cde50f51f2619baa05efff3afe455938138af33789bf29072214cd11a090a285",
-      "size": 1940
+      "sha256": "5f0075db8c785734dd41ac0e4997d31a614e485cbd4b512228b44d1caf592e75",
+      "size": 1941
     },
     {
       "path": "symbols.rnl",
-      "sha256": "5e590a49b8c6dc26e51e8add9aa33883cac64bdd359f1f61e752e8b863769544",
-      "size": 25042
+      "sha256": "358b5b9a1bed26c92c77d8b036dcc7afeef5be30980ec238436c3880947a6297",
+      "size": 19599
     },
     {
       "path": "top.scs",
-      "sha256": "267b389fc47262756422fd3edb6ef21540fba2bc57d814172d30ccb93a34abdf",
+      "sha256": "0650628977d3f03f5b0f18bcf3bd15a8412567cef4e0bfb2945517a1f9157d23",
       "size": 4052
     }
   ],

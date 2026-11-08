@@ -2,27 +2,61 @@ simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-pvre", version="1.0", path="../symbols.rnl") }
 subckt TM_PVRE_CARD_CHANNEL (cm dac bias buf card plug g)
 parameters rin=1k edac=0 ccard=100u ratiosq=42.86 lenmm=76.2 cum=35 rreturn=5m lmm=0.5n cmm=0.12p rcontact=10m lcontact=1n rneck=2m lneck=1n lcap=0.7n esr=10m
-Xdrv (cm dac bias buf g) TM_PVRE_PVRE_DRV rin=rin edac=edac
+Xdn (dac d g) TM_PVRE_LTC2972_SET ecmd=edac
+Rin (d sum) resistor r=rin
+Rf (buf sum) resistor r=3k
+Cf (buf sum) capacitor c=10n
+X_LT1355 (cm sum buf bias g) TM_PVRE_LT1355
 Xpcb (buf card plug g) TM_PVRE_CARD_PCB ccard=ccard ratiosq=ratiosq lenmm=lenmm cum=cum rreturn=rreturn lmm=lmm cmm=cmm rcontact=rcontact lcontact=lcontact rneck=rneck lneck=lneck lcap=lcap esr=esr
 // @RNL {
-//   #Xdrv @PLACE(0, 0);
-//   #Xpcb @PLACE(65, 0);
-//   %io_cm = $IO_PORT @ATTACH &cm => @PLACE(-13, -2) => @ORIENT("R0");
-//   &cm @WIRE(mode="straight") {%io_cm:p #Xdrv:1};
-//   %io_dac = $IO_PORT @ATTACH &dac => @PLACE(-13, 2) => @ORIENT("R0");
-//   &dac @WIRE(mode="straight") {%io_dac:p #Xdrv:2};
-//   %io_bias = $IO_PORT @ATTACH &bias => @PLACE(-2, 12) => @ORIENT("R270");
-//   &bias @WIRE(mode="straight") {%io_bias:p #Xdrv:3};
-//   %io_buf = $IO_PORT @ATTACH &buf => @PLACE(13, 0) => @ORIENT("R180");
-//   &buf @WIRE(mode="straight") {%io_buf:p #Xdrv:4};
-//   %io_card = $IO_PORT @ATTACH &card => @PLACE(68, 11) => @ORIENT("R270");
-//   &card @WIRE(mode="straight") {%io_card:p #Xpcb:2};
-//   %io_plug = $IO_PORT @ATTACH &plug => @PLACE(79, 0) => @ORIENT("R180");
-//   &plug @WIRE(mode="straight") {%io_plug:p #Xpcb:3};
-//   %io_g = $IO_PORT @ATTACH &g => @PLACE(-2, -12) => @ORIENT("R90");
-//   &g @WIRE(mode="straight") {%io_g:p #Xdrv:5};
-//   &buf @WIRE(mode="straight") {#Xdrv:4 #Xpcb:1};
-//   %ground0 = $GROUND @ATTACH &g => @PLACE(68, -7);
-//   &g @WIRE(mode="straight") {#Xpcb:4 %ground0:p}
+//   #Xdn @PLACE(-38, 2);
+//   #Rin @PLACE(-19, 2);
+//   (-19, 3.45) @TEXT("Rin", size=1.03, halign="middle");
+//   #Rf @PLACE(0, 13) => @ORIENT("R180");
+//   (0, 14.45) @TEXT("Rf  3 kOhm", size=1.03, halign="middle");
+//   #Cf @PLACE(0, 21) => @ORIENT("R180");
+//   (0, 22.45) @TEXT("Cf  10 nF", size=1.03, halign="middle");
+//   #X_LT1355 @PLACE(0, 0);
+//   #Xpcb @PLACE(39, 0);
+//   %port_cm = $IO_PORT @ATTACH &cm => @PLACE(-24,-2) => @ORIENT("R0");
+//   &cm @WIRE(mode="straight") {%port_cm:p #X_LT1355:1};
+//   %port_bias = $IO_PORT @ATTACH &bias => @PLACE(5,7) => @ORIENT("R180");
+//   &bias @WIRE(mode="straight") {%port_bias:p (-2, 7) #X_LT1355:4};
+//   %ground1 = $GROUND @ATTACH &g => @PLACE(-2,-9);
+//   &g @WIRE(mode="straight") {#X_LT1355:5 %ground1:p};
+//   %j2 = (-9, 2);
+//   $JUNCTION @ATTACH %j2;
+//   %j3 = (14, 0);
+//   $JUNCTION @ATTACH %j3;
+//   &sum @WIRE(mode="straight") {%j2 #X_LT1355:2};
+//   &buf @WIRE(mode="straight") {#X_LT1355:3 %j3};
+//   %j4 = (23, 0);
+//   $JUNCTION @ATTACH %j4;
+//   &buf @WIRE(mode="straight") {%j3 %j4 #Xpcb:1};
+//   %port_buf = $IO_PORT @ATTACH &buf => @PLACE(28,-5) => @ORIENT("R180");
+//   &buf @WIRE(mode="straight") {%j4 (23, -5) %port_buf:p};
+//   %port_card = $IO_PORT @ATTACH &card => @PLACE(55,2) => @ORIENT("R180");
+//   &card @WIRE(mode="straight") {#Xpcb:2 %port_card:p};
+//   %port_plug = $IO_PORT @ATTACH &plug => @PLACE(55,-2) => @ORIENT("R180");
+//   &plug @WIRE(mode="straight") {#Xpcb:3 %port_plug:p};
+//   %ground5 = $GROUND @ATTACH &g => @PLACE(39,-8);
+//   &g @WIRE(mode="straight") {#Xpcb:4 %ground5:p};
+//   %port_dac = $IO_PORT @ATTACH &dac => @PLACE(-56,2) => @ORIENT("R0");
+//   &dac @WIRE(mode="straight") {%port_dac:p #Xdn:1};
+//   &d @WIRE(mode="straight") {#Xdn:2 (-26, 2) (-26, 2) #Rin:1};
+//   %ground6 = $GROUND @ATTACH &g => @PLACE(-38,-6);
+//   &g @WIRE(mode="straight") {#Xdn:3 %ground6:p};
+//   &sum @WIRE(mode="straight") {#Rin:2 %j2};
+//   %j7 = (-9, 13);
+//   $JUNCTION @ATTACH %j7;
+//   %j8 = (14, 13);
+//   $JUNCTION @ATTACH %j8;
+//   &sum @WIRE(mode="straight") {%j2 %j7 #Rf:2};
+//   &buf @WIRE(mode="straight") {#Rf:1 %j8 %j3};
+//   &sum @WIRE(mode="straight") {%j7 (-9, 21) #Cf:2};
+//   &buf @WIRE(mode="straight") {#Cf:1 (14, 21) %j8};
+//   %port_g = $IO_PORT @ATTACH &g => @PLACE(-57,-11) => @ORIENT("R0");
+//   %common = $GROUND @ATTACH &g => @PLACE(-54,-13);
+//   &g @WIRE(mode="straight") {%port_g:p (-54, -11) %common:p}
 // }
 ends TM_PVRE_CARD_CHANNEL

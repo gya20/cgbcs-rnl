@@ -1,38 +1,137 @@
 simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-vpfb-vmfb", version="1.0", path="../symbols.rnl") }
 subckt TM_REF_REF_CH (ref bias pad die g)
-parameters rt=240 rofast=3.98 fo=2036 f2=1.481M ceff=220u lb=2n
-Xset (ref set g) TM_REF_REF_SET rt=rt
-Xslow (set pad servo bias g) TM_REF_SERVO
-Xfast (servo pad drive bias g) TM_REF_FAST rofast=rofast fo=fo f2=f2
-Xport (drive pad die g) TM_REF_REF_PATH ceff=ceff lb=lb
+parameters rt=240 rofast=3.98 fo=2036 f2=1.481M ceff=220u lb=2n cpin=2p
+Rt (ref div) resistor r=rt
+Rb (div g) resistor r=10k
+Rset (div set) resistor r=4.99k
+Cset (set g) capacitor c=20u
+Rleak (set g) resistor r=1T
+X_ADA4522 (set ns servo bias g) TM_REF_ADA4522
+Rs (pad ns) resistor r=1k
+Cs (ns servo) capacitor c=100n
+X_LT6202 (servo nf drive bias g) TM_REF_LT6202 ro=rofast fo=fo f2=f2
+Rf (pad nf) resistor r=100
+Rh (nf nc) resistor r=20k
+Ch (nc drive) capacitor c=4.7n
+Riso (drive pad) resistor r=1
+Xbulk (pad g) TM_REF_CAPBR rr=2m ll=0.1n cc=ceff
+Xhf (pad g) TM_REF_CAPBR rr=0.22 ll=0.15n cc=100n
+Xbond (pad die g) TM_REF_LINE rs=50m le=lb
+Cpin (die g) capacitor c=cpin
 // @RNL {
-//   #Xset @PLACE(0, 0);
-//   #Xslow @PLACE(26, 0);
-//   #Xfast @PLACE(52, 0);
-//   #Xport @PLACE(81, 0);
-//   %io_ref = $IO_PORT @ATTACH &ref => @PLACE(-14, 0) => @ORIENT("R0");
-//   &ref @WIRE(mode="straight") {%io_ref:p #Xset:1};
-//   %io_bias = $IO_PORT @ATTACH &bias => @PLACE(24, 12) => @ORIENT("R270");
-//   &bias @WIRE(mode="straight") {%io_bias:p #Xslow:4};
-//   %io_pad = $IO_PORT @ATTACH &pad => @PLACE(13, 2) => @ORIENT("R0");
-//   &pad @WIRE(mode="straight") {%io_pad:p #Xslow:2};
-//   %io_die = $IO_PORT @ATTACH &die => @PLACE(95, 0) => @ORIENT("R180");
-//   &die @WIRE(mode="straight") {%io_die:p #Xport:3};
-//   %io_g = $IO_PORT @ATTACH &g => @PLACE(0, -11) => @ORIENT("R90");
-//   &g @WIRE(mode="straight") {%io_g:p #Xset:3};
-//   &set @WIRE(mode="straight") {#Xset:2 (17, 0) (17, -2) #Xslow:1};
-//   &servo @WIRE(mode="straight") {#Xslow:3 (43, 0) (43, -2) #Xfast:1};
-//   &drive @WIRE(mode="straight") {#Xfast:3 #Xport:1};
-//   &pad @WIRE(mode="straight") {#Xslow:2 (17, 2) (17, 8) (43, 8) (43, 2) #Xfast:2};
-//   &pad @WIRE(mode="straight") {#Xfast:2 (43, 2) (43, 8) (84, 8) #Xport:2};
-//   &bias @WIRE(mode="straight") {#Xfast:4 (50, 8)};
-//   (50, 9) @TEXT("bias", size=0.7, halign="middle", valign="middle");
-//   %ground0 = $GROUND @ATTACH &g => @PLACE(24, -8);
-//   &g @WIRE(mode="straight") {#Xslow:5 %ground0:p};
-//   %ground1 = $GROUND @ATTACH &g => @PLACE(50, -8);
-//   &g @WIRE(mode="straight") {#Xfast:5 %ground1:p};
-//   %ground2 = $GROUND @ATTACH &g => @PLACE(84, -7);
-//   &g @WIRE(mode="straight") {#Xport:4 %ground2:p}
+//   #Rt @PLACE(-47, -2);
+//   (-47, -0.55) @TEXT("Rt", size=1.03, halign="middle");
+//   #Rb @PLACE(-40, -10) => @ORIENT("R270");
+//   (-38.5, -10) @TEXT("Rb  10 kOhm", size=1.03, halign="start");
+//   #Rset @PLACE(-32, -2);
+//   (-32, -0.55) @TEXT("Rset  4.99 kOhm", size=1.03, halign="middle");
+//   #Cset @PLACE(-23, -10) => @ORIENT("R270");
+//   (-21.5, -10) @TEXT("Cset  20 uF", size=1.03, halign="start");
+//   #Rleak @PLACE(-14, -10) => @ORIENT("R270");
+//   (-12.5, -10) @TEXT("Rleak  1 TOhm", size=1.03, halign="start");
+//   #X_ADA4522 @PLACE(3, 0);
+//   #Rs @PLACE(6, 26) => @ORIENT("R180");
+//   (6, 27.45) @TEXT("Rs  1 kOhm", size=1.03, halign="middle");
+//   #Cs @PLACE(3, 13);
+//   (3, 14.45) @TEXT("Cs  100 nF", size=1.03, halign="middle");
+//   #X_LT6202 @PLACE(38, 0);
+//   #Rf @PLACE(43, 20) => @ORIENT("R180");
+//   (43, 21.45) @TEXT("Rf  100 Ohm", size=1.03, halign="middle");
+//   #Rh @PLACE(34, 13);
+//   (34, 14.45) @TEXT("Rh  20 kOhm", size=1.03, halign="middle");
+//   #Ch @PLACE(45, 13);
+//   (45, 14.45) @TEXT("Ch  4.7 nF", size=1.03, halign="middle");
+//   #Riso @PLACE(59, 0);
+//   (59, 1.45) @TEXT("Riso  1 Ohm", size=1.03, halign="middle");
+//   #Xbulk @PLACE(65, -12);
+//   #Xhf @PLACE(77, -12);
+//   #Xbond @PLACE(89, 0);
+//   #Cpin @PLACE(102, -10) => @ORIENT("R270");
+//   (103.5, -10) @TEXT("Cpin", size=1.03, halign="start");
+//   %port_ref = $IO_PORT @ATTACH &ref => @PLACE(-56,-2) => @ORIENT("R0");
+//   &ref @WIRE(mode="straight") {%port_ref:p #Rt:1};
+//   %j1 = (-40, -2);
+//   $JUNCTION @ATTACH %j1;
+//   &div @WIRE(mode="straight") {#Rt:2 %j1 #Rset:1};
+//   &div @WIRE(mode="straight") {%j1 #Rb:1};
+//   %j2 = (-23, -2);
+//   $JUNCTION @ATTACH %j2;
+//   %j3 = (-14, -2);
+//   $JUNCTION @ATTACH %j3;
+//   &set @WIRE(mode="straight") {#Rset:2 %j2 %j3 #X_ADA4522:1};
+//   &set @WIRE(mode="straight") {%j2 #Cset:1};
+//   &set @WIRE(mode="straight") {%j3 #Rleak:1};
+//   %ground4 = $GROUND @ATTACH &g => @PLACE(-40,-16);
+//   &g @WIRE(mode="straight") {#Rb:2 %ground4:p};
+//   %ground5 = $GROUND @ATTACH &g => @PLACE(-23,-16);
+//   &g @WIRE(mode="straight") {#Cset:2 %ground5:p};
+//   %ground6 = $GROUND @ATTACH &g => @PLACE(-14,-16);
+//   &g @WIRE(mode="straight") {#Rleak:2 %ground6:p};
+//   %j7 = (-8, 13);
+//   $JUNCTION @ATTACH %j7;
+//   %j8 = (15, 0);
+//   $JUNCTION @ATTACH %j8;
+//   &ns @WIRE(mode="straight") {#X_ADA4522:2 (-8, 2) %j7 #Cs:1};
+//   &ns @WIRE(mode="straight") {%j7 (-8, 26) #Rs:2};
+//   &servo @WIRE(mode="straight") {#X_ADA4522:3 %j8 (20, 0) (20, -2) #X_LT6202:1};
+//   &servo @WIRE(mode="straight") {#Cs:2 (15, 13) %j8};
+//   %j9 = (27, 13);
+//   $JUNCTION @ATTACH %j9;
+//   %j10 = (52, 0);
+//   $JUNCTION @ATTACH %j10;
+//   &nf @WIRE(mode="straight") {#X_LT6202:2 (27, 2) %j9 #Rh:1};
+//   &nf @WIRE(mode="straight") {%j9 (27, 20) #Rf:2};
+//   &nc @WIRE(mode="straight") {#Rh:2 #Ch:1};
+//   &drive @WIRE(mode="straight") {#Ch:2 (52, 13) %j10};
+//   &drive @WIRE(mode="straight") {#X_LT6202:3 %j10 #Riso:1};
+//   %j11 = (65, 0);
+//   $JUNCTION @ATTACH %j11;
+//   %j12 = (77, 0);
+//   $JUNCTION @ATTACH %j12;
+//   %j13 = (65, 20);
+//   $JUNCTION @ATTACH %j13;
+//   %j14 = (65, 26);
+//   $JUNCTION @ATTACH %j14;
+//   &pad @WIRE(mode="straight") {#Riso:2 %j11 %j12 #Xbond:1};
+//   %port_pad = $IO_PORT @ATTACH &pad => @PLACE(73,26) => @ORIENT("R180");
+//   &pad @WIRE(mode="straight") {%j11 %j13 %j14 %port_pad:p};
+//   &pad @WIRE(mode="straight") {#Rf:1 %j13};
+//   &pad @WIRE(mode="straight") {#Rs:1 %j14};
+//   &pad @WIRE(mode="straight") {%j11 #Xbulk:1};
+//   &pad @WIRE(mode="straight") {%j12 #Xhf:1};
+//   %j15 = (102, 0);
+//   $JUNCTION @ATTACH %j15;
+//   %port_die = $IO_PORT @ATTACH &die => @PLACE(111,0) => @ORIENT("R180");
+//   &die @WIRE(mode="straight") {#Xbond:2 %j15 %port_die:p};
+//   &die @WIRE(mode="straight") {%j15 #Cpin:1};
+//   %ground16 = $GROUND @ATTACH &g => @PLACE(65,-19);
+//   &g @WIRE(mode="straight") {#Xbulk:2 %ground16:p};
+//   %ground17 = $GROUND @ATTACH &g => @PLACE(77,-19);
+//   &g @WIRE(mode="straight") {#Xhf:2 %ground17:p};
+//   %ground18 = $GROUND @ATTACH &g => @PLACE(102,-16);
+//   &g @WIRE(mode="straight") {#Cpin:2 %ground18:p};
+//   %ground19 = $GROUND @ATTACH &g => @PLACE(89,-8);
+//   &g @WIRE(mode="straight") {#Xbond:3 %ground19:p};
+//   %ground20 = $GROUND @ATTACH &g => @PLACE(1,-9);
+//   &g @WIRE(mode="straight") {#X_ADA4522:5 %ground20:p};
+//   %ground21 = $GROUND @ATTACH &g => @PLACE(36,-9);
+//   &g @WIRE(mode="straight") {#X_LT6202:5 %ground21:p};
+//   %port_bias = $IO_PORT @ATTACH &bias => @PLACE(6,8) => @ORIENT("R180");
+//   &bias @WIRE(mode="straight") {#X_ADA4522:4 (1, 8) %port_bias:p};
+//   &bias @WIRE(mode="straight") {#X_LT6202:4 (36, 8)};
+//   (38, 8) @TEXT("bias", size=0.84, halign="middle", valign="middle");
+//   (-18, 0) @TEXT("SET", size=0.98, halign="middle", valign="middle");
+//   (-6, 5) @TEXT("NS", size=0.98, halign="middle", valign="middle");
+//   (20, -4) @TEXT("SERVO", size=0.98, halign="middle", valign="middle");
+//   (29, 5) @TEXT("NF", size=0.98, halign="middle", valign="middle");
+//   (52, -2) @TEXT("DRIVE", size=0.98, halign="middle", valign="middle");
+//   (71, 1.3) @TEXT("PAD", size=0.98, halign="middle", valign="middle");
+//   (69.6, -14) @TEXT("Ceff", size=0.98, halign="middle", valign="middle");
+//   (81.6, -14) @TEXT("100 nF", size=0.98, halign="middle", valign="middle");
+//   (89, -1.1) @TEXT("bond wire", size=0.98, halign="middle", valign="middle");
+//   %port_g = $IO_PORT @ATTACH &g => @PLACE(-59,-21) => @ORIENT("R0");
+//   %common = $GROUND @ATTACH &g => @PLACE(-56,-23);
+//   &g @WIRE(mode="straight") {%port_g:p (-56, -21) %common:p}
 // }
 ends TM_REF_REF_CH

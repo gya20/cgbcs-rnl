@@ -16,37 +16,37 @@ Xfct (vin bias outfct padfct diefct g) TM_LDO_LDO_CH rt=rfct
 // @RNL {
 //   #Xcb @PLACE(0, 19);
 //   #Xfct @PLACE(0, -19);
-//   (0, 33) @TEXT("VDCB  /  2.0 V", size=1.24, halign="middle", valign="middle");
-//   (0, -5) @TEXT("VFCT  /  2.1 V", size=1.24, halign="middle", valign="middle");
-//   %j1 = (-20, 6);
+//   (0, 31) @TEXT("VDCB  /  2.0 V", size=1.24, halign="middle", valign="middle");
+//   (0, -7) @TEXT("VFCT  /  2.1 V", size=1.24, halign="middle", valign="middle");
+//   %j1 = (-20, 0);
 //   $JUNCTION @ATTACH %j1;
-//   %port_vin = $IO_PORT @ATTACH &vin => @PLACE(-26,6.0) => @ORIENT("R0");
+//   %port_vin = $IO_PORT @ATTACH &vin => @PLACE(-26,0.0) => @ORIENT("R0");
 //   &vin @WIRE(mode="straight") {%port_vin:p %j1};
-//   &vin @WIRE(mode="straight") {%j1 (-20, 25) #Xcb:1};
-//   &vin @WIRE(mode="straight") {%j1 (-20, -13) #Xfct:1};
-//   %port_bias = $IO_PORT @ATTACH &bias => @PLACE(-11,7) => @ORIENT("R0");
-//   &bias @WIRE(mode="straight") {%port_bias:p (-6, 7) #Xcb:2};
-//   &bias @WIRE(mode="straight") {#Xfct:2 (-6, -31)};
-//   (-6, -30.2) @TEXT("bias", size=0.75, halign="middle", valign="middle");
-//   %port_outcb = $IO_PORT @ATTACH &outcb => @PLACE(22,25) => @ORIENT("R180");
+//   &vin @WIRE(mode="straight") {%j1 (-20, 19) #Xcb:1};
+//   &vin @WIRE(mode="straight") {%j1 (-20, -19) #Xfct:1};
+//   %port_bias = $IO_PORT @ATTACH &bias => @PLACE(-10,9) => @ORIENT("R0");
+//   &bias @WIRE(mode="straight") {%port_bias:p (-5, 9) #Xcb:2};
+//   &bias @WIRE(mode="straight") {#Xfct:2 (-5, -29)};
+//   (-3, -29) @TEXT("bias", size=0.84, halign="middle", valign="middle");
+//   %port_outcb = $IO_PORT @ATTACH &outcb => @PLACE(22,23) => @ORIENT("R180");
 //   &outcb @WIRE(mode="straight") {%port_outcb:p #Xcb:3};
 //   %port_padcb = $IO_PORT @ATTACH &padcb => @PLACE(22,19) => @ORIENT("R180");
 //   &padcb @WIRE(mode="straight") {%port_padcb:p #Xcb:4};
-//   %port_diecb = $IO_PORT @ATTACH &diecb => @PLACE(22,13) => @ORIENT("R180");
+//   %port_diecb = $IO_PORT @ATTACH &diecb => @PLACE(22,15) => @ORIENT("R180");
 //   &diecb @WIRE(mode="straight") {%port_diecb:p #Xcb:5};
-//   %j2 = (4, 7);
+//   %j2 = (5, 9);
 //   $JUNCTION @ATTACH %j2;
-//   %port_g = $IO_PORT @ATTACH &g => @PLACE(10,7) => @ORIENT("R180");
+//   %port_g = $IO_PORT @ATTACH &g => @PLACE(11,9) => @ORIENT("R180");
 //   &g @WIRE(mode="straight") {#Xcb:6 %j2 %port_g:p};
-//   %return = $GROUND @ATTACH &g => @PLACE(4,5);
+//   %return = $GROUND @ATTACH &g => @PLACE(5,7);
 //   &g @WIRE(mode="straight") {%j2 %return:p};
-//   %ground3 = $GROUND @ATTACH &g => @PLACE(4,-31);
+//   %ground3 = $GROUND @ATTACH &g => @PLACE(5,-29);
 //   &g @WIRE(mode="straight") {#Xfct:6 %ground3:p};
-//   %port_outfct = $IO_PORT @ATTACH &outfct => @PLACE(22,-13) => @ORIENT("R180");
+//   %port_outfct = $IO_PORT @ATTACH &outfct => @PLACE(22,-15) => @ORIENT("R180");
 //   &outfct @WIRE(mode="straight") {%port_outfct:p #Xfct:3};
 //   %port_padfct = $IO_PORT @ATTACH &padfct => @PLACE(22,-19) => @ORIENT("R180");
 //   &padfct @WIRE(mode="straight") {%port_padfct:p #Xfct:4};
-//   %port_diefct = $IO_PORT @ATTACH &diefct => @PLACE(22,-25) => @ORIENT("R180");
+//   %port_diefct = $IO_PORT @ATTACH &diefct => @PLACE(22,-23) => @ORIENT("R180");
 //   &diefct @WIRE(mode="straight") {%port_diefct:p #Xfct:5}
 // }
 ends TM_LDO_LDO

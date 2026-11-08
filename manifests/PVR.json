@@ -46,13 +46,13 @@
     },
     {
       "path": "stages/CARD_CHANNEL.scs",
-      "sha256": "4fc978ffbd38c0ec91cf6537f5c63037505712f0709934daa8f8b9adb452ee80",
+      "sha256": "079d1bfc33b974ae2d5bb7df936bc6cfa2bf8d218f86745f290f097778ca86a2",
       "size": 2162
     },
     {
       "path": "stages/CARD_ONLY.scs",
-      "sha256": "e4b3ba20990155ea3827f0b7d008d6b982822f09745d57302122e7df64008632",
-      "size": 2812
+      "sha256": "89a809c540739a4f2a95af1d99a3f819196976ab1d668beb588c5132ab5e33af",
+      "size": 2810
     },
     {
       "path": "stages/input/PVR_SET.scs",
@@ -71,18 +71,18 @@
     },
     {
       "path": "stages/PVR_CH.scs",
-      "sha256": "faf7b8eac12859e72489882326a08cca16a38a9327b124d5bb29b855c7da6a86",
+      "sha256": "36ad36f55131b9dfc60c88ccf1c824ce7c3943f733caf32eb514e9b997f28e7c",
       "size": 1791
     },
     {
       "path": "symbols.rnl",
-      "sha256": "039e979c68fdcea8f1b579c532b13483087e26047af7bb278022dce65a7074f2",
-      "size": 22903
+      "sha256": "75e69efd8fc1a8651c3b7e59ddec6a7cabcad3078aa3932fe401c7f58d45af99",
+      "size": 17540
     },
     {
       "path": "top.scs",
-      "sha256": "5ab0dc7b03e90a16942aa718b7aa512c5a263c0bd5494c0a37075aa7c757a1f5",
-      "size": 3466
+      "sha256": "9b94e51182de9c4527210a565d1e1ab21f4ff1c9b054a962e4dc5ac62cc44b01",
+      "size": 3464
     }
   ],
   "pool": [

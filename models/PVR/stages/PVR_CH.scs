@@ -7,22 +7,22 @@ Xport (plug pad die g) TM_PVR_CARD_PATH cpad=cpad
 // @RNL {
 //   #Xcard @PLACE(0, 0);
 //   #Xport @PLACE(35, 0);
-//   %io_cmd = $IO_PORT @ATTACH &cmd => @PLACE(-21, 6) => @ORIENT("R0");
+//   %io_cmd = $IO_PORT @ATTACH &cmd => @PLACE(-21, 0) => @ORIENT("R0");
 //   &cmd @WIRE(mode="straight") {%io_cmd:p #Xcard:1};
-//   %io_bias = $IO_PORT @ATTACH &bias => @PLACE(-6, -16) => @ORIENT("R90");
+//   %io_bias = $IO_PORT @ATTACH &bias => @PLACE(-5, -14) => @ORIENT("R90");
 //   &bias @WIRE(mode="straight") {%io_bias:p #Xcard:2};
-//   %io_buf = $IO_PORT @ATTACH &buf => @PLACE(21, 6) => @ORIENT("R180");
+//   %io_buf = $IO_PORT @ATTACH &buf => @PLACE(21, 4) => @ORIENT("R180");
 //   &buf @WIRE(mode="straight") {%io_buf:p #Xcard:3};
 //   %io_card = $IO_PORT @ATTACH &card => @PLACE(21, 0) => @ORIENT("R180");
 //   &card @WIRE(mode="straight") {%io_card:p #Xcard:4};
-//   %io_pad = $IO_PORT @ATTACH &pad => @PLACE(38, 11) => @ORIENT("R270");
+//   %io_pad = $IO_PORT @ATTACH &pad => @PLACE(49, 2) => @ORIENT("R180");
 //   &pad @WIRE(mode="straight") {%io_pad:p #Xport:2};
-//   %io_die = $IO_PORT @ATTACH &die => @PLACE(49, 0) => @ORIENT("R180");
+//   %io_die = $IO_PORT @ATTACH &die => @PLACE(49, -2) => @ORIENT("R180");
 //   &die @WIRE(mode="straight") {%io_die:p #Xport:3};
-//   %io_g = $IO_PORT @ATTACH &g => @PLACE(4, -16) => @ORIENT("R90");
+//   %io_g = $IO_PORT @ATTACH &g => @PLACE(5, -14) => @ORIENT("R90");
 //   &g @WIRE(mode="straight") {%io_g:p #Xcard:6};
-//   &plug @WIRE(mode="straight") {#Xcard:5 (25, -6) (25, 0) #Xport:1};
-//   %ground0 = $GROUND @ATTACH &g => @PLACE(38, -7);
+//   &plug @WIRE(mode="straight") {#Xcard:5 (25, -4) (25, 0) #Xport:1};
+//   %ground0 = $GROUND @ATTACH &g => @PLACE(35, -7);
 //   &g @WIRE(mode="straight") {#Xport:4 %ground0:p}
 // }
 ends TM_PVR_PVR_CH

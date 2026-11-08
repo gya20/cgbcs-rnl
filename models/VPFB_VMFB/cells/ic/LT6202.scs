@@ -11,18 +11,25 @@ Cz (z o) capacitor c=1/(6.283185307*300*fo)
 //   (18, 1.45) @TEXT("Rz  300", size=0.76, halign="middle");
 //   #Cz @PLACE(18, 9);
 //   (18, 10.45) @TEXT("Cz  C(eq)", size=0.76, halign="middle");
-//   %io_p = $IO_PORT @ATTACH &p => @PLACE(-13, -2) => @ORIENT("R0");
-//   &p @WIRE(mode="straight") {%io_p:p #Xamp:1};
-//   %io_n = $IO_PORT @ATTACH &n => @PLACE(-13, 2) => @ORIENT("R0");
-//   &n @WIRE(mode="straight") {%io_n:p #Xamp:2};
-//   %io_o = $IO_PORT @ATTACH &o => @PLACE(27, 0) => @ORIENT("R180");
-//   &o @WIRE(mode="straight") {%io_o:p #Rz:2};
-//   %io_bias = $IO_PORT @ATTACH &bias => @PLACE(-2, 12) => @ORIENT("R270");
-//   &bias @WIRE(mode="straight") {%io_bias:p #Xamp:4};
-//   %io_g = $IO_PORT @ATTACH &g => @PLACE(-2, -12) => @ORIENT("R90");
-//   &g @WIRE(mode="straight") {%io_g:p #Xamp:5};
-//   &o @WIRE(mode="straight") {#Rz:2 (23, 0) (23, 9) #Cz:2};
-//   &z @WIRE(mode="straight") {#Xamp:3 #Rz:1};
-//   &z @WIRE(mode="straight") {#Rz:1 (13, 0) (13, 9) #Cz:1}
+//   %port_p = $IO_PORT @ATTACH &p => @PLACE(-16,-2) => @ORIENT("R0");
+//   &p @WIRE(mode="straight") {%port_p:p #Xamp:1};
+//   %port_n = $IO_PORT @ATTACH &n => @PLACE(-16,2) => @ORIENT("R0");
+//   &n @WIRE(mode="straight") {%port_n:p #Xamp:2};
+//   %port_bias = $IO_PORT @ATTACH &bias => @PLACE(5,9) => @ORIENT("R180");
+//   &bias @WIRE(mode="straight") {%port_bias:p (-2, 9) #Xamp:4};
+//   %ground1 = $GROUND @ATTACH &g => @PLACE(-2,-9);
+//   &g @WIRE(mode="straight") {#Xamp:5 %ground1:p};
+//   %j2 = (11, 0);
+//   $JUNCTION @ATTACH %j2;
+//   %j3 = (25, 0);
+//   $JUNCTION @ATTACH %j3;
+//   &z @WIRE(mode="straight") {#Xamp:3 %j2 #Rz:1};
+//   &z @WIRE(mode="straight") {%j2 (11, 9) #Cz:1};
+//   %port_o = $IO_PORT @ATTACH &o => @PLACE(31,0) => @ORIENT("R180");
+//   &o @WIRE(mode="straight") {#Rz:2 %j3 %port_o:p};
+//   &o @WIRE(mode="straight") {#Cz:2 (25, 9) %j3};
+//   %port_g = $IO_PORT @ATTACH &g => @PLACE(-16,-11) => @ORIENT("R0");
+//   %common = $GROUND @ATTACH &g => @PLACE(-13,-13);
+//   &g @WIRE(mode="straight") {%port_g:p (-13, -11) %common:p}
 // }
 ends TM_REF_LT6202

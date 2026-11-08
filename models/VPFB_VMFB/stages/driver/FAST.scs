@@ -25,8 +25,9 @@ Ch (nc drive) capacitor c=4.7n
 //   %j3 = (14, 0);
 //   $JUNCTION @ATTACH %j3;
 //   &nf @WIRE(mode="straight") {%j2 #Xu:2};
+//   &drive @WIRE(mode="straight") {#Xu:3 %j3};
 //   %port_drive = $IO_PORT @ATTACH &drive => @PLACE(21,0) => @ORIENT("R180");
-//   &drive @WIRE(mode="straight") {#Xu:3 %j3 %port_drive:p};
+//   &drive @WIRE(mode="straight") {%j3 %port_drive:p};
 //   %port_pad = $IO_PORT @ATTACH &pad => @PLACE(-27,2) => @ORIENT("R0");
 //   &pad @WIRE(mode="straight") {%port_pad:p #Rf:1};
 //   &nf @WIRE(mode="straight") {#Rf:2 %j2};

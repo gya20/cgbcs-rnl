@@ -15,9 +15,9 @@ XPath (out pad die g) TM_LDO_LDO_PATH
 //   &bias @WIRE(mode="straight") {%io_bias:p #Xset:2};
 //   %io_out = $IO_PORT @ATTACH &out => @PLACE(48, 0) => @ORIENT("R180");
 //   &out @WIRE(mode="straight") {%io_out:p #Xreg:3};
-//   %io_pad = $IO_PORT @ATTACH &pad => @PLACE(65, 11) => @ORIENT("R270");
+//   %io_pad = $IO_PORT @ATTACH &pad => @PLACE(76, 2) => @ORIENT("R180");
 //   &pad @WIRE(mode="straight") {%io_pad:p #XPath:2};
-//   %io_die = $IO_PORT @ATTACH &die => @PLACE(76, 0) => @ORIENT("R180");
+//   %io_die = $IO_PORT @ATTACH &die => @PLACE(76, -2) => @ORIENT("R180");
 //   &die @WIRE(mode="straight") {%io_die:p #XPath:3};
 //   %io_g = $IO_PORT @ATTACH &g => @PLACE(3, -11) => @ORIENT("R90");
 //   &g @WIRE(mode="straight") {%io_g:p #Xset:5};
@@ -28,7 +28,7 @@ XPath (out pad die g) TM_LDO_LDO_PATH
 //   (29, -8) @TEXT("bias", size=0.7, halign="middle", valign="middle");
 //   %ground0 = $GROUND @ATTACH &g => @PLACE(35, -7);
 //   &g @WIRE(mode="straight") {#Xreg:5 %ground0:p};
-//   %ground1 = $GROUND @ATTACH &g => @PLACE(65, -7);
+//   %ground1 = $GROUND @ATTACH &g => @PLACE(62, -7);
 //   &g @WIRE(mode="straight") {#XPath:4 %ground1:p}
 // }
 ends TM_LDO_LDO_CH

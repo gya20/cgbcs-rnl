@@ -2,18 +2,62 @@ simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-pvre", version="1.0", path="../../symbols.rnl") }
 subckt TM_PVRE_LT1355 (p n o bias g)
 parameters a0=100k fu=12M ro=10 ew=10n vos=0
-Xamp (p n o bias g) TM_PVRE_AMP a0=a0 fu=fu ro=ro ew=ew vos=vos
+Xn (pn p g) TM_PVRE_NOISE ew=ew
+Eos (pi pn bias g) vcvs gain=vos
+Gerr (g x pi n) vccs gm=a0/1M
+Rd (x g) resistor r=1M isnoisy=no
+Cd (x g) capacitor c=a0/(6.283185307*1M*fu)
+Ebuf (b g x g) vcvs gain=1
+Ro (b o) resistor r=ro isnoisy=no
 // @RNL {
-//   #Xamp @PLACE(0, 0);
-//   %io_p = $IO_PORT @ATTACH &p => @PLACE(-13, -2) => @ORIENT("R0");
-//   &p @WIRE(mode="straight") {%io_p:p #Xamp:1};
-//   %io_n = $IO_PORT @ATTACH &n => @PLACE(-13, 2) => @ORIENT("R0");
-//   &n @WIRE(mode="straight") {%io_n:p #Xamp:2};
-//   %io_o = $IO_PORT @ATTACH &o => @PLACE(13, 0) => @ORIENT("R180");
-//   &o @WIRE(mode="straight") {%io_o:p #Xamp:3};
-//   %io_bias = $IO_PORT @ATTACH &bias => @PLACE(-2, 12) => @ORIENT("R270");
-//   &bias @WIRE(mode="straight") {%io_bias:p #Xamp:4};
-//   %io_g = $IO_PORT @ATTACH &g => @PLACE(-2, -12) => @ORIENT("R90");
-//   &g @WIRE(mode="straight") {%io_g:p #Xamp:5}
+//   #Xn @PLACE(0, 0);
+//   #Eos @PLACE(16, 0) => @ORIENT("R270");
+//   (18.4, 1.4) @TEXT("Eos  vos", size=0.76, halign="start");
+//   #Gerr @PLACE(36, -4) => @ORIENT("MX");
+//   (38.4, -2.6) @TEXT("Gerr  gm", size=0.76, halign="start");
+//   #Rd @PLACE(47, -4) => @ORIENT("R270");
+//   (48.5, -4) @TEXT("Rd  1M", size=0.76, halign="start");
+//   #Cd @PLACE(57, -4) => @ORIENT("R270");
+//   (58.5, -4) @TEXT("Cd  Cd", size=0.76, halign="start");
+//   #Ebuf @PLACE(110, -4);
+//   (112.4, -2.6) @TEXT("Ebuf  1", size=0.76, halign="start");
+//   #Ro @PLACE(122, 4);
+//   (122, 5.45) @TEXT("Ro  ro", size=0.76, halign="middle");
+//   %port_p = $IO_PORT @ATTACH &p => @PLACE(-12,0) => @ORIENT("R0");
+//   &p @WIRE(mode="straight") {%port_p:p #Xn:2};
+//   &pn @WIRE(mode="straight") {#Xn:1 #Eos:2};
+//   &pi @WIRE(mode="straight") {#Eos:1 (26, 0) (26, -5) #Gerr:3};
+//   %port_n = $IO_PORT @ATTACH &n => @PLACE(19,-10) => @ORIENT("R0");
+//   &n @WIRE(mode="straight") {%port_n:p (29, -10) (29, -3) #Gerr:4};
+//   %ground1 = $GROUND @ATTACH &g => @PLACE(0,-7);
+//   &g @WIRE(mode="straight") {#Xn:3 %ground1:p};
+//   %ground2 = $GROUND @ATTACH &g => @PLACE(12,2);
+//   &g @WIRE(mode="straight") {#Eos:4 (12, 4) %ground2:p};
+//   %port_bias = $IO_PORT @ATTACH &bias => @PLACE(21,9) => @ORIENT("R180");
+//   &bias @WIRE(mode="straight") {%port_bias:p (17, 9) #Eos:3};
+//   %ground3 = $GROUND @ATTACH &g => @PLACE(36,-10);
+//   &g @WIRE(mode="straight") {#Gerr:1 %ground3:p};
+//   %j4 = (47, 4);
+//   $JUNCTION @ATTACH %j4;
+//   %j5 = (57, 4);
+//   $JUNCTION @ATTACH %j5;
+//   &x @WIRE(mode="straight") {#Gerr:2 (36, 4) %j4 %j5};
+//   &x @WIRE(mode="straight") {%j4 #Rd:1};
+//   &x @WIRE(mode="straight") {%j5 #Cd:1};
+//   %ground6 = $GROUND @ATTACH &g => @PLACE(47,-10);
+//   &g @WIRE(mode="straight") {#Rd:2 %ground6:p};
+//   %ground7 = $GROUND @ATTACH &g => @PLACE(57,-10);
+//   &g @WIRE(mode="straight") {#Cd:2 %ground7:p};
+//   &x @WIRE(mode="straight") {%j5 (103, 4) (103, -3) #Ebuf:3};
+//   %ground8 = $GROUND @ATTACH &g => @PLACE(110,-10);
+//   &g @WIRE(mode="straight") {#Ebuf:2 %ground8:p};
+//   %ground9 = $GROUND @ATTACH &g => @PLACE(104,-8);
+//   &g @WIRE(mode="straight") {#Ebuf:4 (104, -5) %ground9:p};
+//   &b @WIRE(mode="straight") {#Ebuf:1 (110, 4) #Ro:1};
+//   %port_o = $IO_PORT @ATTACH &o => @PLACE(131,4) => @ORIENT("R180");
+//   &o @WIRE(mode="straight") {#Ro:2 %port_o:p};
+//   %port_g = $IO_PORT @ATTACH &g => @PLACE(-14,-12) => @ORIENT("R0");
+//   %common = $GROUND @ATTACH &g => @PLACE(-11,-14);
+//   &g @WIRE(mode="straight") {%port_g:p (-11, -12) %common:p}
 // }
 ends TM_PVRE_LT1355
