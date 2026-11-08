@@ -1,10 +1,10 @@
 simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-vfct-vdcb", version="1.0", path="../symbols.rnl") }
-subckt TM_LDO_LDO_CH (vin bias out pad die g)
+subckt L1_TM_LDO_LDO_CH (vin bias out pad die g)
 parameters rt=20k iset=100u rreg=50m
-Xset (vin bias set localin g) TM_LDO_LDO_SET rt=rt
-Xreg (localin set out bias g) TM_LDO_LT3042 rreg=rreg iset=iset
-XPath (out pad die g) TM_LDO_LDO_PATH
+Xset (vin bias set localin g) L2_TM_LDO_LDO_SET rt=rt
+Xreg (localin set out bias g) L2_TM_LDO_LT3042 rreg=rreg iset=iset
+XPath (out pad die g) L2_TM_LDO_LDO_PATH
 // @RNL {
 //   #Xset @PLACE(0, 0);
 //   #Xreg @PLACE(32, 0);
@@ -31,4 +31,4 @@ XPath (out pad die g) TM_LDO_LDO_PATH
 //   %ground1 = $GROUND @ATTACH &g => @PLACE(62, -7);
 //   &g @WIRE(mode="straight") {#XPath:4 %ground1:p}
 // }
-ends TM_LDO_LDO_CH
+ends L1_TM_LDO_LDO_CH

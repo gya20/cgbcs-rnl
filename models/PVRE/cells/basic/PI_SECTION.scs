@@ -1,9 +1,9 @@
 simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-pvre", version="1.0", path="../../symbols.rnl") }
-subckt TM_PVRE_PI_SECTION (p q g)
+subckt L4_TM_PVRE_PI_SECTION (p q g)
 parameters rr=5m ll=5n cc=1p
 C1 (p g) capacitor c=cc/2
-Xline (p q g) TM_PVRE_LINE rs=rr le=ll
+Xline (p q g) L4_TM_PVRE_LINE rs=rr le=ll
 C2 (q g) capacitor c=cc/2
 // @RNL {
 //   #C1 @PLACE(-14, -7) => @ORIENT("R270");
@@ -31,4 +31,4 @@ C2 (q g) capacitor c=cc/2
 //   %common = $GROUND @ATTACH &g => @PLACE(-20,-17);
 //   &g @WIRE(mode="straight") {%port_g:p (-20, -15) %common:p}
 // }
-ends TM_PVRE_PI_SECTION
+ends L4_TM_PVRE_PI_SECTION

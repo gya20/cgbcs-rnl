@@ -1,10 +1,10 @@
 simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-vfct-vdcb", version="1.0", path="../../symbols.rnl") }
-subckt TM_LDO_LDO_PATH (out pad die g)
-Xnear (out g) TM_LDO_DECOUPLE
-Xfeed (out pad g) TM_LDO_LINE rs=20m le=1n
-Xpad (pad g) TM_LDO_DECOUPLE
-Xbond (pad die g) TM_LDO_LINE rs=50m le=2n
+subckt L2_TM_LDO_LDO_PATH (out pad die g)
+Xnear (out g) L3_TM_LDO_DECOUPLE
+Xfeed (out pad g) L4_TM_LDO_LINE rs=20m le=1n
+Xpad (pad g) L3_TM_LDO_DECOUPLE
+Xbond (pad die g) L4_TM_LDO_LINE rs=50m le=2n
 // @RNL {
 //   #Xnear @PLACE(-14, -7);
 //   #Xfeed @PLACE(4, 0);
@@ -28,4 +28,4 @@ Xbond (pad die g) TM_LDO_LINE rs=50m le=2n
 //   %ground2 = $GROUND @ATTACH &g => @PLACE(39, -7);
 //   &g @WIRE(mode="straight") {#Xbond:3 %ground2:p}
 // }
-ends TM_LDO_LDO_PATH
+ends L2_TM_LDO_LDO_PATH

@@ -1,11 +1,11 @@
 simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-vfct-vdcb", version="1.0", path="../../symbols.rnl") }
-subckt TM_LDO_LT3042 (vin set out bias g)
+subckt L2_TM_LDO_LT3042 (vin set out bias g)
 parameters ereg=2.53n freg=1M rreg=50m vos=0 iset=100u kline=0
 Gset (g set bias g) vccs gm=iset
 Evnom (vbase g bias g) vcvs gain=3.3
 Eline (sl set vin vbase) vcvs gain=kline
-Xn (u sl g) TM_LDO_NOISE ew=ereg
+Xn (u sl g) L3_TM_LDO_NOISE ew=ereg
 Ecmd (v g u g) vcvs gain=1
 Eoff (w v bias g) vcvs gain=vos
 Rf (w x) resistor r=1k isnoisy=no
@@ -76,4 +76,4 @@ Rreg (b out) resistor r=rreg isnoisy=no
 //   %ground9 = $GROUND @ATTACH &g => @PLACE(111, -1);
 //   &g @WIRE(mode="straight") {#Edrive:4 %ground9:p}
 // }
-ends TM_LDO_LT3042
+ends L2_TM_LDO_LT3042

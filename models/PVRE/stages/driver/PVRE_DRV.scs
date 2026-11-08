@@ -1,12 +1,12 @@
 simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-pvre", version="1.0", path="../../symbols.rnl") }
-subckt TM_PVRE_PVRE_DRV (cm dac bias buf g)
+subckt L2_TM_PVRE_PVRE_DRV (cm dac bias buf g)
 parameters rin=1k edac=0
-Xdn (dac d g) TM_PVRE_LTC2972_SET ecmd=edac
+Xdn (dac d g) L3_TM_PVRE_LTC2972_SET ecmd=edac
 Rin (d sum) resistor r=rin
 Rf (buf sum) resistor r=3k
 Cf (buf sum) capacitor c=10n
-Xu4 (cm sum buf bias g) TM_PVRE_LT1355
+Xu4 (cm sum buf bias g) L3_TM_PVRE_LT1355
 // @RNL {
 //   #Xdn @PLACE(-38, 2);
 //   #Rin @PLACE(-19, 2);
@@ -48,4 +48,4 @@ Xu4 (cm sum buf bias g) TM_PVRE_LT1355
 //   %common = $GROUND @ATTACH &g => @PLACE(-54,-13);
 //   &g @WIRE(mode="straight") {%port_g:p (-54, -11) %common:p}
 // }
-ends TM_PVRE_PVRE_DRV
+ends L2_TM_PVRE_PVRE_DRV

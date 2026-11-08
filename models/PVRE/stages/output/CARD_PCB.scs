@@ -1,16 +1,16 @@
 simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-pvre", version="1.0", path="../../symbols.rnl") }
-subckt TM_PVRE_CARD_PCB (buf card plug g)
+subckt L3_TM_PVRE_CARD_PCB (buf card plug g)
 parameters ccard=100u ratiosq=42.86 lenmm=76.2 cum=35 rreturn=5m lmm=0.5n cmm=0.12p rcontact=10m lcontact=1n rneck=2m lneck=1n lcap=0.7n esr=10m
 Rsense (buf after10) resistor r=10
-Xneck (after10 card g) TM_PVRE_LINE rs=rneck le=lneck
-Xmount (card store g) TM_PVRE_LINE rs=esr le=lcap
+Xneck (after10 card g) L4_TM_PVRE_LINE rs=rneck le=lneck
+Xmount (card store g) L4_TM_PVRE_LINE rs=esr le=lcap
 Ccard (store g) capacitor c=ccard
-Xs1 (card n1 g) TM_PVRE_PI_SECTION rr=(0.01724*ratiosq/cum+rreturn)/4 ll=lmm*lenmm/4 cc=cmm*lenmm/4
-Xs2 (n1 n2 g) TM_PVRE_PI_SECTION rr=(0.01724*ratiosq/cum+rreturn)/4 ll=lmm*lenmm/4 cc=cmm*lenmm/4
-Xs3 (n2 n3 g) TM_PVRE_PI_SECTION rr=(0.01724*ratiosq/cum+rreturn)/4 ll=lmm*lenmm/4 cc=cmm*lenmm/4
-Xs4 (n3 pin g) TM_PVRE_PI_SECTION rr=(0.01724*ratiosq/cum+rreturn)/4 ll=lmm*lenmm/4 cc=cmm*lenmm/4
-Xcontact (pin plug g) TM_PVRE_LINE rs=rcontact le=lcontact
+Xs1 (card n1 g) L4_TM_PVRE_PI_SECTION rr=(0.01724*ratiosq/cum+rreturn)/4 ll=lmm*lenmm/4 cc=cmm*lenmm/4
+Xs2 (n1 n2 g) L4_TM_PVRE_PI_SECTION rr=(0.01724*ratiosq/cum+rreturn)/4 ll=lmm*lenmm/4 cc=cmm*lenmm/4
+Xs3 (n2 n3 g) L4_TM_PVRE_PI_SECTION rr=(0.01724*ratiosq/cum+rreturn)/4 ll=lmm*lenmm/4 cc=cmm*lenmm/4
+Xs4 (n3 pin g) L4_TM_PVRE_PI_SECTION rr=(0.01724*ratiosq/cum+rreturn)/4 ll=lmm*lenmm/4 cc=cmm*lenmm/4
+Xcontact (pin plug g) L4_TM_PVRE_LINE rs=rcontact le=lcontact
 // @RNL {
 //   #Rsense @PLACE(0, 0);
 //   (0, 1.45) @TEXT("Rsense  10", size=0.76, halign="middle");
@@ -54,4 +54,4 @@ Xcontact (pin plug g) TM_PVRE_LINE rs=rcontact le=lcontact
 //   %ground6 = $GROUND @ATTACH &g => @PLACE(146, -7);
 //   &g @WIRE(mode="straight") {#Xcontact:3 %ground6:p}
 // }
-ends TM_PVRE_CARD_PCB
+ends L3_TM_PVRE_CARD_PCB

@@ -1,8 +1,8 @@
 simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-vfct-vdcb", version="1.0", path="../../symbols.rnl") }
-subckt TM_LDO_CAPBR (p g)
+subckt L4_TM_LDO_CAPBR (p g)
 parameters rr=10m ll=0.5n cc=22u
-Xesl (p t g) TM_LDO_LINE rs=rr le=ll
+Xesl (p t g) L4_TM_LDO_LINE rs=rr le=ll
 Cstore (t g) capacitor c=cc
 // @RNL {
 //   #Xesl @PLACE(0, 0);
@@ -16,4 +16,4 @@ Cstore (t g) capacitor c=cc
 //   %ground0 = $GROUND @ATTACH &g => @PLACE(14, -11);
 //   &g @WIRE(mode="straight") {#Cstore:2 %ground0:p}
 // }
-ends TM_LDO_CAPBR
+ends L4_TM_LDO_CAPBR

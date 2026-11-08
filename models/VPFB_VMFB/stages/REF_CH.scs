@@ -1,23 +1,23 @@
 simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-vpfb-vmfb", version="1.0", path="../symbols.rnl") }
-subckt TM_REF_REF_CH (ref bias pad die g)
+subckt L1_TM_REF_REF_CH (ref bias pad die g)
 parameters rt=240 rofast=3.98 fo=2036 f2=1.481M ceff=220u lb=2n cpin=2p
 Rt (ref div) resistor r=rt
 Rb (div g) resistor r=10k
 Rset (div set) resistor r=4.99k
 Cset (set g) capacitor c=20u
 Rleak (set g) resistor r=1T
-X_ADA4522 (set ns servo bias g) TM_REF_ADA4522
+X_ADA4522 (set ns servo bias g) L2_TM_REF_ADA4522
 Rs (pad ns) resistor r=1k
 Cs (ns servo) capacitor c=100n
-X_LT6202 (servo nf drive bias g) TM_REF_LT6202 ro=rofast fo=fo f2=f2
+X_LT6202 (servo nf drive bias g) L2_TM_REF_LT6202 ro=rofast fo=fo f2=f2
 Rf (pad nf) resistor r=100
 Rh (nf nc) resistor r=20k
 Ch (nc drive) capacitor c=4.7n
 Riso (drive pad) resistor r=1
-Xbulk (pad g) TM_REF_CAPBR rr=2m ll=0.1n cc=ceff
-Xhf (pad g) TM_REF_CAPBR rr=0.22 ll=0.15n cc=100n
-Xbond (pad die g) TM_REF_LINE rs=50m le=lb
+Xbulk (pad g) L2_TM_REF_CAPBR rr=2m ll=0.1n cc=ceff
+Xhf (pad g) L2_TM_REF_CAPBR rr=0.22 ll=0.15n cc=100n
+Xbond (pad die g) L3_TM_REF_LINE rs=50m le=lb
 Cpin (die g) capacitor c=cpin
 // @RNL {
 //   #Rt @PLACE(-47, -2);
@@ -134,4 +134,4 @@ Cpin (die g) capacitor c=cpin
 //   %common = $GROUND @ATTACH &g => @PLACE(-56,-23);
 //   &g @WIRE(mode="straight") {%port_g:p (-56, -21) %common:p}
 // }
-ends TM_REF_REF_CH
+ends L1_TM_REF_REF_CH

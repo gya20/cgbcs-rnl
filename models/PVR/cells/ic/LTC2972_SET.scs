@@ -1,9 +1,9 @@
 simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-pvr", version="1.0", path="../../symbols.rnl") }
-subckt TM_PVR_LTC2972_SET (code analog g)
+subckt L4_TM_PVR_LTC2972_SET (code analog g)
 parameters ecmd=0
 Ehold (held g code g) vcvs gain=1
-Xn (analog held g) TM_PVR_NOISE ew=ecmd
+Xn (analog held g) L4_TM_PVR_NOISE ew=ecmd
 // @RNL {
 //   #Ehold @PLACE(0, 0);
 //   (2.4, 1.4) @TEXT("Ehold  1", size=0.76, halign="start");
@@ -20,4 +20,4 @@ Xn (analog held g) TM_PVR_NOISE ew=ecmd
 //   %ground1 = $GROUND @ATTACH &g => @PLACE(35, -6);
 //   &g @WIRE(mode="straight") {#Xn:3 %ground1:p}
 // }
-ends TM_PVR_LTC2972_SET
+ends L4_TM_PVR_LTC2972_SET

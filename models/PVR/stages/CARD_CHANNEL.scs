@@ -1,11 +1,11 @@
 simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-pvr", version="1.0", path="../symbols.rnl") }
-subckt TM_PVR_CARD_CHANNEL (cmd bias buf card plug g)
+subckt L2_TM_PVR_CARD_CHANNEL (cmd bias buf card plug g)
 parameters ecmd=0 ccard=100u ratiosq=18.29 lenmm=27.5 cum=35 rreturn=5m lmm=0.5n cmm=0.12p rcontact=10m lcontact=1n rneck=2m lneck=1n lcap=0.7n esr=10m
-Xset (cmd set g) TM_PVR_PVR_SET ecmd=ecmd
-Xreg (set buf bias g) TM_PVR_LT3042
+Xset (cmd set g) L3_TM_PVR_PVR_SET ecmd=ecmd
+Xreg (set buf bias g) L3_TM_PVR_LT3042
 Cnear (buf g) capacitor c=10u
-Xpcb (buf card plug g) TM_PVR_CARD_PCB ccard=ccard ratiosq=ratiosq lenmm=lenmm cum=cum rreturn=rreturn lmm=lmm cmm=cmm rcontact=rcontact lcontact=lcontact rneck=rneck lneck=lneck lcap=lcap esr=esr
+Xpcb (buf card plug g) L3_TM_PVR_CARD_PCB ccard=ccard ratiosq=ratiosq lenmm=lenmm cum=cum rreturn=rreturn lmm=lmm cmm=cmm rcontact=rcontact lcontact=lcontact rneck=rneck lneck=lneck lcap=lcap esr=esr
 // @RNL {
 //   #Xset @PLACE(0, 0);
 //   #Xreg @PLACE(32, 0);
@@ -34,4 +34,4 @@ Xpcb (buf card plug g) TM_PVR_CARD_PCB ccard=ccard ratiosq=ratiosq lenmm=lenmm c
 //   %ground2 = $GROUND @ATTACH &g => @PLACE(65, -7);
 //   &g @WIRE(mode="straight") {#Xpcb:4 %ground2:p}
 // }
-ends TM_PVR_CARD_CHANNEL
+ends L2_TM_PVR_CARD_CHANNEL

@@ -1,6 +1,6 @@
 simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-vpfb-vmfb", version="1.0", path="../../symbols.rnl") }
-subckt TM_REF_REF_SET (ref set g)
+subckt L2_TM_REF_REF_SET (ref set g)
 parameters rt=240
 Rt (ref div) resistor r=rt
 Rb (div g) resistor r=10k
@@ -42,4 +42,4 @@ Rl (set g) resistor r=1T
 //   %common = $GROUND @ATTACH &g => @PLACE(-9,-17);
 //   &g @WIRE(mode="straight") {%port_g:p (-9, -15) %common:p}
 // }
-ends TM_REF_REF_SET
+ends L2_TM_REF_REF_SET

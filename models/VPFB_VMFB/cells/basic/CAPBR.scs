@@ -1,8 +1,8 @@
 simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-vpfb-vmfb", version="1.0", path="../../symbols.rnl") }
-subckt TM_REF_CAPBR (p g)
+subckt L2_TM_REF_CAPBR (p g)
 parameters rr=10m ll=0.5n cc=22u
-Xesl (p t g) TM_REF_LINE rs=rr le=ll
+Xesl (p t g) L3_TM_REF_LINE rs=rr le=ll
 Cstore (t g) capacitor c=cc
 // @RNL {
 //   #Xesl @PLACE(0, 0);
@@ -16,4 +16,4 @@ Cstore (t g) capacitor c=cc
 //   %ground0 = $GROUND @ATTACH &g => @PLACE(14, -11);
 //   &g @WIRE(mode="straight") {#Cstore:2 %ground0:p}
 // }
-ends TM_REF_CAPBR
+ends L2_TM_REF_CAPBR

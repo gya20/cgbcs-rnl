@@ -1,14 +1,14 @@
 simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-vpfb-vmfb", version="1.0", path="../../symbols.rnl") }
-subckt TM_REF_REF_NOISE (p q g)
+subckt L3_TM_REF_REF_NOISE (p q g)
 parameters fj=1 en=39n fc=1
-X1 (n1 q g) TM_REF_NOISE_DECADE fj=fj*0.001 en=en fc=fc
-X2 (n2 n1 g) TM_REF_NOISE_DECADE fj=fj*0.01 en=en fc=fc
-X3 (n3 n2 g) TM_REF_NOISE_DECADE fj=fj*0.1 en=en fc=fc
-X4 (n4 n3 g) TM_REF_NOISE_DECADE fj=fj*1 en=en fc=fc
-X5 (n5 n4 g) TM_REF_NOISE_DECADE fj=fj*10 en=en fc=fc
-X6 (n6 n5 g) TM_REF_NOISE_DECADE fj=fj*100 en=en fc=fc
-X7 (p n6 g) TM_REF_NOISE_DECADE fj=fj*1000 en=en fc=fc
+X1 (n1 q g) L4_TM_REF_NOISE_DECADE fj=fj*0.001 en=en fc=fc
+X2 (n2 n1 g) L4_TM_REF_NOISE_DECADE fj=fj*0.01 en=en fc=fc
+X3 (n3 n2 g) L4_TM_REF_NOISE_DECADE fj=fj*0.1 en=en fc=fc
+X4 (n4 n3 g) L4_TM_REF_NOISE_DECADE fj=fj*1 en=en fc=fc
+X5 (n5 n4 g) L4_TM_REF_NOISE_DECADE fj=fj*10 en=en fc=fc
+X6 (n6 n5 g) L4_TM_REF_NOISE_DECADE fj=fj*100 en=en fc=fc
+X7 (p n6 g) L4_TM_REF_NOISE_DECADE fj=fj*1000 en=en fc=fc
 // @RNL {
 //   #X1 @PLACE(0, 0);
 //   #X2 @PLACE(35, 0);
@@ -42,4 +42,4 @@ X7 (p n6 g) TM_REF_NOISE_DECADE fj=fj*1000 en=en fc=fc
 //   %ground5 = $GROUND @ATTACH &g => @PLACE(70, -29);
 //   &g @WIRE(mode="straight") {#X7:3 %ground5:p}
 // }
-ends TM_REF_REF_NOISE
+ends L3_TM_REF_REF_NOISE

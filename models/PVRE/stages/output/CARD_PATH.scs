@@ -1,10 +1,10 @@
 simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-pvre", version="1.0", path="../../symbols.rnl") }
-subckt TM_PVRE_CARD_PATH (plug pad die g)
+subckt L2_TM_PVRE_CARD_PATH (plug pad die g)
 parameters cpad=1p
-Xfeed (plug pad g) TM_PVRE_LINE rs=20m le=1n
+Xfeed (plug pad g) L4_TM_PVRE_LINE rs=20m le=1n
 Cboard (pad g) capacitor c=cpad
-Xbond (pad die g) TM_PVRE_LINE rs=50m le=2n
+Xbond (pad die g) L4_TM_PVRE_LINE rs=50m le=2n
 // @RNL {
 //   #Xfeed @PLACE(0, 0);
 //   #Cboard @PLACE(15, -7) => @ORIENT("R270");
@@ -25,4 +25,4 @@ Xbond (pad die g) TM_PVRE_LINE rs=50m le=2n
 //   %ground1 = $GROUND @ATTACH &g => @PLACE(31, -7);
 //   &g @WIRE(mode="straight") {#Xbond:3 %ground1:p}
 // }
-ends TM_PVRE_CARD_PATH
+ends L2_TM_PVRE_CARD_PATH

@@ -1,8 +1,8 @@
 simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-vfct-vdcb", version="1.0", path="../../symbols.rnl") }
-subckt TM_LDO_DECOUPLE (p g)
-Xbulk (p g) TM_LDO_CAPBR rr=10m ll=0.5n cc=22u
-Xhf (p g) TM_LDO_CAPBR rr=30m ll=0.25n cc=100n
+subckt L3_TM_LDO_DECOUPLE (p g)
+Xbulk (p g) L4_TM_LDO_CAPBR rr=10m ll=0.5n cc=22u
+Xhf (p g) L4_TM_LDO_CAPBR rr=30m ll=0.25n cc=100n
 // @RNL {
 //   #Xbulk @PLACE(0, -2);
 //   #Xhf @PLACE(12, -2);
@@ -19,4 +19,4 @@ Xhf (p g) TM_LDO_CAPBR rr=30m ll=0.25n cc=100n
 //   %common = $GROUND @ATTACH &g => @PLACE(-6,-13);
 //   &g @WIRE(mode="straight") {%port_g:p (-6, -11) %common:p}
 // }
-ends TM_LDO_DECOUPLE
+ends L3_TM_LDO_DECOUPLE

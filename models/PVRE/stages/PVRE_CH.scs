@@ -1,9 +1,9 @@
 simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-pvre", version="1.0", path="../symbols.rnl") }
-subckt TM_PVRE_PVRE_CH (cm dac bias buf card pad die g)
+subckt L1_TM_PVRE_PVRE_CH (cm dac bias buf card pad die g)
 parameters rin=1k edac=0 ccard=100u cpad=1p ratiosq=42.86 lenmm=76.2 cum=35 rreturn=5m lmm=0.5n cmm=0.12p rcontact=10m lcontact=1n rneck=2m lneck=1n lcap=0.7n esr=10m
-Xcard (cm dac bias buf card plug g) TM_PVRE_CARD_CHANNEL rin=rin edac=edac ccard=ccard ratiosq=ratiosq lenmm=lenmm cum=cum rreturn=rreturn lmm=lmm cmm=cmm rcontact=rcontact lcontact=lcontact rneck=rneck lneck=lneck lcap=lcap esr=esr
-Xport (plug pad die g) TM_PVRE_CARD_PATH cpad=cpad
+Xcard (cm dac bias buf card plug g) L2_TM_PVRE_CARD_CHANNEL rin=rin edac=edac ccard=ccard ratiosq=ratiosq lenmm=lenmm cum=cum rreturn=rreturn lmm=lmm cmm=cmm rcontact=rcontact lcontact=lcontact rneck=rneck lneck=lneck lcap=lcap esr=esr
+Xport (plug pad die g) L2_TM_PVRE_CARD_PATH cpad=cpad
 // @RNL {
 //   #Xcard @PLACE(0, 0);
 //   #Xport @PLACE(35, 0);
@@ -27,4 +27,4 @@ Xport (plug pad die g) TM_PVRE_CARD_PATH cpad=cpad
 //   %ground0 = $GROUND @ATTACH &g => @PLACE(35, -7);
 //   &g @WIRE(mode="straight") {#Xport:4 %ground0:p}
 // }
-ends TM_PVRE_PVRE_CH
+ends L1_TM_PVRE_PVRE_CH

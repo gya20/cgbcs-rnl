@@ -12,10 +12,10 @@ include "stages/output/CARD_PATH.scs"
 include "stages/PVR_CH.scs"
 include "stages/CARD_ONLY.scs"
 
-subckt TM_PVR_PVR (cmd1 cmd2 bias buf1 card1 pad1 die1 buf2 card2 pad2 die2 g)
+subckt L0_TM_PVR_PVR (cmd1 cmd2 bias buf1 card1 pad1 die1 buf2 card2 pad2 die2 g)
 parameters ccard=100u len1=27.5 len2=44.37 sq1=18.29 sq2=29.11 cum=35 rreturn=5m lmm=0.5n cmm=0.12p rcontact=10m lcontact=1n rneck=2m lneck=1n lcap=0.7n esr=10m ecmd=0 cpad=11.1u
-Xch1 (cmd1 bias buf1 card1 pad1 die1 g) TM_PVR_PVR_CH ecmd=ecmd ccard=ccard lenmm=len1 ratiosq=sq1 cum=cum rreturn=rreturn lmm=lmm cmm=cmm rcontact=rcontact lcontact=lcontact rneck=rneck lneck=lneck lcap=lcap esr=esr cpad=cpad
-Xch2 (cmd2 bias buf2 card2 pad2 die2 g) TM_PVR_PVR_CH ecmd=ecmd ccard=ccard lenmm=len2 ratiosq=sq2 cum=cum rreturn=rreturn lmm=lmm cmm=cmm rcontact=rcontact lcontact=lcontact rneck=rneck lneck=lneck lcap=lcap esr=esr cpad=cpad
+Xch1 (cmd1 bias buf1 card1 pad1 die1 g) L1_TM_PVR_PVR_CH ecmd=ecmd ccard=ccard lenmm=len1 ratiosq=sq1 cum=cum rreturn=rreturn lmm=lmm cmm=cmm rcontact=rcontact lcontact=lcontact rneck=rneck lneck=lneck lcap=lcap esr=esr cpad=cpad
+Xch2 (cmd2 bias buf2 card2 pad2 die2 g) L1_TM_PVR_PVR_CH ecmd=ecmd ccard=ccard lenmm=len2 ratiosq=sq2 cum=cum rreturn=rreturn lmm=lmm cmm=cmm rcontact=rcontact lcontact=lcontact rneck=rneck lneck=lneck lcap=lcap esr=esr cpad=cpad
 // @RNL {
 //   #Xch1 @PLACE(0, 19);
 //   #Xch2 @PLACE(0, -19);
@@ -54,4 +54,4 @@ Xch2 (cmd2 bias buf2 card2 pad2 die2 g) TM_PVR_PVR_CH ecmd=ecmd ccard=ccard lenm
 //   %port_die2 = $IO_PORT @ATTACH &die2 => @PLACE(22,-25) => @ORIENT("R180");
 //   &die2 @WIRE(mode="straight") {%port_die2:p #Xch2:6}
 // }
-ends TM_PVR_PVR
+ends L0_TM_PVR_PVR

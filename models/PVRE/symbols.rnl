@@ -6,19 +6,19 @@
   @DEVICE(name="*", model="capacitor", terminals=["p", "n"]);
   @DEVICE(name="*", model="vcvs", terminals=["op", "on", "cp", "cn"]);
   @DEVICE(name="*", model="vccs", terminals=["op", "on", "cp", "cn"]);
-  @DEVICE(name="*", model="TM_PVRE_PVRE", terminals=["cmop", "dac1", "dac2", "bias", "buf1", "card1", "pad1", "die1", "buf2", "card2", "pad2", "die2", "g"]);
-  @DEVICE(name="*", model="TM_PVRE_CARD_CHANNEL", terminals=["cm", "dac", "bias", "buf", "card", "plug", "g"]);
-  @DEVICE(name="*", model="TM_PVRE_CARD_ONLY", terminals=["cmop", "dac1", "dac2", "bias", "buf1", "card1", "plug1", "buf2", "card2", "plug2", "g"]);
-  @DEVICE(name="*", model="TM_PVRE_PVRE_CH", terminals=["cm", "dac", "bias", "buf", "card", "pad", "die", "g"]);
-  @DEVICE(name="*", model="TM_PVRE_AMP", terminals=["p", "n", "out", "bias", "g"]);
-  @DEVICE(name="*", model="TM_PVRE_LINE", terminals=["a", "b", "g"]);
-  @DEVICE(name="*", model="TM_PVRE_NOISE", terminals=["p", "q", "g"]);
-  @DEVICE(name="*", model="TM_PVRE_PI_SECTION", terminals=["p", "q", "g"]);
-  @DEVICE(name="*", model="TM_PVRE_LT1355", terminals=["p", "n", "o", "bias", "g"]);
-  @DEVICE(name="*", model="TM_PVRE_LTC2972_SET", terminals=["code", "analog", "g"]);
-  @DEVICE(name="*", model="TM_PVRE_PVRE_DRV", terminals=["cm", "dac", "bias", "buf", "g"]);
-  @DEVICE(name="*", model="TM_PVRE_CARD_PATH", terminals=["plug", "pad", "die", "g"]);
-  @DEVICE(name="*", model="TM_PVRE_CARD_PCB", terminals=["buf", "card", "plug", "g"])
+  @DEVICE(name="*", model="L0_TM_PVRE_PVRE", terminals=["cmop", "dac1", "dac2", "bias", "buf1", "card1", "pad1", "die1", "buf2", "card2", "pad2", "die2", "g"]);
+  @DEVICE(name="*", model="L2_TM_PVRE_CARD_CHANNEL", terminals=["cm", "dac", "bias", "buf", "card", "plug", "g"]);
+  @DEVICE(name="*", model="L0_TM_PVRE_CARD_ONLY", terminals=["cmop", "dac1", "dac2", "bias", "buf1", "card1", "plug1", "buf2", "card2", "plug2", "g"]);
+  @DEVICE(name="*", model="L1_TM_PVRE_PVRE_CH", terminals=["cm", "dac", "bias", "buf", "card", "pad", "die", "g"]);
+  @DEVICE(name="*", model="L3_TM_PVRE_AMP", terminals=["p", "n", "out", "bias", "g"]);
+  @DEVICE(name="*", model="L4_TM_PVRE_LINE", terminals=["a", "b", "g"]);
+  @DEVICE(name="*", model="L4_TM_PVRE_NOISE", terminals=["p", "q", "g"]);
+  @DEVICE(name="*", model="L4_TM_PVRE_PI_SECTION", terminals=["p", "q", "g"]);
+  @DEVICE(name="*", model="L3_TM_PVRE_LT1355", terminals=["p", "n", "o", "bias", "g"]);
+  @DEVICE(name="*", model="L3_TM_PVRE_LTC2972_SET", terminals=["code", "analog", "g"]);
+  @DEVICE(name="*", model="L2_TM_PVRE_PVRE_DRV", terminals=["cm", "dac", "bias", "buf", "g"]);
+  @DEVICE(name="*", model="L2_TM_PVRE_CARD_PATH", terminals=["plug", "pad", "die", "g"]);
+  @DEVICE(name="*", model="L3_TM_PVRE_CARD_PCB", terminals=["buf", "card", "plug", "g"])
 }
 @RNL {
   $SYM_RESISTOR = @DEFINE-SYMBOL(box=[-3,-2,3,2]) {
@@ -68,7 +68,7 @@
     (-4, -1) @PIN(terminal=4, direction="left")
   };
   # @SELECT-INSTANCE(model="vccs") => @SET-SYMBOL $SYM_VCCS;
-  $SYM_TM_PVRE_PVRE = @DEFINE-SYMBOL(box=[-15,-18,15,18]) {
+  $SYM_L0_TM_PVRE_PVRE = @DEFINE-SYMBOL(box=[-15,-18,15,18]) {
     @LINE {(-14, -17) (14, -17) (14, 17) (-14, 17) (-14, -17)};
     @LINE {(-15, 4) (-14, 4)};
     (-13.5, 4) @TEXT("cmop", size=0.74, halign="start", valign="middle");
@@ -112,8 +112,8 @@
     (5, -18) @PIN(terminal=13, direction="down");
     ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 19.35)
   };
-  # @SELECT-INSTANCE(model="TM_PVRE_PVRE") => @SET-SYMBOL $SYM_TM_PVRE_PVRE;
-  $SYM_TM_PVRE_CARD_CHANNEL = @DEFINE-SYMBOL(box=[-15,-8,15,8]) {
+  # @SELECT-INSTANCE(model="L0_TM_PVRE_PVRE") => @SET-SYMBOL $SYM_L0_TM_PVRE_PVRE;
+  $SYM_L2_TM_PVRE_CARD_CHANNEL = @DEFINE-SYMBOL(box=[-15,-8,15,8]) {
     @LINE {(-14, -7) (14, -7) (14, 7) (-14, 7) (-14, -7)};
     @LINE {(-15, 2) (-14, 2)};
     (-13.5, 2) @TEXT("cm", size=0.74, halign="start", valign="middle");
@@ -139,8 +139,8 @@
     (5, -8) @PIN(terminal=7, direction="down");
     ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 9.35)
   };
-  # @SELECT-INSTANCE(model="TM_PVRE_CARD_CHANNEL") => @SET-SYMBOL $SYM_TM_PVRE_CARD_CHANNEL;
-  $SYM_TM_PVRE_CARD_ONLY = @DEFINE-SYMBOL(box=[-15,-14,15,14]) {
+  # @SELECT-INSTANCE(model="L2_TM_PVRE_CARD_CHANNEL") => @SET-SYMBOL $SYM_L2_TM_PVRE_CARD_CHANNEL;
+  $SYM_L0_TM_PVRE_CARD_ONLY = @DEFINE-SYMBOL(box=[-15,-14,15,14]) {
     @LINE {(-14, -13) (14, -13) (14, 13) (-14, 13) (-14, -13)};
     @LINE {(-15, 4) (-14, 4)};
     (-13.5, 4) @TEXT("cmop", size=0.74, halign="start", valign="middle");
@@ -178,8 +178,8 @@
     (5, -14) @PIN(terminal=11, direction="down");
     ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 15.35)
   };
-  # @SELECT-INSTANCE(model="TM_PVRE_CARD_ONLY") => @SET-SYMBOL $SYM_TM_PVRE_CARD_ONLY;
-  $SYM_TM_PVRE_PVRE_CH = @DEFINE-SYMBOL(box=[-15,-10,15,10]) {
+  # @SELECT-INSTANCE(model="L0_TM_PVRE_CARD_ONLY") => @SET-SYMBOL $SYM_L0_TM_PVRE_CARD_ONLY;
+  $SYM_L1_TM_PVRE_PVRE_CH = @DEFINE-SYMBOL(box=[-15,-10,15,10]) {
     @LINE {(-14, -9) (14, -9) (14, 9) (-14, 9) (-14, -9)};
     @LINE {(-15, 2) (-14, 2)};
     (-13.5, 2) @TEXT("cm", size=0.74, halign="start", valign="middle");
@@ -208,8 +208,8 @@
     (5, -10) @PIN(terminal=8, direction="down");
     ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 11.35)
   };
-  # @SELECT-INSTANCE(model="TM_PVRE_PVRE_CH") => @SET-SYMBOL $SYM_TM_PVRE_PVRE_CH;
-  $SYM_TM_PVRE_AMP = @DEFINE-SYMBOL(box=[-7,-6,7,6]) {
+  # @SELECT-INSTANCE(model="L1_TM_PVRE_PVRE_CH") => @SET-SYMBOL $SYM_L1_TM_PVRE_PVRE_CH;
+  $SYM_L3_TM_PVRE_AMP = @DEFINE-SYMBOL(box=[-7,-6,7,6]) {
     @LINE {(-6, -5) (6, -5) (6, 5) (-6, 5) (-6, -5)};
     @LINE {(-7, -2) (-6, -2)};
     (-5.5, -2) @TEXT("+", size=0.74, halign="start", valign="middle");
@@ -229,8 +229,8 @@
     (-2, -6) @PIN(terminal=5, direction="down");
     ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 7.35)
   };
-  # @SELECT-INSTANCE(model="TM_PVRE_AMP") => @SET-SYMBOL $SYM_TM_PVRE_AMP;
-  $SYM_TM_PVRE_LINE = @DEFINE-SYMBOL(box=[-8,-5,8,5]) {
+  # @SELECT-INSTANCE(model="L3_TM_PVRE_AMP") => @SET-SYMBOL $SYM_L3_TM_PVRE_AMP;
+  $SYM_L4_TM_PVRE_LINE = @DEFINE-SYMBOL(box=[-8,-5,8,5]) {
     @LINE {(-7, -4) (7, -4) (7, 4) (-7, 4) (-7, -4)};
     @LINE {(-8, 0) (-7, 0)};
     (-6.5, 0) @TEXT("a", size=0.74, halign="start", valign="middle");
@@ -244,8 +244,8 @@
     (0, -5) @PIN(terminal=3, direction="down");
     ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 6.35)
   };
-  # @SELECT-INSTANCE(model="TM_PVRE_LINE") => @SET-SYMBOL $SYM_TM_PVRE_LINE;
-  $SYM_TM_PVRE_NOISE = @DEFINE-SYMBOL(box=[-5,-4,5,4]) {
+  # @SELECT-INSTANCE(model="L4_TM_PVRE_LINE") => @SET-SYMBOL $SYM_L4_TM_PVRE_LINE;
+  $SYM_L4_TM_PVRE_NOISE = @DEFINE-SYMBOL(box=[-5,-4,5,4]) {
     (0, 0) @CIRCLE(radius=2.2);
     @LINE {(-5, 0) (-2.2, 0)};
     @LINE {(2.2, 0) (5, 0)};
@@ -258,8 +258,8 @@
     (0, -4) @PIN(terminal=3, direction="down");
     ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 5.35)
   };
-  # @SELECT-INSTANCE(model="TM_PVRE_NOISE") => @SET-SYMBOL $SYM_TM_PVRE_NOISE;
-  $SYM_TM_PVRE_PI_SECTION = @DEFINE-SYMBOL(box=[-8,-5,8,5]) {
+  # @SELECT-INSTANCE(model="L4_TM_PVRE_NOISE") => @SET-SYMBOL $SYM_L4_TM_PVRE_NOISE;
+  $SYM_L4_TM_PVRE_PI_SECTION = @DEFINE-SYMBOL(box=[-8,-5,8,5]) {
     @LINE {(-7, -4) (7, -4) (7, 4) (-7, 4) (-7, -4)};
     @LINE {(-8, 0) (-7, 0)};
     (-6.5, 0) @TEXT("p", size=0.74, halign="start", valign="middle");
@@ -273,8 +273,8 @@
     (0, -5) @PIN(terminal=3, direction="down");
     ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 6.35)
   };
-  # @SELECT-INSTANCE(model="TM_PVRE_PI_SECTION") => @SET-SYMBOL $SYM_TM_PVRE_PI_SECTION;
-  $SYM_TM_PVRE_LT1355 = @DEFINE-SYMBOL(box=[-7,-6,7,6]) {
+  # @SELECT-INSTANCE(model="L4_TM_PVRE_PI_SECTION") => @SET-SYMBOL $SYM_L4_TM_PVRE_PI_SECTION;
+  $SYM_L3_TM_PVRE_LT1355 = @DEFINE-SYMBOL(box=[-7,-6,7,6]) {
     @LINE {(-5, -5) (-5, 5) (5, 0) (-5, -5)};
     @LINE {(-7, 2) (-5, 2)};
     @LINE {(-7, -2) (-5, -2)};
@@ -290,8 +290,8 @@
     (-2, 6) @PIN(terminal=4, direction="up");
     (-2, -6) @PIN(terminal=5, direction="down")
   };
-  # @SELECT-INSTANCE(model="TM_PVRE_LT1355") => @SET-SYMBOL $SYM_TM_PVRE_LT1355;
-  $SYM_TM_PVRE_LTC2972_SET = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
+  # @SELECT-INSTANCE(model="L3_TM_PVRE_LT1355") => @SET-SYMBOL $SYM_L3_TM_PVRE_LT1355;
+  $SYM_L3_TM_PVRE_LTC2972_SET = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
     @LINE {(-9, -4) (9, -4) (9, 4) (-9, 4) (-9, -4)};
     @LINE {(-10, 0) (-9, 0)};
     (-8.5, 0) @TEXT("code", size=0.74, halign="start", valign="middle");
@@ -305,8 +305,8 @@
     (0, -5) @PIN(terminal=3, direction="down");
     ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 6.35)
   };
-  # @SELECT-INSTANCE(model="TM_PVRE_LTC2972_SET") => @SET-SYMBOL $SYM_TM_PVRE_LTC2972_SET;
-  $SYM_TM_PVRE_PVRE_DRV = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
+  # @SELECT-INSTANCE(model="L3_TM_PVRE_LTC2972_SET") => @SET-SYMBOL $SYM_L3_TM_PVRE_LTC2972_SET;
+  $SYM_L2_TM_PVRE_PVRE_DRV = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
     @LINE {(-9, -4) (9, -4) (9, 4) (-9, 4) (-9, -4)};
     @LINE {(-10, 1) (-9, 1)};
     (-8.5, 1) @TEXT("cm", size=0.74, halign="start", valign="middle");
@@ -326,8 +326,8 @@
     (3, -5) @PIN(terminal=5, direction="down");
     ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 6.35)
   };
-  # @SELECT-INSTANCE(model="TM_PVRE_PVRE_DRV") => @SET-SYMBOL $SYM_TM_PVRE_PVRE_DRV;
-  $SYM_TM_PVRE_CARD_PATH = @DEFINE-SYMBOL(box=[-8,-5,8,5]) {
+  # @SELECT-INSTANCE(model="L2_TM_PVRE_PVRE_DRV") => @SET-SYMBOL $SYM_L2_TM_PVRE_PVRE_DRV;
+  $SYM_L2_TM_PVRE_CARD_PATH = @DEFINE-SYMBOL(box=[-8,-5,8,5]) {
     @LINE {(-7, -4) (7, -4) (7, 4) (-7, 4) (-7, -4)};
     @LINE {(-8, 0) (-7, 0)};
     (-6.5, 0) @TEXT("plug", size=0.74, halign="start", valign="middle");
@@ -344,8 +344,8 @@
     (0, -5) @PIN(terminal=4, direction="down");
     ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 6.35)
   };
-  # @SELECT-INSTANCE(model="TM_PVRE_CARD_PATH") => @SET-SYMBOL $SYM_TM_PVRE_CARD_PATH;
-  $SYM_TM_PVRE_CARD_PCB = @DEFINE-SYMBOL(box=[-8,-5,8,5]) {
+  # @SELECT-INSTANCE(model="L2_TM_PVRE_CARD_PATH") => @SET-SYMBOL $SYM_L2_TM_PVRE_CARD_PATH;
+  $SYM_L3_TM_PVRE_CARD_PCB = @DEFINE-SYMBOL(box=[-8,-5,8,5]) {
     @LINE {(-7, -4) (7, -4) (7, 4) (-7, 4) (-7, -4)};
     @LINE {(-8, 0) (-7, 0)};
     (-6.5, 0) @TEXT("buf", size=0.74, halign="start", valign="middle");
@@ -362,5 +362,5 @@
     (0, -5) @PIN(terminal=4, direction="down");
     ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 6.35)
   };
-  # @SELECT-INSTANCE(model="TM_PVRE_CARD_PCB") => @SET-SYMBOL $SYM_TM_PVRE_CARD_PCB
+  # @SELECT-INSTANCE(model="L3_TM_PVRE_CARD_PCB") => @SET-SYMBOL $SYM_L3_TM_PVRE_CARD_PCB
 }

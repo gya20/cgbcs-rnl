@@ -1,8 +1,8 @@
 simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-vpfb-vmfb", version="1.0", path="../../symbols.rnl") }
-subckt TM_REF_ADA4522 (p n o bias g)
+subckt L2_TM_REF_ADA4522 (p n o bias g)
 parameters a0=1M fu=3.274M ro=10 ew=5.8n vos=0 f2=5.252M
-Xn (pn p g) TM_REF_NOISE ew=ew
+Xn (pn p g) L4_TM_REF_NOISE ew=ew
 Eos (pi pn bias g) vcvs gain=vos
 Gerr (g x pi n) vccs gm=a0/1M
 Rd (x g) resistor r=1M isnoisy=no
@@ -81,4 +81,4 @@ Ro (b o) resistor r=ro isnoisy=no
 //   %common = $GROUND @ATTACH &g => @PLACE(-11,-14);
 //   &g @WIRE(mode="straight") {%port_g:p (-11, -12) %common:p}
 // }
-ends TM_REF_ADA4522
+ends L2_TM_REF_ADA4522

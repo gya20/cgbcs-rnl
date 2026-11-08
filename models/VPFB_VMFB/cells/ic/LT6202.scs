@@ -1,8 +1,8 @@
 simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-vpfb-vmfb", version="1.0", path="../../symbols.rnl") }
-subckt TM_REF_LT6202 (p n o bias g)
+subckt L2_TM_REF_LT6202 (p n o bias g)
 parameters a0=100k fu=99.9M ro=3.98 fo=2036 f2=1.481M ew=1.9n vos=0
-Xamp (p n z bias g) TM_REF_AMP a0=a0 fu=fu ro=ro ew=ew vos=vos f2=f2
+Xamp (p n z bias g) L3_TM_REF_AMP a0=a0 fu=fu ro=ro ew=ew vos=vos f2=f2
 Rz (z o) resistor r=300 isnoisy=no
 Cz (z o) capacitor c=1/(6.283185307*300*fo)
 // @RNL {
@@ -32,4 +32,4 @@ Cz (z o) capacitor c=1/(6.283185307*300*fo)
 //   %common = $GROUND @ATTACH &g => @PLACE(-13,-13);
 //   &g @WIRE(mode="straight") {%port_g:p (-13, -11) %common:p}
 // }
-ends TM_REF_LT6202
+ends L2_TM_REF_LT6202

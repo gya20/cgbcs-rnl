@@ -6,23 +6,23 @@
   @DEVICE(name="*", model="capacitor", terminals=["p", "n"]);
   @DEVICE(name="*", model="vcvs", terminals=["op", "on", "cp", "cn"]);
   @DEVICE(name="*", model="vccs", terminals=["op", "on", "cp", "cn"]);
-  @DEVICE(name="*", model="TM_REF_REF", terminals=["vin", "bias", "padp", "diep", "padm", "diem", "g"]);
-  @DEVICE(name="*", model="TM_REF_REF_CH", terminals=["ref", "bias", "pad", "die", "g"]);
-  @DEVICE(name="*", model="TM_REF_AMP", terminals=["p", "n", "out", "bias", "g"]);
-  @DEVICE(name="*", model="TM_REF_CAPBR", terminals=["p", "g"]);
-  @DEVICE(name="*", model="TM_REF_LINE", terminals=["a", "b", "g"]);
-  @DEVICE(name="*", model="TM_REF_NOISE", terminals=["p", "q", "g"]);
-  @DEVICE(name="*", model="TM_REF_NOISE_DECADE", terminals=["p", "q", "g"]);
-  @DEVICE(name="*", model="TM_REF_NOISE_POLE", terminals=["p", "q", "g"]);
-  @DEVICE(name="*", model="TM_REF_REF_NOISE", terminals=["p", "q", "g"]);
-  @DEVICE(name="*", model="TM_REF_ADA4522", terminals=["p", "n", "o", "bias", "g"]);
-  @DEVICE(name="*", model="TM_REF_LT6202", terminals=["p", "n", "o", "bias", "g"]);
-  @DEVICE(name="*", model="TM_REF_LTC6655B", terminals=["vin", "bias", "ref", "g"]);
-  @DEVICE(name="*", model="TM_REF_FAST", terminals=["servo", "pad", "drive", "bias", "g"]);
-  @DEVICE(name="*", model="TM_REF_SERVO", terminals=["set", "pad", "servo", "bias", "g"]);
-  @DEVICE(name="*", model="TM_REF_REF_INPUT", terminals=["vin", "bias", "ref", "g"]);
-  @DEVICE(name="*", model="TM_REF_REF_SET", terminals=["ref", "set", "g"]);
-  @DEVICE(name="*", model="TM_REF_REF_PATH", terminals=["drive", "pad", "die", "g"])
+  @DEVICE(name="*", model="L0_TM_REF_REF", terminals=["vin", "bias", "padp", "diep", "padm", "diem", "g"]);
+  @DEVICE(name="*", model="L1_TM_REF_REF_CH", terminals=["ref", "bias", "pad", "die", "g"]);
+  @DEVICE(name="*", model="L3_TM_REF_AMP", terminals=["p", "n", "out", "bias", "g"]);
+  @DEVICE(name="*", model="L2_TM_REF_CAPBR", terminals=["p", "g"]);
+  @DEVICE(name="*", model="L3_TM_REF_LINE", terminals=["a", "b", "g"]);
+  @DEVICE(name="*", model="L4_TM_REF_NOISE", terminals=["p", "q", "g"]);
+  @DEVICE(name="*", model="L4_TM_REF_NOISE_DECADE", terminals=["p", "q", "g"]);
+  @DEVICE(name="*", model="L4_TM_REF_NOISE_POLE", terminals=["p", "q", "g"]);
+  @DEVICE(name="*", model="L3_TM_REF_REF_NOISE", terminals=["p", "q", "g"]);
+  @DEVICE(name="*", model="L2_TM_REF_ADA4522", terminals=["p", "n", "o", "bias", "g"]);
+  @DEVICE(name="*", model="L2_TM_REF_LT6202", terminals=["p", "n", "o", "bias", "g"]);
+  @DEVICE(name="*", model="L2_TM_REF_LTC6655B", terminals=["vin", "bias", "ref", "g"]);
+  @DEVICE(name="*", model="L1_TM_REF_FAST", terminals=["servo", "pad", "drive", "bias", "g"]);
+  @DEVICE(name="*", model="L1_TM_REF_SERVO", terminals=["set", "pad", "servo", "bias", "g"]);
+  @DEVICE(name="*", model="L1_TM_REF_REF_INPUT", terminals=["vin", "bias", "ref", "g"]);
+  @DEVICE(name="*", model="L2_TM_REF_REF_SET", terminals=["ref", "set", "g"]);
+  @DEVICE(name="*", model="L1_TM_REF_REF_PATH", terminals=["drive", "pad", "die", "g"])
 }
 @RNL {
   $SYM_RESISTOR = @DEFINE-SYMBOL(box=[-3,-2,3,2]) {
@@ -72,7 +72,7 @@
     (-4, -1) @PIN(terminal=4, direction="left")
   };
   # @SELECT-INSTANCE(model="vccs") => @SET-SYMBOL $SYM_VCCS;
-  $SYM_TM_REF_REF = @DEFINE-SYMBOL(box=[-15,-10,15,10]) {
+  $SYM_L0_TM_REF_REF = @DEFINE-SYMBOL(box=[-15,-10,15,10]) {
     @LINE {(-14, -9) (14, -9) (14, 9) (-14, 9) (-14, -9)};
     @LINE {(-15, 0) (-14, 0)};
     (-13.5, 0) @TEXT("vin", size=0.74, halign="start", valign="middle");
@@ -98,8 +98,8 @@
     (5, -10) @PIN(terminal=7, direction="down");
     ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 11.35)
   };
-  # @SELECT-INSTANCE(model="TM_REF_REF") => @SET-SYMBOL $SYM_TM_REF_REF;
-  $SYM_TM_REF_REF_CH = @DEFINE-SYMBOL(box=[-15,-7,15,7]) {
+  # @SELECT-INSTANCE(model="L0_TM_REF_REF") => @SET-SYMBOL $SYM_L0_TM_REF_REF;
+  $SYM_L1_TM_REF_REF_CH = @DEFINE-SYMBOL(box=[-15,-7,15,7]) {
     @LINE {(-14, -6) (14, -6) (14, 6) (-14, 6) (-14, -6)};
     @LINE {(-15, 0) (-14, 0)};
     (-13.5, 0) @TEXT("ref", size=0.74, halign="start", valign="middle");
@@ -119,8 +119,8 @@
     (5, -7) @PIN(terminal=5, direction="down");
     ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 8.35)
   };
-  # @SELECT-INSTANCE(model="TM_REF_REF_CH") => @SET-SYMBOL $SYM_TM_REF_REF_CH;
-  $SYM_TM_REF_AMP = @DEFINE-SYMBOL(box=[-7,-6,7,6]) {
+  # @SELECT-INSTANCE(model="L1_TM_REF_REF_CH") => @SET-SYMBOL $SYM_L1_TM_REF_REF_CH;
+  $SYM_L3_TM_REF_AMP = @DEFINE-SYMBOL(box=[-7,-6,7,6]) {
     @LINE {(-6, -5) (6, -5) (6, 5) (-6, 5) (-6, -5)};
     @LINE {(-7, -2) (-6, -2)};
     (-5.5, -2) @TEXT("+", size=0.74, halign="start", valign="middle");
@@ -140,8 +140,8 @@
     (-2, -6) @PIN(terminal=5, direction="down");
     ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 7.35)
   };
-  # @SELECT-INSTANCE(model="TM_REF_AMP") => @SET-SYMBOL $SYM_TM_REF_AMP;
-  $SYM_TM_REF_CAPBR = @DEFINE-SYMBOL(box=[-4,-4,4,4]) {
+  # @SELECT-INSTANCE(model="L3_TM_REF_AMP") => @SET-SYMBOL $SYM_L3_TM_REF_AMP;
+  $SYM_L2_TM_REF_CAPBR = @DEFINE-SYMBOL(box=[-4,-4,4,4]) {
     @LINE {(-3, -2.4) (3, -2.4) (3, 2.4) (-3, 2.4) (-3, -2.4)};
     @LINE {(0, 4) (0, 2.4)};
     @LINE {(0, -2.4) (0, -4)};
@@ -150,8 +150,8 @@
     (0, -4) @PIN(terminal=2, direction="down");
     ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(4, 1.1)
   };
-  # @SELECT-INSTANCE(model="TM_REF_CAPBR") => @SET-SYMBOL $SYM_TM_REF_CAPBR;
-  $SYM_TM_REF_LINE = @DEFINE-SYMBOL(box=[-8,-5,8,5]) {
+  # @SELECT-INSTANCE(model="L2_TM_REF_CAPBR") => @SET-SYMBOL $SYM_L2_TM_REF_CAPBR;
+  $SYM_L3_TM_REF_LINE = @DEFINE-SYMBOL(box=[-8,-5,8,5]) {
     @LINE {(-7, -4) (7, -4) (7, 4) (-7, 4) (-7, -4)};
     @LINE {(-8, 0) (-7, 0)};
     (-6.5, 0) @TEXT("a", size=0.74, halign="start", valign="middle");
@@ -165,8 +165,8 @@
     (0, -5) @PIN(terminal=3, direction="down");
     ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 6.35)
   };
-  # @SELECT-INSTANCE(model="TM_REF_LINE") => @SET-SYMBOL $SYM_TM_REF_LINE;
-  $SYM_TM_REF_NOISE = @DEFINE-SYMBOL(box=[-5,-4,5,4]) {
+  # @SELECT-INSTANCE(model="L3_TM_REF_LINE") => @SET-SYMBOL $SYM_L3_TM_REF_LINE;
+  $SYM_L4_TM_REF_NOISE = @DEFINE-SYMBOL(box=[-5,-4,5,4]) {
     (0, 0) @CIRCLE(radius=2.2);
     @LINE {(-5, 0) (-2.2, 0)};
     @LINE {(2.2, 0) (5, 0)};
@@ -179,8 +179,8 @@
     (0, -4) @PIN(terminal=3, direction="down");
     ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 5.35)
   };
-  # @SELECT-INSTANCE(model="TM_REF_NOISE") => @SET-SYMBOL $SYM_TM_REF_NOISE;
-  $SYM_TM_REF_NOISE_DECADE = @DEFINE-SYMBOL(box=[-5,-4,5,4]) {
+  # @SELECT-INSTANCE(model="L4_TM_REF_NOISE") => @SET-SYMBOL $SYM_L4_TM_REF_NOISE;
+  $SYM_L4_TM_REF_NOISE_DECADE = @DEFINE-SYMBOL(box=[-5,-4,5,4]) {
     (0, 0) @CIRCLE(radius=2.2);
     @LINE {(-5, 0) (-2.2, 0)};
     @LINE {(2.2, 0) (5, 0)};
@@ -193,8 +193,8 @@
     (0, -4) @PIN(terminal=3, direction="down");
     ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 5.35)
   };
-  # @SELECT-INSTANCE(model="TM_REF_NOISE_DECADE") => @SET-SYMBOL $SYM_TM_REF_NOISE_DECADE;
-  $SYM_TM_REF_NOISE_POLE = @DEFINE-SYMBOL(box=[-5,-4,5,4]) {
+  # @SELECT-INSTANCE(model="L4_TM_REF_NOISE_DECADE") => @SET-SYMBOL $SYM_L4_TM_REF_NOISE_DECADE;
+  $SYM_L4_TM_REF_NOISE_POLE = @DEFINE-SYMBOL(box=[-5,-4,5,4]) {
     (0, 0) @CIRCLE(radius=2.2);
     @LINE {(-5, 0) (-2.2, 0)};
     @LINE {(2.2, 0) (5, 0)};
@@ -207,8 +207,8 @@
     (0, -4) @PIN(terminal=3, direction="down");
     ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 5.35)
   };
-  # @SELECT-INSTANCE(model="TM_REF_NOISE_POLE") => @SET-SYMBOL $SYM_TM_REF_NOISE_POLE;
-  $SYM_TM_REF_REF_NOISE = @DEFINE-SYMBOL(box=[-5,-4,5,4]) {
+  # @SELECT-INSTANCE(model="L4_TM_REF_NOISE_POLE") => @SET-SYMBOL $SYM_L4_TM_REF_NOISE_POLE;
+  $SYM_L3_TM_REF_REF_NOISE = @DEFINE-SYMBOL(box=[-5,-4,5,4]) {
     (0, 0) @CIRCLE(radius=2.2);
     @LINE {(-5, 0) (-2.2, 0)};
     @LINE {(2.2, 0) (5, 0)};
@@ -221,8 +221,8 @@
     (0, -4) @PIN(terminal=3, direction="down");
     ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 5.35)
   };
-  # @SELECT-INSTANCE(model="TM_REF_REF_NOISE") => @SET-SYMBOL $SYM_TM_REF_REF_NOISE;
-  $SYM_TM_REF_ADA4522 = @DEFINE-SYMBOL(box=[-7,-6,7,6]) {
+  # @SELECT-INSTANCE(model="L3_TM_REF_REF_NOISE") => @SET-SYMBOL $SYM_L3_TM_REF_REF_NOISE;
+  $SYM_L2_TM_REF_ADA4522 = @DEFINE-SYMBOL(box=[-7,-6,7,6]) {
     @LINE {(-5, -5) (-5, 5) (5, 0) (-5, -5)};
     @LINE {(-7, 2) (-5, 2)};
     @LINE {(-7, -2) (-5, -2)};
@@ -238,8 +238,8 @@
     (-2, 6) @PIN(terminal=4, direction="up");
     (-2, -6) @PIN(terminal=5, direction="down")
   };
-  # @SELECT-INSTANCE(model="TM_REF_ADA4522") => @SET-SYMBOL $SYM_TM_REF_ADA4522;
-  $SYM_TM_REF_LT6202 = @DEFINE-SYMBOL(box=[-7,-6,7,6]) {
+  # @SELECT-INSTANCE(model="L2_TM_REF_ADA4522") => @SET-SYMBOL $SYM_L2_TM_REF_ADA4522;
+  $SYM_L2_TM_REF_LT6202 = @DEFINE-SYMBOL(box=[-7,-6,7,6]) {
     @LINE {(-5, -5) (-5, 5) (5, 0) (-5, -5)};
     @LINE {(-7, 2) (-5, 2)};
     @LINE {(-7, -2) (-5, -2)};
@@ -255,8 +255,8 @@
     (-2, 6) @PIN(terminal=4, direction="up");
     (-2, -6) @PIN(terminal=5, direction="down")
   };
-  # @SELECT-INSTANCE(model="TM_REF_LT6202") => @SET-SYMBOL $SYM_TM_REF_LT6202;
-  $SYM_TM_REF_LTC6655B = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
+  # @SELECT-INSTANCE(model="L2_TM_REF_LT6202") => @SET-SYMBOL $SYM_L2_TM_REF_LT6202;
+  $SYM_L2_TM_REF_LTC6655B = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
     @LINE {(-9, -4) (9, -4) (9, 4) (-9, 4) (-9, -4)};
     @LINE {(-10, 0) (-9, 0)};
     (-8.5, 0) @TEXT("vin", size=0.74, halign="start", valign="middle");
@@ -273,8 +273,8 @@
     (3, -5) @PIN(terminal=4, direction="down");
     ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 6.35)
   };
-  # @SELECT-INSTANCE(model="TM_REF_LTC6655B") => @SET-SYMBOL $SYM_TM_REF_LTC6655B;
-  $SYM_TM_REF_FAST = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
+  # @SELECT-INSTANCE(model="L2_TM_REF_LTC6655B") => @SET-SYMBOL $SYM_L2_TM_REF_LTC6655B;
+  $SYM_L1_TM_REF_FAST = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
     @LINE {(-9, -4) (9, -4) (9, 4) (-9, 4) (-9, -4)};
     @LINE {(-10, 1) (-9, 1)};
     (-8.5, 1) @TEXT("servo", size=0.74, halign="start", valign="middle");
@@ -294,8 +294,8 @@
     (3, -5) @PIN(terminal=5, direction="down");
     ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 6.35)
   };
-  # @SELECT-INSTANCE(model="TM_REF_FAST") => @SET-SYMBOL $SYM_TM_REF_FAST;
-  $SYM_TM_REF_SERVO = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
+  # @SELECT-INSTANCE(model="L1_TM_REF_FAST") => @SET-SYMBOL $SYM_L1_TM_REF_FAST;
+  $SYM_L1_TM_REF_SERVO = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
     @LINE {(-9, -4) (9, -4) (9, 4) (-9, 4) (-9, -4)};
     @LINE {(-10, 1) (-9, 1)};
     (-8.5, 1) @TEXT("set", size=0.74, halign="start", valign="middle");
@@ -315,8 +315,8 @@
     (3, -5) @PIN(terminal=5, direction="down");
     ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 6.35)
   };
-  # @SELECT-INSTANCE(model="TM_REF_SERVO") => @SET-SYMBOL $SYM_TM_REF_SERVO;
-  $SYM_TM_REF_REF_INPUT = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
+  # @SELECT-INSTANCE(model="L1_TM_REF_SERVO") => @SET-SYMBOL $SYM_L1_TM_REF_SERVO;
+  $SYM_L1_TM_REF_REF_INPUT = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
     @LINE {(-9, -4) (9, -4) (9, 4) (-9, 4) (-9, -4)};
     @LINE {(-10, 0) (-9, 0)};
     (-8.5, 0) @TEXT("vin", size=0.74, halign="start", valign="middle");
@@ -333,8 +333,8 @@
     (3, -5) @PIN(terminal=4, direction="down");
     ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 6.35)
   };
-  # @SELECT-INSTANCE(model="TM_REF_REF_INPUT") => @SET-SYMBOL $SYM_TM_REF_REF_INPUT;
-  $SYM_TM_REF_REF_SET = @DEFINE-SYMBOL(box=[-8,-5,8,5]) {
+  # @SELECT-INSTANCE(model="L1_TM_REF_REF_INPUT") => @SET-SYMBOL $SYM_L1_TM_REF_REF_INPUT;
+  $SYM_L2_TM_REF_REF_SET = @DEFINE-SYMBOL(box=[-8,-5,8,5]) {
     @LINE {(-7, -4) (7, -4) (7, 4) (-7, 4) (-7, -4)};
     @LINE {(-8, 0) (-7, 0)};
     (-6.5, 0) @TEXT("ref", size=0.74, halign="start", valign="middle");
@@ -348,8 +348,8 @@
     (0, -5) @PIN(terminal=3, direction="down");
     ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 6.35)
   };
-  # @SELECT-INSTANCE(model="TM_REF_REF_SET") => @SET-SYMBOL $SYM_TM_REF_REF_SET;
-  $SYM_TM_REF_REF_PATH = @DEFINE-SYMBOL(box=[-8,-5,8,5]) {
+  # @SELECT-INSTANCE(model="L2_TM_REF_REF_SET") => @SET-SYMBOL $SYM_L2_TM_REF_REF_SET;
+  $SYM_L1_TM_REF_REF_PATH = @DEFINE-SYMBOL(box=[-8,-5,8,5]) {
     @LINE {(-7, -4) (7, -4) (7, 4) (-7, 4) (-7, -4)};
     @LINE {(-8, 0) (-7, 0)};
     (-6.5, 0) @TEXT("drive", size=0.74, halign="start", valign="middle");
@@ -366,5 +366,5 @@
     (0, -5) @PIN(terminal=4, direction="down");
     ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 6.35)
   };
-  # @SELECT-INSTANCE(model="TM_REF_REF_PATH") => @SET-SYMBOL $SYM_TM_REF_REF_PATH
+  # @SELECT-INSTANCE(model="L1_TM_REF_REF_PATH") => @SET-SYMBOL $SYM_L1_TM_REF_REF_PATH
 }

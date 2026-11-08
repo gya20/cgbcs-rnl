@@ -1,11 +1,11 @@
 simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-vpfb-vmfb", version="1.0", path="../../symbols.rnl") }
-subckt TM_REF_REF_PATH (drive pad die g)
+subckt L1_TM_REF_REF_PATH (drive pad die g)
 parameters ceff=220u lb=2n cpin=2p
 Riso (drive pad) resistor r=1
-Xbulk (pad g) TM_REF_CAPBR rr=2m ll=0.1n cc=ceff
-Xhf (pad g) TM_REF_CAPBR rr=0.22 ll=0.15n cc=100n
-Xbond (pad die g) TM_REF_LINE rs=50m le=lb
+Xbulk (pad g) L2_TM_REF_CAPBR rr=2m ll=0.1n cc=ceff
+Xhf (pad g) L2_TM_REF_CAPBR rr=0.22 ll=0.15n cc=100n
+Xbond (pad die g) L3_TM_REF_LINE rs=50m le=lb
 Cpin (die g) capacitor c=cpin
 // @RNL {
 //   #Riso @PLACE(0, 0);
@@ -34,4 +34,4 @@ Cpin (die g) capacitor c=cpin
 //   %ground2 = $GROUND @ATTACH &g => @PLACE(52, -12);
 //   &g @WIRE(mode="straight") {#Cpin:2 %ground2:p}
 // }
-ends TM_REF_REF_PATH
+ends L1_TM_REF_REF_PATH

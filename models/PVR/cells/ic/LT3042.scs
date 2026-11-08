@@ -1,8 +1,8 @@
 simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-pvr", version="1.0", path="../../symbols.rnl") }
-subckt TM_PVR_LT3042 (set out bias g)
+subckt L3_TM_PVR_LT3042 (set out bias g)
 parameters ereg=2.53n freg=1M rreg=50m vos=0
-Xn (u set g) TM_PVR_NOISE ew=ereg
+Xn (u set g) L4_TM_PVR_NOISE ew=ereg
 Ecmd (v g u g) vcvs gain=1
 Eoff (w v bias g) vcvs gain=vos
 Rf (w x) resistor r=1k isnoisy=no
@@ -50,4 +50,4 @@ Rreg (b out) resistor r=rreg isnoisy=no
 //   %ground5 = $GROUND @ATTACH &g => @PLACE(111, -1);
 //   &g @WIRE(mode="straight") {#Edrive:4 %ground5:p}
 // }
-ends TM_PVR_LT3042
+ends L3_TM_PVR_LT3042

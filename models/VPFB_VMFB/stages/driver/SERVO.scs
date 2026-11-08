@@ -1,7 +1,7 @@
 simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-vpfb-vmfb", version="1.0", path="../../symbols.rnl") }
-subckt TM_REF_SERVO (set pad servo bias g)
-Xu (set ns servo bias g) TM_REF_ADA4522
+subckt L1_TM_REF_SERVO (set pad servo bias g)
+Xu (set ns servo bias g) L2_TM_REF_ADA4522
 Rs (pad ns) resistor r=1k
 Cs (ns servo) capacitor c=100n
 // @RNL {
@@ -33,4 +33,4 @@ Cs (ns servo) capacitor c=100n
 //   %common = $GROUND @ATTACH &g => @PLACE(-25,-13);
 //   &g @WIRE(mode="straight") {%port_g:p (-25, -11) %common:p}
 // }
-ends TM_REF_SERVO
+ends L1_TM_REF_SERVO

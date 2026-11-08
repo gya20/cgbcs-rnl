@@ -1,6 +1,6 @@
 simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-pvre", version="1.0", path="../../symbols.rnl") }
-subckt TM_PVRE_NOISE (p q g)
+subckt L4_TM_PVRE_NOISE (p q g)
 parameters ew=0
 Rn (w g) resistor r=1k
 En (p q w g) vcvs gain=ew/4.07035n
@@ -25,4 +25,4 @@ En (p q w g) vcvs gain=ew/4.07035n
 //   %common = $GROUND @ATTACH &g => @PLACE(-6,-13);
 //   &g @WIRE(mode="straight") {%port_g:p (-6, -11) %common:p}
 // }
-ends TM_PVRE_NOISE
+ends L4_TM_PVRE_NOISE

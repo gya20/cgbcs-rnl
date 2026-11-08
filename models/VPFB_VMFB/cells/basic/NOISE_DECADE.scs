@@ -1,11 +1,11 @@
 simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-vpfb-vmfb", version="1.0", path="../../symbols.rnl") }
-subckt TM_REF_NOISE_DECADE (p q g)
+subckt L4_TM_REF_NOISE_DECADE (p q g)
 parameters fj=1 en=39n fc=1
-X1 (n1 q g) TM_REF_NOISE_POLE fj=fj*1 en=en fc=fc
-X2 (n2 n1 g) TM_REF_NOISE_POLE fj=fj*1.77827941 en=en fc=fc
-X3 (n3 n2 g) TM_REF_NOISE_POLE fj=fj*3.16227766 en=en fc=fc
-X4 (p n3 g) TM_REF_NOISE_POLE fj=fj*5.62341325 en=en fc=fc
+X1 (n1 q g) L4_TM_REF_NOISE_POLE fj=fj*1 en=en fc=fc
+X2 (n2 n1 g) L4_TM_REF_NOISE_POLE fj=fj*1.77827941 en=en fc=fc
+X3 (n3 n2 g) L4_TM_REF_NOISE_POLE fj=fj*3.16227766 en=en fc=fc
+X4 (p n3 g) L4_TM_REF_NOISE_POLE fj=fj*5.62341325 en=en fc=fc
 // @RNL {
 //   #X1 @PLACE(0, 0);
 //   #X2 @PLACE(35, 0);
@@ -27,4 +27,4 @@ X4 (p n3 g) TM_REF_NOISE_POLE fj=fj*5.62341325 en=en fc=fc
 //   %ground2 = $GROUND @ATTACH &g => @PLACE(105, -6);
 //   &g @WIRE(mode="straight") {#X4:3 %ground2:p}
 // }
-ends TM_REF_NOISE_DECADE
+ends L4_TM_REF_NOISE_DECADE

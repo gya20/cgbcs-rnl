@@ -1,6 +1,6 @@
 simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-vfct-vdcb", version="1.0", path="../../symbols.rnl") }
-subckt TM_LDO_LINE (a b g)
+subckt L4_TM_LDO_LINE (a b g)
 parameters rs=50m le=2n
 Rwire (a t) resistor r=rs
 Gs (g h t b) vccs gm=0.1
@@ -37,4 +37,4 @@ Gi (t b h g) vccs gm=0.1
 //   %ground2 = $GROUND @ATTACH &g => @PLACE(46, -1);
 //   &g @WIRE(mode="straight") {#Gi:4 %ground2:p}
 // }
-ends TM_LDO_LINE
+ends L4_TM_LDO_LINE

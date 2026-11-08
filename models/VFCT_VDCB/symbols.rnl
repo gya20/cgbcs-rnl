@@ -6,15 +6,15 @@
   @DEVICE(name="*", model="capacitor", terminals=["p", "n"]);
   @DEVICE(name="*", model="vcvs", terminals=["op", "on", "cp", "cn"]);
   @DEVICE(name="*", model="vccs", terminals=["op", "on", "cp", "cn"]);
-  @DEVICE(name="*", model="TM_LDO_LDO", terminals=["vin", "bias", "outcb", "padcb", "diecb", "outfct", "padfct", "diefct", "g"]);
-  @DEVICE(name="*", model="TM_LDO_LDO_CH", terminals=["vin", "bias", "out", "pad", "die", "g"]);
-  @DEVICE(name="*", model="TM_LDO_CAPBR", terminals=["p", "g"]);
-  @DEVICE(name="*", model="TM_LDO_LINE", terminals=["a", "b", "g"]);
-  @DEVICE(name="*", model="TM_LDO_NOISE", terminals=["p", "q", "g"]);
-  @DEVICE(name="*", model="TM_LDO_LT3042", terminals=["vin", "set", "out", "bias", "g"]);
-  @DEVICE(name="*", model="TM_LDO_LDO_SET", terminals=["vin", "bias", "set", "localin", "g"]);
-  @DEVICE(name="*", model="TM_LDO_DECOUPLE", terminals=["p", "g"]);
-  @DEVICE(name="*", model="TM_LDO_LDO_PATH", terminals=["out", "pad", "die", "g"])
+  @DEVICE(name="*", model="L0_TM_LDO_LDO", terminals=["vin", "bias", "outcb", "padcb", "diecb", "outfct", "padfct", "diefct", "g"]);
+  @DEVICE(name="*", model="L1_TM_LDO_LDO_CH", terminals=["vin", "bias", "out", "pad", "die", "g"]);
+  @DEVICE(name="*", model="L4_TM_LDO_CAPBR", terminals=["p", "g"]);
+  @DEVICE(name="*", model="L4_TM_LDO_LINE", terminals=["a", "b", "g"]);
+  @DEVICE(name="*", model="L3_TM_LDO_NOISE", terminals=["p", "q", "g"]);
+  @DEVICE(name="*", model="L2_TM_LDO_LT3042", terminals=["vin", "set", "out", "bias", "g"]);
+  @DEVICE(name="*", model="L2_TM_LDO_LDO_SET", terminals=["vin", "bias", "set", "localin", "g"]);
+  @DEVICE(name="*", model="L3_TM_LDO_DECOUPLE", terminals=["p", "g"]);
+  @DEVICE(name="*", model="L2_TM_LDO_LDO_PATH", terminals=["out", "pad", "die", "g"])
 }
 @RNL {
   $SYM_RESISTOR = @DEFINE-SYMBOL(box=[-3,-2,3,2]) {
@@ -64,7 +64,7 @@
     (-4, -1) @PIN(terminal=4, direction="left")
   };
   # @SELECT-INSTANCE(model="vccs") => @SET-SYMBOL $SYM_VCCS;
-  $SYM_TM_LDO_LDO = @DEFINE-SYMBOL(box=[-15,-14,15,14]) {
+  $SYM_L0_TM_LDO_LDO = @DEFINE-SYMBOL(box=[-15,-14,15,14]) {
     @LINE {(-14, -13) (14, -13) (14, 13) (-14, 13) (-14, -13)};
     @LINE {(-15, 0) (-14, 0)};
     (-13.5, 0) @TEXT("vin", size=0.74, halign="start", valign="middle");
@@ -96,8 +96,8 @@
     (5, -14) @PIN(terminal=9, direction="down");
     ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 15.35)
   };
-  # @SELECT-INSTANCE(model="TM_LDO_LDO") => @SET-SYMBOL $SYM_TM_LDO_LDO;
-  $SYM_TM_LDO_LDO_CH = @DEFINE-SYMBOL(box=[-15,-8,15,8]) {
+  # @SELECT-INSTANCE(model="L0_TM_LDO_LDO") => @SET-SYMBOL $SYM_L0_TM_LDO_LDO;
+  $SYM_L1_TM_LDO_LDO_CH = @DEFINE-SYMBOL(box=[-15,-8,15,8]) {
     @LINE {(-14, -7) (14, -7) (14, 7) (-14, 7) (-14, -7)};
     @LINE {(-15, 0) (-14, 0)};
     (-13.5, 0) @TEXT("vin", size=0.74, halign="start", valign="middle");
@@ -120,8 +120,8 @@
     (5, -8) @PIN(terminal=6, direction="down");
     ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 9.35)
   };
-  # @SELECT-INSTANCE(model="TM_LDO_LDO_CH") => @SET-SYMBOL $SYM_TM_LDO_LDO_CH;
-  $SYM_TM_LDO_CAPBR = @DEFINE-SYMBOL(box=[-4,-4,4,4]) {
+  # @SELECT-INSTANCE(model="L1_TM_LDO_LDO_CH") => @SET-SYMBOL $SYM_L1_TM_LDO_LDO_CH;
+  $SYM_L4_TM_LDO_CAPBR = @DEFINE-SYMBOL(box=[-4,-4,4,4]) {
     @LINE {(-3, -2.4) (3, -2.4) (3, 2.4) (-3, 2.4) (-3, -2.4)};
     @LINE {(0, 4) (0, 2.4)};
     @LINE {(0, -2.4) (0, -4)};
@@ -130,8 +130,8 @@
     (0, -4) @PIN(terminal=2, direction="down");
     ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(4, 1.1)
   };
-  # @SELECT-INSTANCE(model="TM_LDO_CAPBR") => @SET-SYMBOL $SYM_TM_LDO_CAPBR;
-  $SYM_TM_LDO_LINE = @DEFINE-SYMBOL(box=[-8,-5,8,5]) {
+  # @SELECT-INSTANCE(model="L4_TM_LDO_CAPBR") => @SET-SYMBOL $SYM_L4_TM_LDO_CAPBR;
+  $SYM_L4_TM_LDO_LINE = @DEFINE-SYMBOL(box=[-8,-5,8,5]) {
     @LINE {(-7, -4) (7, -4) (7, 4) (-7, 4) (-7, -4)};
     @LINE {(-8, 0) (-7, 0)};
     (-6.5, 0) @TEXT("a", size=0.74, halign="start", valign="middle");
@@ -145,8 +145,8 @@
     (0, -5) @PIN(terminal=3, direction="down");
     ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 6.35)
   };
-  # @SELECT-INSTANCE(model="TM_LDO_LINE") => @SET-SYMBOL $SYM_TM_LDO_LINE;
-  $SYM_TM_LDO_NOISE = @DEFINE-SYMBOL(box=[-5,-4,5,4]) {
+  # @SELECT-INSTANCE(model="L4_TM_LDO_LINE") => @SET-SYMBOL $SYM_L4_TM_LDO_LINE;
+  $SYM_L3_TM_LDO_NOISE = @DEFINE-SYMBOL(box=[-5,-4,5,4]) {
     (0, 0) @CIRCLE(radius=2.2);
     @LINE {(-5, 0) (-2.2, 0)};
     @LINE {(2.2, 0) (5, 0)};
@@ -159,8 +159,8 @@
     (0, -4) @PIN(terminal=3, direction="down");
     ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 5.35)
   };
-  # @SELECT-INSTANCE(model="TM_LDO_NOISE") => @SET-SYMBOL $SYM_TM_LDO_NOISE;
-  $SYM_TM_LDO_LT3042 = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
+  # @SELECT-INSTANCE(model="L3_TM_LDO_NOISE") => @SET-SYMBOL $SYM_L3_TM_LDO_NOISE;
+  $SYM_L2_TM_LDO_LT3042 = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
     @LINE {(-9, -4) (9, -4) (9, 4) (-9, 4) (-9, -4)};
     @LINE {(-10, 1) (-9, 1)};
     (-8.5, 1) @TEXT("vin", size=0.74, halign="start", valign="middle");
@@ -180,8 +180,8 @@
     (3, -5) @PIN(terminal=5, direction="down");
     ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 6.35)
   };
-  # @SELECT-INSTANCE(model="TM_LDO_LT3042") => @SET-SYMBOL $SYM_TM_LDO_LT3042;
-  $SYM_TM_LDO_LDO_SET = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
+  # @SELECT-INSTANCE(model="L2_TM_LDO_LT3042") => @SET-SYMBOL $SYM_L2_TM_LDO_LT3042;
+  $SYM_L2_TM_LDO_LDO_SET = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
     @LINE {(-9, -4) (9, -4) (9, 4) (-9, 4) (-9, -4)};
     @LINE {(-10, 0) (-9, 0)};
     (-8.5, 0) @TEXT("vin", size=0.74, halign="start", valign="middle");
@@ -201,8 +201,8 @@
     (3, -5) @PIN(terminal=5, direction="down");
     ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 6.35)
   };
-  # @SELECT-INSTANCE(model="TM_LDO_LDO_SET") => @SET-SYMBOL $SYM_TM_LDO_LDO_SET;
-  $SYM_TM_LDO_DECOUPLE = @DEFINE-SYMBOL(box=[-4,-4,4,4]) {
+  # @SELECT-INSTANCE(model="L2_TM_LDO_LDO_SET") => @SET-SYMBOL $SYM_L2_TM_LDO_LDO_SET;
+  $SYM_L3_TM_LDO_DECOUPLE = @DEFINE-SYMBOL(box=[-4,-4,4,4]) {
     @LINE {(-3, -2.4) (3, -2.4) (3, 2.4) (-3, 2.4) (-3, -2.4)};
     @LINE {(0, 4) (0, 2.4)};
     @LINE {(0, -2.4) (0, -4)};
@@ -211,8 +211,8 @@
     (0, -4) @PIN(terminal=2, direction="down");
     ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(4, 1.1)
   };
-  # @SELECT-INSTANCE(model="TM_LDO_DECOUPLE") => @SET-SYMBOL $SYM_TM_LDO_DECOUPLE;
-  $SYM_TM_LDO_LDO_PATH = @DEFINE-SYMBOL(box=[-8,-5,8,5]) {
+  # @SELECT-INSTANCE(model="L3_TM_LDO_DECOUPLE") => @SET-SYMBOL $SYM_L3_TM_LDO_DECOUPLE;
+  $SYM_L2_TM_LDO_LDO_PATH = @DEFINE-SYMBOL(box=[-8,-5,8,5]) {
     @LINE {(-7, -4) (7, -4) (7, 4) (-7, 4) (-7, -4)};
     @LINE {(-8, 0) (-7, 0)};
     (-6.5, 0) @TEXT("out", size=0.74, halign="start", valign="middle");
@@ -229,5 +229,5 @@
     (0, -5) @PIN(terminal=4, direction="down");
     ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 6.35)
   };
-  # @SELECT-INSTANCE(model="TM_LDO_LDO_PATH") => @SET-SYMBOL $SYM_TM_LDO_LDO_PATH
+  # @SELECT-INSTANCE(model="L2_TM_LDO_LDO_PATH") => @SET-SYMBOL $SYM_L2_TM_LDO_LDO_PATH
 }

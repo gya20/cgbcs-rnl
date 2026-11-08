@@ -17,11 +17,11 @@ include "cells/basic/CAPBR.scs"
 include "stages/output/REF_PATH.scs"
 include "stages/REF_CH.scs"
 
-subckt TM_REF_REF (vin bias padp diep padm diem g)
+subckt L0_TM_REF_REF (vin bias padp diep padm diem g)
 parameters rop=3.98 rom=11.396 ceff=220u lb=2n
-Xref (vin bias ref g) TM_REF_REF_INPUT
-Xp (ref bias padp diep g) TM_REF_REF_CH rt=240 rofast=rop ceff=ceff lb=lb
-Xm (ref bias padm diem g) TM_REF_REF_CH rt=10480 rofast=rom fo=4482 f2=10G ceff=ceff lb=lb
+Xref (vin bias ref g) L1_TM_REF_REF_INPUT
+Xp (ref bias padp diep g) L1_TM_REF_REF_CH rt=240 rofast=rop ceff=ceff lb=lb
+Xm (ref bias padm diem g) L1_TM_REF_REF_CH rt=10480 rofast=rom fo=4482 f2=10G ceff=ceff lb=lb
 // @RNL {
 //   #Xref @PLACE(0, 0);
 //   #Xp @PLACE(35, 19);
@@ -60,4 +60,4 @@ Xm (ref bias padm diem g) TM_REF_REF_CH rt=10480 rofast=rom fo=4482 f2=10G ceff=
 //   %port_diem = $IO_PORT @ATTACH &diem => @PLACE(57,-21) => @ORIENT("R180");
 //   &diem @WIRE(mode="straight") {%port_diem:p #Xm:4}
 // }
-ends TM_REF_REF
+ends L0_TM_REF_REF

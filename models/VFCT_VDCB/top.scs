@@ -9,10 +9,10 @@ include "stages/output/DECOUPLE.scs"
 include "stages/output/LDO_PATH.scs"
 include "stages/LDO_CH.scs"
 
-subckt TM_LDO_LDO (vin bias outcb padcb diecb outfct padfct diefct g)
+subckt L0_TM_LDO_LDO (vin bias outcb padcb diecb outfct padfct diefct g)
 parameters rcb=20k rfct=21k
-Xcb (vin bias outcb padcb diecb g) TM_LDO_LDO_CH rt=rcb
-Xfct (vin bias outfct padfct diefct g) TM_LDO_LDO_CH rt=rfct
+Xcb (vin bias outcb padcb diecb g) L1_TM_LDO_LDO_CH rt=rcb
+Xfct (vin bias outfct padfct diefct g) L1_TM_LDO_LDO_CH rt=rfct
 // @RNL {
 //   #Xcb @PLACE(0, 19);
 //   #Xfct @PLACE(0, -19);
@@ -49,4 +49,4 @@ Xfct (vin bias outfct padfct diefct g) TM_LDO_LDO_CH rt=rfct
 //   %port_diefct = $IO_PORT @ATTACH &diefct => @PLACE(22,-23) => @ORIENT("R180");
 //   &diefct @WIRE(mode="straight") {%port_diefct:p #Xfct:5}
 // }
-ends TM_LDO_LDO
+ends L0_TM_LDO_LDO

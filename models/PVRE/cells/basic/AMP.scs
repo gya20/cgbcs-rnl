@@ -1,8 +1,8 @@
 simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-pvre", version="1.0", path="../../symbols.rnl") }
-subckt TM_PVRE_AMP (p n out bias g)
+subckt L3_TM_PVRE_AMP (p n out bias g)
 parameters a0=100k fu=12M ro=10 ew=10n vos=0
-Xn (pn p g) TM_PVRE_NOISE ew=ew
+Xn (pn p g) L4_TM_PVRE_NOISE ew=ew
 Eos (pi pn bias g) vcvs gain=vos
 Gerr (g x pi n) vccs gm=a0/1M
 Rd (x g) resistor r=1M isnoisy=no
@@ -60,4 +60,4 @@ Ro (b out) resistor r=ro isnoisy=no
 //   %common = $GROUND @ATTACH &g => @PLACE(-11,-14);
 //   &g @WIRE(mode="straight") {%port_g:p (-11, -12) %common:p}
 // }
-ends TM_PVRE_AMP
+ends L3_TM_PVRE_AMP

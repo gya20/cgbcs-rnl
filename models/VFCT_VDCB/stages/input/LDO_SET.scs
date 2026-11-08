@@ -1,6 +1,6 @@
 simulator lang=spectre
 // @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-vfct-vdcb", version="1.0", path="../../symbols.rnl") }
-subckt TM_LDO_LDO_SET (vin bias set localin g)
+subckt L2_TM_LDO_LDO_SET (vin bias set localin g)
 parameters rt=20k
 Rin (vin localin) resistor r=1
 Cin (localin g) capacitor c=22u
@@ -37,4 +37,4 @@ Cset (set g) capacitor c=4.7u
 //   %ground2 = $GROUND @ATTACH &g => @PLACE(45, -12);
 //   &g @WIRE(mode="straight") {#Cset:2 %ground2:p}
 // }
-ends TM_LDO_LDO_SET
+ends L2_TM_LDO_LDO_SET
