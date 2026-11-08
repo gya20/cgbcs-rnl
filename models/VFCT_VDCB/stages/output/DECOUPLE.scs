@@ -1,0 +1,17 @@
+simulator lang=spectre
+// @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-vfct-vdcb", version="1.0", path="../../symbols.rnl") }
+subckt TM_LDO_DECOUPLE (p g)
+Xbulk (p g) TM_LDO_CAPBR rr=10m ll=0.5n cc=22u
+Xhf (p g) TM_LDO_CAPBR rr=30m ll=0.25n cc=100n
+// @RNL {
+//   #Xbulk @PLACE(0, 0);
+//   #Xhf @PLACE(35, 0);
+//   %io_p = $IO_PORT @ATTACH &p => @PLACE(-16, 0) => @ORIENT("R0");
+//   &p @WIRE(mode="straight") {%io_p:p #Xbulk:1};
+//   %io_g = $IO_PORT @ATTACH &g => @PLACE(0, -11) => @ORIENT("R90");
+//   &g @WIRE(mode="straight") {%io_g:p #Xbulk:2};
+//   &p @WIRE(mode="straight") {#Xbulk:1 (-12, 0) (-12, 7) (23, 7) (23, 0) #Xhf:1};
+//   %ground0 = $GROUND @ATTACH &g => @PLACE(35, -7);
+//   &g @WIRE(mode="straight") {#Xhf:2 %ground0:p}
+// }
+ends TM_LDO_DECOUPLE

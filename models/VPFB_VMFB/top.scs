@@ -1,0 +1,54 @@
+simulator lang=spectre
+// @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-vpfb-vmfb", version="1.0", path="symbols.rnl") }
+include "cells/basic/NOISE_POLE.scs"
+include "cells/basic/NOISE_DECADE.scs"
+include "cells/basic/REF_NOISE.scs"
+include "cells/basic/NOISE.scs"
+include "cells/ic/LTC6655B.scs"
+include "stages/input/REF_INPUT.scs"
+include "stages/input/REF_SET.scs"
+include "cells/basic/AMP.scs"
+include "cells/ic/ADA4522.scs"
+include "stages/driver/SERVO.scs"
+include "cells/ic/LT6202.scs"
+include "stages/driver/FAST.scs"
+include "cells/basic/LINE.scs"
+include "cells/basic/CAPBR.scs"
+include "stages/output/REF_PATH.scs"
+include "stages/REF_CH.scs"
+
+subckt TM_REF_REF (vin bias padp diep padm diem g)
+parameters rop=3.98 rom=11.396 ceff=220u lb=2n
+Xref (vin bias ref g) TM_REF_REF_INPUT
+Xp (ref bias padp diep g) TM_REF_REF_CH rt=240 rofast=rop ceff=ceff lb=lb
+Xm (ref bias padm diem g) TM_REF_REF_CH rt=10480 rofast=rom fo=4482 f2=10G ceff=ceff lb=lb
+// @RNL {
+//   #Xref @PLACE(0, 0);
+//   #Xp @PLACE(35, 11);
+//   #Xm @PLACE(35, -11);
+//   %io_vin = $IO_PORT @ATTACH &vin => @PLACE(-16, 0) => @ORIENT("R0");
+//   &vin @WIRE(mode="straight") {%io_vin:p #Xref:1};
+//   %io_bias = $IO_PORT @ATTACH &bias => @PLACE(-3, -11) => @ORIENT("R90");
+//   &bias @WIRE(mode="straight") {%io_bias:p #Xref:2};
+//   %io_padp = $IO_PORT @ATTACH &padp => @PLACE(51, 12) => @ORIENT("R180");
+//   &padp @WIRE(mode="straight") {%io_padp:p #Xp:3};
+//   %io_diep = $IO_PORT @ATTACH &diep => @PLACE(51, 10) => @ORIENT("R180");
+//   &diep @WIRE(mode="straight") {%io_diep:p #Xp:4};
+//   %io_padm = $IO_PORT @ATTACH &padm => @PLACE(51, -10) => @ORIENT("R180");
+//   &padm @WIRE(mode="straight") {%io_padm:p #Xm:3};
+//   %io_diem = $IO_PORT @ATTACH &diem => @PLACE(51, -12) => @ORIENT("R180");
+//   &diem @WIRE(mode="straight") {%io_diem:p #Xm:4};
+//   %io_g = $IO_PORT @ATTACH &g => @PLACE(3, -11) => @ORIENT("R90");
+//   &g @WIRE(mode="straight") {%io_g:p #Xref:4};
+//   &ref @WIRE(mode="straight") {#Xref:3 (23, 0) (23, 11) #Xp:1};
+//   &ref @WIRE(mode="straight") {#Xref:3 (23, 0) (23, -11) #Xm:1};
+//   &bias @WIRE(mode="straight") {#Xp:2 (32, 4)};
+//   (32, 3) @TEXT("bias", size=0.7, halign="middle", valign="middle");
+//   &bias @WIRE(mode="straight") {#Xm:2 (32, -18)};
+//   (32, -19) @TEXT("bias", size=0.7, halign="middle", valign="middle");
+//   %ground0 = $GROUND @ATTACH &g => @PLACE(38, 4);
+//   &g @WIRE(mode="straight") {#Xp:5 %ground0:p};
+//   %ground1 = $GROUND @ATTACH &g => @PLACE(38, -18);
+//   &g @WIRE(mode="straight") {#Xm:5 %ground1:p}
+// }
+ends TM_REF_REF

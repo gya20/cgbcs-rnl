@@ -1,0 +1,116 @@
+{
+  "format": 1,
+  "id": "cgbcs-vpfb_vmfb",
+  "title": {
+    "en": "VPFB_VMFB · CGBCS",
+    "zh": "VPFB / VMFB 双路参考"
+  },
+  "description": "LTC6655B · ADA4522 · LT6202",
+  "author": [
+    {
+      "name": "gya20",
+      "url": "https://github.com/gya20"
+    }
+  ],
+  "source": {
+    "repo": "gya20/cgbcs-rnl",
+    "url": "https://github.com/gya20/cgbcs-rnl/tree/main/models/VPFB_VMFB"
+  },
+  "base": "https://gya20.github.io/cgbcs-rnl/models/VPFB_VMFB/",
+  "entry": "top.scs",
+  "files": [
+    {
+      "path": "cells/basic/AMP.scs",
+      "sha256": "44f34d978d8941a4b49effe49cc570420ddb47620c50c7299b5aafb9f293c1c3",
+      "size": 3688
+    },
+    {
+      "path": "cells/basic/CAPBR.scs",
+      "sha256": "03267b5a49e4301768af98e9c922858dfaa915fa31a0236dcef5d025e8acfddb",
+      "size": 812
+    },
+    {
+      "path": "cells/basic/LINE.scs",
+      "sha256": "b1706d048b11bde96c0073e770671a702cb182779dc50d7ee84b7095cf100278",
+      "size": 1904
+    },
+    {
+      "path": "cells/basic/NOISE.scs",
+      "sha256": "e2c7bf984dae5a5d5008e295493c655ba2516aaae90d1a624e2e79ccc961edc8",
+      "size": 991
+    },
+    {
+      "path": "cells/basic/NOISE_DECADE.scs",
+      "sha256": "23289b284bedd9ca3a9029a86bcaf27d8d9302886b63de625ff1a64371e33ce3",
+      "size": 1483
+    },
+    {
+      "path": "cells/basic/NOISE_POLE.scs",
+      "sha256": "651131a31de88807c1af58a4c6dc50f21cd13b658d9b27a6b018a64f1d6fbae5",
+      "size": 1388
+    },
+    {
+      "path": "cells/basic/REF_NOISE.scs",
+      "sha256": "a4e01a28f3d6a9dce3b086b9e3f49c68ed8711c6ee633bc102c4b652be86e86c",
+      "size": 2289
+    },
+    {
+      "path": "cells/ic/ADA4522.scs",
+      "sha256": "bd6326c3d69920fce9b2bb9a4429e65c71497c9172ccd053ddda40ae685eec68",
+      "size": 973
+    },
+    {
+      "path": "cells/ic/LT6202.scs",
+      "sha256": "2bb1866e77c71a0198ed8525c1dcef43d4dce6149174bd2536691dcbd4bcbcbe",
+      "size": 1458
+    },
+    {
+      "path": "cells/ic/LTC6655B.scs",
+      "sha256": "25a9815099165bff1e0e6a71e3b51e0c040968d088bb17ce00f14fba3f3d4559",
+      "size": 1652
+    },
+    {
+      "path": "stages/driver/FAST.scs",
+      "sha256": "cbb480b34c0c8bd6a2849cd11a2222a26da657879d537840801edd39fa9232e7",
+      "size": 1588
+    },
+    {
+      "path": "stages/driver/SERVO.scs",
+      "sha256": "a0772606164e0d615adf3db46f0edfb7309d342f1addbb119dc1fc96781e1968",
+      "size": 1353
+    },
+    {
+      "path": "stages/input/REF_INPUT.scs",
+      "sha256": "ed0ae23ede8842035a1d8e7b5ed2acf9474f108eac31dda68be6fb19799a6a66",
+      "size": 2163
+    },
+    {
+      "path": "stages/input/REF_SET.scs",
+      "sha256": "402251eaa92ff4c567585eb5dbd647fd2733ea3b31bd52c9362f95c95390a7b2",
+      "size": 1629
+    },
+    {
+      "path": "stages/output/REF_PATH.scs",
+      "sha256": "23cde8794750a20144c914ec72269b0964769744a5f51e533b95909cabf7bfe3",
+      "size": 1859
+    },
+    {
+      "path": "stages/REF_CH.scs",
+      "sha256": "4caf4a5798f2b13c5daced219971e357a6035265217ad2c222de23768e5c15b3",
+      "size": 2062
+    },
+    {
+      "path": "symbols.rnl",
+      "sha256": "67f1357d1dc3e9dfd0deb19245b036a658d72f34fbaa23a7050a322a37eff6fb",
+      "size": 24068
+    },
+    {
+      "path": "top.scs",
+      "sha256": "3721c1bf50e447d4fa2657e10344746f0ffe729df9df589d0769c19b5e41ddcd",
+      "size": 2583
+    }
+  ],
+  "pool": [
+    "symbols.rnl"
+  ]
+}

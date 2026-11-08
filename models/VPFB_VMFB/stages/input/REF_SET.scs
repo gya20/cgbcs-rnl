@@ -1,0 +1,36 @@
+simulator lang=spectre
+// @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-vpfb-vmfb", version="1.0", path="../../symbols.rnl") }
+subckt TM_REF_REF_SET (ref set g)
+parameters rt=240
+Rt (ref div) resistor r=rt
+Rb (div g) resistor r=10k
+Rf (div set) resistor r=4.99k
+Cf (set g) capacitor c=20u
+Rl (set g) resistor r=1T
+// @RNL {
+//   #Rt @PLACE(0, 0);
+//   (0, -3.7) @TEXT("r=rt", size=0.68, halign="middle");
+//   #Rb @PLACE(35, 0);
+//   (35, -3.7) @TEXT("r=10k", size=0.68, halign="middle");
+//   #Rf @PLACE(70, 0);
+//   (70, -3.7) @TEXT("r=4.99k", size=0.68, halign="middle");
+//   #Cf @PLACE(105, 0);
+//   (105, -3.7) @TEXT("c=20u", size=0.68, halign="middle");
+//   #Rl @PLACE(0, -23);
+//   (0, -26.7) @TEXT("r=1T", size=0.68, halign="middle");
+//   %io_ref = $IO_PORT @ATTACH &ref => @PLACE(-9, 0) => @ORIENT("R0");
+//   &ref @WIRE(mode="straight") {%io_ref:p #Rt:1};
+//   %io_set = $IO_PORT @ATTACH &set => @PLACE(79, 0) => @ORIENT("R180");
+//   &set @WIRE(mode="straight") {%io_set:p #Rf:2};
+//   %io_g = $IO_PORT @ATTACH &g => @PLACE(44, 0) => @ORIENT("R180");
+//   &g @WIRE(mode="straight") {%io_g:p #Rb:2};
+//   &div @WIRE(mode="straight") {#Rt:2 #Rb:1};
+//   &div @WIRE(mode="straight") {#Rb:1 (30, 0) (30, -3) (65, -3) (65, 0) #Rf:1};
+//   &set @WIRE(mode="straight") {#Rf:2 #Cf:1};
+//   &set @WIRE(mode="straight") {#Rf:2 (75, 0) (75, -19) (-5, -19) (-5, -23) #Rl:1};
+//   %ground0 = $GROUND @ATTACH &g => @PLACE(110, 0);
+//   &g @WIRE(mode="straight") {#Cf:2 %ground0:p};
+//   %ground1 = $GROUND @ATTACH &g => @PLACE(5, -23);
+//   &g @WIRE(mode="straight") {#Rl:2 %ground1:p}
+// }
+ends TM_REF_REF_SET

@@ -1,0 +1,35 @@
+simulator lang=spectre
+// @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-pvr", version="1.0", path="../symbols.rnl") }
+subckt TM_PVR_CARD_ONLY (cmd1 cmd2 bias buf1 card1 plug1 buf2 card2 plug2 g)
+parameters ccard=100u len1=27.5 len2=44.37 sq1=18.29 sq2=29.11 cum=35 rreturn=5m lmm=0.5n cmm=0.12p rcontact=10m lcontact=1n rneck=2m lneck=1n lcap=0.7n esr=10m ecmd=0
+Xch1 (cmd1 bias buf1 card1 plug1 g) TM_PVR_CARD_CHANNEL ecmd=ecmd ccard=ccard lenmm=len1 ratiosq=sq1 cum=cum rreturn=rreturn lmm=lmm cmm=cmm rcontact=rcontact lcontact=lcontact rneck=rneck lneck=lneck lcap=lcap esr=esr
+Xch2 (cmd2 bias buf2 card2 plug2 g) TM_PVR_CARD_CHANNEL ecmd=ecmd ccard=ccard lenmm=len2 ratiosq=sq2 cum=cum rreturn=rreturn lmm=lmm cmm=cmm rcontact=rcontact lcontact=lcontact rneck=rneck lneck=lneck lcap=lcap esr=esr
+// @RNL {
+//   #Xch1 @PLACE(0, 11);
+//   #Xch2 @PLACE(0, -11);
+//   %io_cmd1 = $IO_PORT @ATTACH &cmd1 => @PLACE(-16, 11) => @ORIENT("R0");
+//   &cmd1 @WIRE(mode="straight") {%io_cmd1:p #Xch1:1};
+//   %io_cmd2 = $IO_PORT @ATTACH &cmd2 => @PLACE(-16, -11) => @ORIENT("R0");
+//   &cmd2 @WIRE(mode="straight") {%io_cmd2:p #Xch2:1};
+//   %io_bias = $IO_PORT @ATTACH &bias => @PLACE(-3, 0) => @ORIENT("R90");
+//   &bias @WIRE(mode="straight") {%io_bias:p #Xch1:2};
+//   %io_buf1 = $IO_PORT @ATTACH &buf1 => @PLACE(16, 13) => @ORIENT("R180");
+//   &buf1 @WIRE(mode="straight") {%io_buf1:p #Xch1:3};
+//   %io_card1 = $IO_PORT @ATTACH &card1 => @PLACE(16, 11) => @ORIENT("R180");
+//   &card1 @WIRE(mode="straight") {%io_card1:p #Xch1:4};
+//   %io_plug1 = $IO_PORT @ATTACH &plug1 => @PLACE(16, 9) => @ORIENT("R180");
+//   &plug1 @WIRE(mode="straight") {%io_plug1:p #Xch1:5};
+//   %io_buf2 = $IO_PORT @ATTACH &buf2 => @PLACE(16, -9) => @ORIENT("R180");
+//   &buf2 @WIRE(mode="straight") {%io_buf2:p #Xch2:3};
+//   %io_card2 = $IO_PORT @ATTACH &card2 => @PLACE(16, -11) => @ORIENT("R180");
+//   &card2 @WIRE(mode="straight") {%io_card2:p #Xch2:4};
+//   %io_plug2 = $IO_PORT @ATTACH &plug2 => @PLACE(16, -13) => @ORIENT("R180");
+//   &plug2 @WIRE(mode="straight") {%io_plug2:p #Xch2:5};
+//   %io_g = $IO_PORT @ATTACH &g => @PLACE(3, 0) => @ORIENT("R90");
+//   &g @WIRE(mode="straight") {%io_g:p #Xch1:6};
+//   &bias @WIRE(mode="straight") {#Xch2:2 (-3, -18)};
+//   (-3, -19) @TEXT("bias", size=0.7, halign="middle", valign="middle");
+//   %ground0 = $GROUND @ATTACH &g => @PLACE(3, -18);
+//   &g @WIRE(mode="straight") {#Xch2:6 %ground0:p}
+// }
+ends TM_PVR_CARD_ONLY

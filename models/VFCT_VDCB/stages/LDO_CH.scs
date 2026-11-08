@@ -1,0 +1,34 @@
+simulator lang=spectre
+// @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-vfct-vdcb", version="1.0", path="../symbols.rnl") }
+subckt TM_LDO_LDO_CH (vin bias out pad die g)
+parameters rt=20k iset=100u rreg=50m
+Xset (vin bias set localin g) TM_LDO_LDO_SET rt=rt
+Xreg (localin set out bias g) TM_LDO_LT3042 rreg=rreg iset=iset
+XPath (out pad die g) TM_LDO_LDO_PATH
+// @RNL {
+//   #Xset @PLACE(0, 0);
+//   #Xreg @PLACE(35, 0);
+//   #XPath @PLACE(70, 0);
+//   %io_vin = $IO_PORT @ATTACH &vin => @PLACE(-16, 0) => @ORIENT("R0");
+//   &vin @WIRE(mode="straight") {%io_vin:p #Xset:1};
+//   %io_bias = $IO_PORT @ATTACH &bias => @PLACE(-3, -11) => @ORIENT("R90");
+//   &bias @WIRE(mode="straight") {%io_bias:p #Xset:2};
+//   %io_out = $IO_PORT @ATTACH &out => @PLACE(51, 0) => @ORIENT("R180");
+//   &out @WIRE(mode="straight") {%io_out:p #Xreg:3};
+//   %io_pad = $IO_PORT @ATTACH &pad => @PLACE(86, 1) => @ORIENT("R180");
+//   &pad @WIRE(mode="straight") {%io_pad:p #XPath:2};
+//   %io_die = $IO_PORT @ATTACH &die => @PLACE(86, -1) => @ORIENT("R180");
+//   &die @WIRE(mode="straight") {%io_die:p #XPath:3};
+//   %io_g = $IO_PORT @ATTACH &g => @PLACE(3, -11) => @ORIENT("R90");
+//   &g @WIRE(mode="straight") {%io_g:p #Xset:5};
+//   &set @WIRE(mode="straight") {#Xset:3 (23, 1) (23, -1) #Xreg:2};
+//   &localin @WIRE(mode="straight") {#Xset:4 (12, -1) (12, -2) (24, -2) (24, 1) #Xreg:1};
+//   &out @WIRE(mode="straight") {#Xreg:3 #XPath:1};
+//   &bias @WIRE(mode="straight") {#Xreg:4 (32, -7)};
+//   (32, -8) @TEXT("bias", size=0.7, halign="middle", valign="middle");
+//   %ground0 = $GROUND @ATTACH &g => @PLACE(38, -7);
+//   &g @WIRE(mode="straight") {#Xreg:5 %ground0:p};
+//   %ground1 = $GROUND @ATTACH &g => @PLACE(70, -7);
+//   &g @WIRE(mode="straight") {#XPath:4 %ground1:p}
+// }
+ends TM_LDO_LDO_CH

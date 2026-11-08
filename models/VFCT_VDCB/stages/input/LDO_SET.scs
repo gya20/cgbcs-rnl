@@ -1,0 +1,40 @@
+simulator lang=spectre
+// @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-vfct-vdcb", version="1.0", path="../../symbols.rnl") }
+subckt TM_LDO_LDO_SET (vin bias set localin g)
+parameters rt=20k
+Rin (vin localin) resistor r=1
+Cin (localin g) capacitor c=22u
+Chf (localin g) capacitor c=100n
+Rset (set g) resistor r=rt
+Cset (set g) capacitor c=4.7u
+// @RNL {
+//   #Rin @PLACE(0, 0);
+//   (0, -3.7) @TEXT("r=1", size=0.68, halign="middle");
+//   #Cin @PLACE(35, 0);
+//   (35, -3.7) @TEXT("c=22u", size=0.68, halign="middle");
+//   #Chf @PLACE(70, 0);
+//   (70, -3.7) @TEXT("c=100n", size=0.68, halign="middle");
+//   #Rset @PLACE(105, 0);
+//   (105, -3.7) @TEXT("r=rt", size=0.68, halign="middle");
+//   #Cset @PLACE(0, -23);
+//   (0, -26.7) @TEXT("c=4.7u", size=0.68, halign="middle");
+//   %io_vin = $IO_PORT @ATTACH &vin => @PLACE(-9, 0) => @ORIENT("R0");
+//   &vin @WIRE(mode="straight") {%io_vin:p #Rin:1};
+//   %io_bias = $IO_PORT @ATTACH &bias => @PLACE(-16, -25);
+//   %io_set = $IO_PORT @ATTACH &set => @PLACE(96, 0) => @ORIENT("R0");
+//   &set @WIRE(mode="straight") {%io_set:p #Rset:1};
+//   %io_localin = $IO_PORT @ATTACH &localin => @PLACE(9, 0) => @ORIENT("R180");
+//   &localin @WIRE(mode="straight") {%io_localin:p #Rin:2};
+//   %io_g = $IO_PORT @ATTACH &g => @PLACE(44, 0) => @ORIENT("R180");
+//   &g @WIRE(mode="straight") {%io_g:p #Cin:2};
+//   &set @WIRE(mode="straight") {#Rset:1 (100, 0) (100, -19) (-5, -19) (-5, -23) #Cset:1};
+//   &localin @WIRE(mode="straight") {#Rin:2 #Cin:1};
+//   &localin @WIRE(mode="straight") {#Cin:1 (30, 0) (30, -3) (65, -3) (65, 0) #Chf:1};
+//   %ground0 = $GROUND @ATTACH &g => @PLACE(75, 0);
+//   &g @WIRE(mode="straight") {#Chf:2 %ground0:p};
+//   %ground1 = $GROUND @ATTACH &g => @PLACE(110, 0);
+//   &g @WIRE(mode="straight") {#Rset:2 %ground1:p};
+//   %ground2 = $GROUND @ATTACH &g => @PLACE(5, -23);
+//   &g @WIRE(mode="straight") {#Cset:2 %ground2:p}
+// }
+ends TM_LDO_LDO_SET

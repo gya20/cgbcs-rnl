@@ -1,0 +1,73 @@
+simulator lang=spectre
+// @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-vpfb-vmfb", version="1.0", path="../../symbols.rnl") }
+subckt TM_REF_AMP (p n out bias g)
+parameters a0=100k fu=12M ro=10 ew=10n vos=0 f2=10G
+Xn (pn p g) TM_REF_NOISE ew=ew
+Eos (pi pn bias g) vcvs gain=vos
+Gerr (g x pi n) vccs gm=a0/1M
+Rd (x g) resistor r=1M isnoisy=no
+Cd (x g) capacitor c=a0/(6.283185307*1M*fu)
+E1 (u g x g) vcvs gain=1
+R2 (u y) resistor r=1k isnoisy=no
+C2 (y g) capacitor c=1/(6.283185307*1k*f2)
+Ebuf (b g y g) vcvs gain=1
+Ro (b out) resistor r=ro isnoisy=no
+// @RNL {
+//   #Xn @PLACE(0, 0);
+//   #Eos @PLACE(35, 0);
+//   (35, -4.7) @TEXT("gain=vos", size=0.68, halign="middle");
+//   #Gerr @PLACE(70, 0);
+//   (70, -4.7) @TEXT("gm=a0/1M", size=0.68, halign="middle");
+//   #Rd @PLACE(105, 0);
+//   (105, -3.7) @TEXT("r=1M", size=0.68, halign="middle");
+//   #Cd @PLACE(0, -23);
+//   (0, -26.7) @TEXT("c=a0/(6.283185307*1M*fu)", size=0.68, halign="middle");
+//   #E1 @PLACE(35, -23);
+//   (35, -27.7) @TEXT("gain=1", size=0.68, halign="middle");
+//   #R2 @PLACE(70, -23);
+//   (70, -26.7) @TEXT("r=1k", size=0.68, halign="middle");
+//   #C2 @PLACE(105, -23);
+//   (105, -26.7) @TEXT("c=1/(6.283185307*1k*f2)", size=0.68, halign="middle");
+//   #Ebuf @PLACE(0, -46);
+//   (0, -50.7) @TEXT("gain=1", size=0.68, halign="middle");
+//   #Ro @PLACE(35, -46);
+//   (35, -49.7) @TEXT("r=ro", size=0.68, halign="middle");
+//   %io_p = $IO_PORT @ATTACH &p => @PLACE(16, 0) => @ORIENT("R180");
+//   &p @WIRE(mode="straight") {%io_p:p #Xn:2};
+//   %io_n = $IO_PORT @ATTACH &n => @PLACE(60, -1) => @ORIENT("R0");
+//   &n @WIRE(mode="straight") {%io_n:p #Gerr:4};
+//   %io_out = $IO_PORT @ATTACH &out => @PLACE(44, -46) => @ORIENT("R180");
+//   &out @WIRE(mode="straight") {%io_out:p #Ro:2};
+//   %io_bias = $IO_PORT @ATTACH &bias => @PLACE(25, 1) => @ORIENT("R0");
+//   &bias @WIRE(mode="straight") {%io_bias:p #Eos:3};
+//   %io_g = $IO_PORT @ATTACH &g => @PLACE(0, -11) => @ORIENT("R90");
+//   &g @WIRE(mode="straight") {%io_g:p #Xn:3};
+//   &pn @WIRE(mode="straight") {#Xn:1 (-12, 0) (-12, -6) (35, -6) #Eos:2};
+//   &pi @WIRE(mode="straight") {#Eos:1 (35, 5) (64, 5) (64, 1) #Gerr:3};
+//   &u @WIRE(mode="straight") {#E1:1 (35, -18) (65, -18) (65, -23) #R2:1};
+//   &b @WIRE(mode="straight") {#Ebuf:1 (0, -41) (30, -41) (30, -46) #Ro:1};
+//   &y @WIRE(mode="straight") {#R2:2 #C2:1};
+//   &y @WIRE(mode="straight") {#R2:2 (75, -23) (75, -40) (-6, -40) (-6, -45) #Ebuf:3};
+//   &x @WIRE(mode="straight") {#Gerr:2 (70, -5) (100, -5) (100, 0) #Rd:1};
+//   &x @WIRE(mode="straight") {#Gerr:2 (70, -17) (29, -17) (29, -22) #E1:3};
+//   &x @WIRE(mode="straight") {#E1:3 (29, -22) (29, -26) (-5, -26) (-5, -23) #Cd:1};
+//   %ground0 = $GROUND @ATTACH &g => @PLACE(29, -1);
+//   &g @WIRE(mode="straight") {#Eos:4 %ground0:p};
+//   %ground1 = $GROUND @ATTACH &g => @PLACE(70, 5);
+//   &g @WIRE(mode="straight") {#Gerr:1 %ground1:p};
+//   %ground2 = $GROUND @ATTACH &g => @PLACE(110, 0);
+//   &g @WIRE(mode="straight") {#Rd:2 %ground2:p};
+//   %ground3 = $GROUND @ATTACH &g => @PLACE(5, -23);
+//   &g @WIRE(mode="straight") {#Cd:2 %ground3:p};
+//   %ground4 = $GROUND @ATTACH &g => @PLACE(35, -28);
+//   &g @WIRE(mode="straight") {#E1:2 %ground4:p};
+//   %ground5 = $GROUND @ATTACH &g => @PLACE(29, -24);
+//   &g @WIRE(mode="straight") {#E1:4 %ground5:p};
+//   %ground6 = $GROUND @ATTACH &g => @PLACE(110, -23);
+//   &g @WIRE(mode="straight") {#C2:2 %ground6:p};
+//   %ground7 = $GROUND @ATTACH &g => @PLACE(0, -51);
+//   &g @WIRE(mode="straight") {#Ebuf:2 %ground7:p};
+//   %ground8 = $GROUND @ATTACH &g => @PLACE(-6, -47);
+//   &g @WIRE(mode="straight") {#Ebuf:4 %ground8:p}
+// }
+ends TM_REF_AMP

@@ -1,0 +1,79 @@
+simulator lang=spectre
+// @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-vfct-vdcb", version="1.0", path="../../symbols.rnl") }
+subckt TM_LDO_LT3042 (vin set out bias g)
+parameters ereg=2.53n freg=1M rreg=50m vos=0 iset=100u kline=0
+Gset (g set bias g) vccs gm=iset
+Evnom (vbase g bias g) vcvs gain=3.3
+Eline (sl set vin vbase) vcvs gain=kline
+Xn (u sl g) TM_LDO_NOISE ew=ereg
+Ecmd (v g u g) vcvs gain=1
+Eoff (w v bias g) vcvs gain=vos
+Rf (w x) resistor r=1k isnoisy=no
+Cf (x g) capacitor c=1/(6.283185307*1k*freg)
+Edrive (b g x g) vcvs gain=1
+Rreg (b out) resistor r=rreg isnoisy=no
+// @RNL {
+//   #Gset @PLACE(0, 0);
+//   (0, -4.7) @TEXT("gm=iset", size=0.68, halign="middle");
+//   #Evnom @PLACE(35, 0);
+//   (35, -4.7) @TEXT("gain=3.3", size=0.68, halign="middle");
+//   #Eline @PLACE(70, 0);
+//   (70, -4.7) @TEXT("gain=kline", size=0.68, halign="middle");
+//   #Xn @PLACE(105, 0);
+//   #Ecmd @PLACE(0, -23);
+//   (0, -27.7) @TEXT("gain=1", size=0.68, halign="middle");
+//   #Eoff @PLACE(35, -23);
+//   (35, -27.7) @TEXT("gain=vos", size=0.68, halign="middle");
+//   #Rf @PLACE(70, -23);
+//   (70, -26.7) @TEXT("r=1k", size=0.68, halign="middle");
+//   #Cf @PLACE(105, -23);
+//   (105, -26.7) @TEXT("c=1/(6.283185307*1k*freg)", size=0.68, halign="middle");
+//   #Edrive @PLACE(0, -46);
+//   (0, -50.7) @TEXT("gain=1", size=0.68, halign="middle");
+//   #Rreg @PLACE(35, -46);
+//   (35, -49.7) @TEXT("r=rreg", size=0.68, halign="middle");
+//   %io_vin = $IO_PORT @ATTACH &vin => @PLACE(60, 1) => @ORIENT("R0");
+//   &vin @WIRE(mode="straight") {%io_vin:p #Eline:3};
+//   %io_set = $IO_PORT @ATTACH &set => @PLACE(0, -9) => @ORIENT("R90");
+//   &set @WIRE(mode="straight") {%io_set:p #Gset:2};
+//   %io_out = $IO_PORT @ATTACH &out => @PLACE(44, -46) => @ORIENT("R180");
+//   &out @WIRE(mode="straight") {%io_out:p #Rreg:2};
+//   %io_bias = $IO_PORT @ATTACH &bias => @PLACE(-10, 1) => @ORIENT("R0");
+//   &bias @WIRE(mode="straight") {%io_bias:p #Gset:3};
+//   %io_g = $IO_PORT @ATTACH &g => @PLACE(0, 9) => @ORIENT("R270");
+//   &g @WIRE(mode="straight") {%io_g:p #Gset:1};
+//   &set @WIRE(mode="straight") {#Gset:2 (0, -5) (70, -5) #Eline:2};
+//   &vbase @WIRE(mode="straight") {#Evnom:1 (35, 5) (59, 5) (59, -1) #Eline:4};
+//   &sl @WIRE(mode="straight") {#Eline:1 (70, 7) (117, 7) (117, 0) #Xn:2};
+//   &u @WIRE(mode="straight") {#Xn:1 (93, 0) (93, -18) (-6, -18) (-6, -22) #Ecmd:3};
+//   &v @WIRE(mode="straight") {#Ecmd:1 (0, -17) (30, -17) (30, -28) (35, -28) #Eoff:2};
+//   &w @WIRE(mode="straight") {#Eoff:1 (35, -17) (65, -17) (65, -23) #Rf:1};
+//   &b @WIRE(mode="straight") {#Edrive:1 (0, -41) (30, -41) (30, -46) #Rreg:1};
+//   &x @WIRE(mode="straight") {#Rf:2 #Cf:1};
+//   &x @WIRE(mode="straight") {#Rf:2 (75, -23) (75, -40) (-6, -40) (-6, -45) #Edrive:3};
+//   &bias @WIRE(mode="straight") {#Evnom:3 (29, 1)};
+//   (27.8, 1) @TEXT("bias", size=0.7, halign="middle", valign="middle");
+//   &bias @WIRE(mode="straight") {#Eoff:3 (29, -22)};
+//   (27.8, -22) @TEXT("bias", size=0.7, halign="middle", valign="middle");
+//   %ground0 = $GROUND @ATTACH &g => @PLACE(-6, -1);
+//   &g @WIRE(mode="straight") {#Gset:4 %ground0:p};
+//   %ground1 = $GROUND @ATTACH &g => @PLACE(35, -5);
+//   &g @WIRE(mode="straight") {#Evnom:2 %ground1:p};
+//   %ground2 = $GROUND @ATTACH &g => @PLACE(29, -1);
+//   &g @WIRE(mode="straight") {#Evnom:4 %ground2:p};
+//   %ground3 = $GROUND @ATTACH &g => @PLACE(105, -7);
+//   &g @WIRE(mode="straight") {#Xn:3 %ground3:p};
+//   %ground4 = $GROUND @ATTACH &g => @PLACE(0, -28);
+//   &g @WIRE(mode="straight") {#Ecmd:2 %ground4:p};
+//   %ground5 = $GROUND @ATTACH &g => @PLACE(-6, -24);
+//   &g @WIRE(mode="straight") {#Ecmd:4 %ground5:p};
+//   %ground6 = $GROUND @ATTACH &g => @PLACE(29, -24);
+//   &g @WIRE(mode="straight") {#Eoff:4 %ground6:p};
+//   %ground7 = $GROUND @ATTACH &g => @PLACE(110, -23);
+//   &g @WIRE(mode="straight") {#Cf:2 %ground7:p};
+//   %ground8 = $GROUND @ATTACH &g => @PLACE(0, -51);
+//   &g @WIRE(mode="straight") {#Edrive:2 %ground8:p};
+//   %ground9 = $GROUND @ATTACH &g => @PLACE(-6, -47);
+//   &g @WIRE(mode="straight") {#Edrive:4 %ground9:p}
+// }
+ends TM_LDO_LT3042

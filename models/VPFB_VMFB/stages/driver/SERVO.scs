@@ -1,0 +1,27 @@
+simulator lang=spectre
+// @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-vpfb-vmfb", version="1.0", path="../../symbols.rnl") }
+subckt TM_REF_SERVO (set pad servo bias g)
+Xu (set ns servo bias g) TM_REF_ADA4522
+Rs (pad ns) resistor r=1k
+Cs (ns servo) capacitor c=100n
+// @RNL {
+//   #Xu @PLACE(0, 0);
+//   #Rs @PLACE(35, 0);
+//   (35, -3.7) @TEXT("r=1k", size=0.68, halign="middle");
+//   #Cs @PLACE(70, 0);
+//   (70, -3.7) @TEXT("c=100n", size=0.68, halign="middle");
+//   %io_set = $IO_PORT @ATTACH &set => @PLACE(-16, 1) => @ORIENT("R0");
+//   &set @WIRE(mode="straight") {%io_set:p #Xu:1};
+//   %io_pad = $IO_PORT @ATTACH &pad => @PLACE(26, 0) => @ORIENT("R0");
+//   &pad @WIRE(mode="straight") {%io_pad:p #Rs:1};
+//   %io_servo = $IO_PORT @ATTACH &servo => @PLACE(16, 0) => @ORIENT("R180");
+//   &servo @WIRE(mode="straight") {%io_servo:p #Xu:3};
+//   %io_bias = $IO_PORT @ATTACH &bias => @PLACE(-3, -11) => @ORIENT("R90");
+//   &bias @WIRE(mode="straight") {%io_bias:p #Xu:4};
+//   %io_g = $IO_PORT @ATTACH &g => @PLACE(3, -11) => @ORIENT("R90");
+//   &g @WIRE(mode="straight") {%io_g:p #Xu:5};
+//   &servo @WIRE(mode="straight") {#Xu:3 (12, 0) (12, -3) (75, -3) (75, 0) #Cs:2};
+//   &ns @WIRE(mode="straight") {#Xu:2 (-12, -1) (-12, 7) (40, 7) (40, 0) #Rs:2};
+//   &ns @WIRE(mode="straight") {#Rs:2 #Cs:1}
+// }
+ends TM_REF_SERVO

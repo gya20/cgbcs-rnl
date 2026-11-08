@@ -1,0 +1,40 @@
+simulator lang=spectre
+// @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-pvre", version="1.0", path="../../symbols.rnl") }
+subckt TM_PVRE_LINE (a b g)
+parameters rs=50m le=2n
+Rwire (a t) resistor r=rs
+Gs (g h t b) vccs gm=0.1
+Cx (h g) capacitor c=le*0.01
+Rx (h g) resistor r=1T isnoisy=no
+Gi (t b h g) vccs gm=0.1
+// @RNL {
+//   #Rwire @PLACE(0, 0);
+//   (0, -3.7) @TEXT("r=rs", size=0.68, halign="middle");
+//   #Gs @PLACE(35, 0);
+//   (35, -4.7) @TEXT("gm=0.1", size=0.68, halign="middle");
+//   #Cx @PLACE(70, 0);
+//   (70, -3.7) @TEXT("c=le*0.01", size=0.68, halign="middle");
+//   #Rx @PLACE(105, 0);
+//   (105, -3.7) @TEXT("r=1T", size=0.68, halign="middle");
+//   #Gi @PLACE(0, -23);
+//   (0, -27.7) @TEXT("gm=0.1", size=0.68, halign="middle");
+//   %io_a = $IO_PORT @ATTACH &a => @PLACE(-9, 0) => @ORIENT("R0");
+//   &a @WIRE(mode="straight") {%io_a:p #Rwire:1};
+//   %io_b = $IO_PORT @ATTACH &b => @PLACE(25, -1) => @ORIENT("R0");
+//   &b @WIRE(mode="straight") {%io_b:p #Gs:4};
+//   %io_g = $IO_PORT @ATTACH &g => @PLACE(35, 9) => @ORIENT("R270");
+//   &g @WIRE(mode="straight") {%io_g:p #Gs:1};
+//   &b @WIRE(mode="straight") {#Gs:4 (29, -1) (29, -28) (0, -28) #Gi:2};
+//   &t @WIRE(mode="straight") {#Rwire:2 (5, 0) (5, -18) (0, -18) #Gi:1};
+//   &t @WIRE(mode="straight") {#Rwire:2 (29, 0) (29, 1) #Gs:3};
+//   &h @WIRE(mode="straight") {#Gs:2 (35, -5) (65, -5) (65, 0) #Cx:1};
+//   &h @WIRE(mode="straight") {#Cx:1 (65, 0) (65, -3) (100, -3) (100, 0) #Rx:1};
+//   &h @WIRE(mode="straight") {#Gs:2 (35, -5) (-6, -5) (-6, -22) #Gi:3};
+//   %ground0 = $GROUND @ATTACH &g => @PLACE(75, 0);
+//   &g @WIRE(mode="straight") {#Cx:2 %ground0:p};
+//   %ground1 = $GROUND @ATTACH &g => @PLACE(110, 0);
+//   &g @WIRE(mode="straight") {#Rx:2 %ground1:p};
+//   %ground2 = $GROUND @ATTACH &g => @PLACE(-6, -24);
+//   &g @WIRE(mode="straight") {#Gi:4 %ground2:p}
+// }
+ends TM_PVRE_LINE

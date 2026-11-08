@@ -1,0 +1,96 @@
+{
+  "format": 1,
+  "id": "cgbcs-pvre",
+  "title": {
+    "en": "PVRE · CGBCS",
+    "zh": "双向程控电源"
+  },
+  "description": "LTC2972 · LT1355",
+  "author": [
+    {
+      "name": "gya20",
+      "url": "https://github.com/gya20"
+    }
+  ],
+  "source": {
+    "repo": "gya20/cgbcs-rnl",
+    "url": "https://github.com/gya20/cgbcs-rnl/tree/main/models/PVRE"
+  },
+  "base": "https://gya20.github.io/cgbcs-rnl/models/PVRE/",
+  "entry": "top.scs",
+  "files": [
+    {
+      "path": "cells/basic/AMP.scs",
+      "sha256": "8e64e0b7ea999083baf9d4a2c4c0195c7b27540dc01c354cdb9b08a0527c5fdc",
+      "size": 2775
+    },
+    {
+      "path": "cells/basic/LINE.scs",
+      "sha256": "77da2e1183a7c28d060df90d643730cfc38d893c8821853d34df79340966d982",
+      "size": 1901
+    },
+    {
+      "path": "cells/basic/NOISE.scs",
+      "sha256": "36f8f1fb2523a16e346de8e6f3afb998ff49acd9d278ecbe966aa16983047313",
+      "size": 988
+    },
+    {
+      "path": "cells/basic/PI_SECTION.scs",
+      "sha256": "f2b771083b64818e220831b54b5f739dd79bfd1af129947d03712bcc8aa99b7f",
+      "size": 1225
+    },
+    {
+      "path": "cells/ic/LT1355.scs",
+      "sha256": "c501d7e22c1d935af8cb5821686ccf8a52e3b560719b8924234772d25f64fcc0",
+      "size": 957
+    },
+    {
+      "path": "cells/ic/LTC2972_SET.scs",
+      "sha256": "6f604f410a2dd0192d0ab20edfa2025af891940fd21b846aac595744007b7614",
+      "size": 1101
+    },
+    {
+      "path": "stages/CARD_CHANNEL.scs",
+      "sha256": "e43b586e5cb5ed8ff48ee7677fa7892132241566ec741806348aee8b9a9817a7",
+      "size": 1759
+    },
+    {
+      "path": "stages/CARD_ONLY.scs",
+      "sha256": "61aaac342a2e0b22bdd90533afc04700782a1d3cd4a1442f56f3bea1a01bfc87",
+      "size": 2958
+    },
+    {
+      "path": "stages/driver/PVRE_DRV.scs",
+      "sha256": "012270119bcbaa9e7817c2343fbdfcf44b4814f6c1b2fe6ab2c428df00b62902",
+      "size": 1898
+    },
+    {
+      "path": "stages/output/CARD_PATH.scs",
+      "sha256": "8d84f67037c1a13f536280c2ad3535bca9f0031fae118bcdc91c14cb56b8854f",
+      "size": 1372
+    },
+    {
+      "path": "stages/output/CARD_PCB.scs",
+      "sha256": "684a1cb07e0b84c90cf7da1c0942ed200246aa63127a6edf479d1ca394e4751c",
+      "size": 3148
+    },
+    {
+      "path": "stages/PVRE_CH.scs",
+      "sha256": "2105cb219d0be0f81d977307dee9d8d6388c7f23dc81a4b9612f491cb3da53d9",
+      "size": 1941
+    },
+    {
+      "path": "symbols.rnl",
+      "sha256": "63592fa85d5eda5a424784d3e6426197cdcca5d3fbb776ab76ce82a6a7329e51",
+      "size": 22896
+    },
+    {
+      "path": "top.scs",
+      "sha256": "fcd78ac2d8f5d50e258e1c2b669fcaee8a8e395e4421db619216c67f7156d957",
+      "size": 3641
+    }
+  ],
+  "pool": [
+    "symbols.rnl"
+  ]
+}

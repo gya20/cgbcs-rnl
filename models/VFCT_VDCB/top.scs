@@ -1,0 +1,43 @@
+simulator lang=spectre
+// @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-vfct-vdcb", version="1.0", path="symbols.rnl") }
+include "stages/input/LDO_SET.scs"
+include "cells/basic/NOISE.scs"
+include "cells/ic/LT3042.scs"
+include "cells/basic/LINE.scs"
+include "cells/basic/CAPBR.scs"
+include "stages/output/DECOUPLE.scs"
+include "stages/output/LDO_PATH.scs"
+include "stages/LDO_CH.scs"
+
+subckt TM_LDO_LDO (vin bias outcb padcb diecb outfct padfct diefct g)
+parameters rcb=20k rfct=21k
+Xcb (vin bias outcb padcb diecb g) TM_LDO_LDO_CH rt=rcb
+Xfct (vin bias outfct padfct diefct g) TM_LDO_LDO_CH rt=rfct
+// @RNL {
+//   #Xcb @PLACE(0, 11);
+//   #Xfct @PLACE(0, -11);
+//   %io_vin = $IO_PORT @ATTACH &vin => @PLACE(-16, 11) => @ORIENT("R0");
+//   &vin @WIRE(mode="straight") {%io_vin:p #Xcb:1};
+//   %io_bias = $IO_PORT @ATTACH &bias => @PLACE(-3, 0) => @ORIENT("R90");
+//   &bias @WIRE(mode="straight") {%io_bias:p #Xcb:2};
+//   %io_outcb = $IO_PORT @ATTACH &outcb => @PLACE(16, 13) => @ORIENT("R180");
+//   &outcb @WIRE(mode="straight") {%io_outcb:p #Xcb:3};
+//   %io_padcb = $IO_PORT @ATTACH &padcb => @PLACE(16, 11) => @ORIENT("R180");
+//   &padcb @WIRE(mode="straight") {%io_padcb:p #Xcb:4};
+//   %io_diecb = $IO_PORT @ATTACH &diecb => @PLACE(16, 9) => @ORIENT("R180");
+//   &diecb @WIRE(mode="straight") {%io_diecb:p #Xcb:5};
+//   %io_outfct = $IO_PORT @ATTACH &outfct => @PLACE(16, -9) => @ORIENT("R180");
+//   &outfct @WIRE(mode="straight") {%io_outfct:p #Xfct:3};
+//   %io_padfct = $IO_PORT @ATTACH &padfct => @PLACE(16, -11) => @ORIENT("R180");
+//   &padfct @WIRE(mode="straight") {%io_padfct:p #Xfct:4};
+//   %io_diefct = $IO_PORT @ATTACH &diefct => @PLACE(16, -13) => @ORIENT("R180");
+//   &diefct @WIRE(mode="straight") {%io_diefct:p #Xfct:5};
+//   %io_g = $IO_PORT @ATTACH &g => @PLACE(3, 0) => @ORIENT("R90");
+//   &g @WIRE(mode="straight") {%io_g:p #Xcb:6};
+//   &vin @WIRE(mode="straight") {#Xcb:1 (-12, 11) (-12, -11) #Xfct:1};
+//   &bias @WIRE(mode="straight") {#Xfct:2 (-3, -18)};
+//   (-3, -19) @TEXT("bias", size=0.7, halign="middle", valign="middle");
+//   %ground0 = $GROUND @ATTACH &g => @PLACE(3, -18);
+//   &g @WIRE(mode="straight") {#Xfct:6 %ground0:p}
+// }
+ends TM_LDO_LDO

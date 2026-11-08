@@ -1,0 +1,28 @@
+simulator lang=spectre
+// @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-vpfb-vmfb", version="1.0", path="../../symbols.rnl") }
+subckt TM_REF_NOISE_POLE (p q g)
+parameters fj=1 en=39n fc=1
+Rn (w g) resistor r=1k
+Cn (w g) capacitor c=1/(6.283185307*1k*fj)
+En (p q w g) vcvs gain=(en/4.07035n)*sqrt(0.366468*fc/fj)
+// @RNL {
+//   #Rn @PLACE(0, 0);
+//   (0, -3.7) @TEXT("r=1k", size=0.68, halign="middle");
+//   #Cn @PLACE(35, 0);
+//   (35, -3.7) @TEXT("c=1/(6.283185307*1k*fj)", size=0.68, halign="middle");
+//   #En @PLACE(70, 0);
+//   (70, -4.7) @TEXT("gain=(en/4.07035n)*sqrt(0.366468*fc/fj)", size=0.68, halign="middle");
+//   %io_p = $IO_PORT @ATTACH &p => @PLACE(70, 9) => @ORIENT("R270");
+//   &p @WIRE(mode="straight") {%io_p:p #En:1};
+//   %io_q = $IO_PORT @ATTACH &q => @PLACE(70, -9) => @ORIENT("R90");
+//   &q @WIRE(mode="straight") {%io_q:p #En:2};
+//   %io_g = $IO_PORT @ATTACH &g => @PLACE(9, 0) => @ORIENT("R180");
+//   &g @WIRE(mode="straight") {%io_g:p #Rn:2};
+//   &w @WIRE(mode="straight") {#Rn:1 (-5, 0) (-5, -3) (30, -3) (30, 0) #Cn:1};
+//   &w @WIRE(mode="straight") {#Cn:1 (30, 0) (30, 4) (64, 4) (64, 1) #En:3};
+//   %ground0 = $GROUND @ATTACH &g => @PLACE(40, 0);
+//   &g @WIRE(mode="straight") {#Cn:2 %ground0:p};
+//   %ground1 = $GROUND @ATTACH &g => @PLACE(64, -1);
+//   &g @WIRE(mode="straight") {#En:4 %ground1:p}
+// }
+ends TM_REF_NOISE_POLE

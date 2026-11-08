@@ -1,0 +1,53 @@
+simulator lang=spectre
+// @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-pvr", version="1.0", path="../../symbols.rnl") }
+subckt TM_PVR_LT3042 (set out bias g)
+parameters ereg=2.53n freg=1M rreg=50m vos=0
+Xn (u set g) TM_PVR_NOISE ew=ereg
+Ecmd (v g u g) vcvs gain=1
+Eoff (w v bias g) vcvs gain=vos
+Rf (w x) resistor r=1k isnoisy=no
+Cf (x g) capacitor c=1/(6.283185307*1k*freg)
+Edrive (b g x g) vcvs gain=1
+Rreg (b out) resistor r=rreg isnoisy=no
+// @RNL {
+//   #Xn @PLACE(0, 0);
+//   #Ecmd @PLACE(35, 0);
+//   (35, -4.7) @TEXT("gain=1", size=0.68, halign="middle");
+//   #Eoff @PLACE(70, 0);
+//   (70, -4.7) @TEXT("gain=vos", size=0.68, halign="middle");
+//   #Rf @PLACE(105, 0);
+//   (105, -3.7) @TEXT("r=1k", size=0.68, halign="middle");
+//   #Cf @PLACE(0, -23);
+//   (0, -26.7) @TEXT("c=1/(6.283185307*1k*freg)", size=0.68, halign="middle");
+//   #Edrive @PLACE(35, -23);
+//   (35, -27.7) @TEXT("gain=1", size=0.68, halign="middle");
+//   #Rreg @PLACE(70, -23);
+//   (70, -26.7) @TEXT("r=rreg", size=0.68, halign="middle");
+//   %io_set = $IO_PORT @ATTACH &set => @PLACE(16, 0) => @ORIENT("R180");
+//   &set @WIRE(mode="straight") {%io_set:p #Xn:2};
+//   %io_out = $IO_PORT @ATTACH &out => @PLACE(79, -23) => @ORIENT("R180");
+//   &out @WIRE(mode="straight") {%io_out:p #Rreg:2};
+//   %io_bias = $IO_PORT @ATTACH &bias => @PLACE(60, 1) => @ORIENT("R0");
+//   &bias @WIRE(mode="straight") {%io_bias:p #Eoff:3};
+//   %io_g = $IO_PORT @ATTACH &g => @PLACE(0, -11) => @ORIENT("R90");
+//   &g @WIRE(mode="straight") {%io_g:p #Xn:3};
+//   &u @WIRE(mode="straight") {#Xn:1 (-12, 0) (-12, 7) (29, 7) (29, 1) #Ecmd:3};
+//   &v @WIRE(mode="straight") {#Ecmd:1 (35, 5) (59, 5) (59, -5) (70, -5) #Eoff:2};
+//   &w @WIRE(mode="straight") {#Eoff:1 (70, 5) (100, 5) (100, 0) #Rf:1};
+//   &b @WIRE(mode="straight") {#Edrive:1 (35, -18) (65, -18) (65, -23) #Rreg:1};
+//   &x @WIRE(mode="straight") {#Rf:2 (110, 0) (110, -17) (29, -17) (29, -22) #Edrive:3};
+//   &x @WIRE(mode="straight") {#Edrive:3 (29, -22) (29, -26) (-5, -26) (-5, -23) #Cf:1};
+//   %ground0 = $GROUND @ATTACH &g => @PLACE(35, -5);
+//   &g @WIRE(mode="straight") {#Ecmd:2 %ground0:p};
+//   %ground1 = $GROUND @ATTACH &g => @PLACE(29, -1);
+//   &g @WIRE(mode="straight") {#Ecmd:4 %ground1:p};
+//   %ground2 = $GROUND @ATTACH &g => @PLACE(64, -1);
+//   &g @WIRE(mode="straight") {#Eoff:4 %ground2:p};
+//   %ground3 = $GROUND @ATTACH &g => @PLACE(5, -23);
+//   &g @WIRE(mode="straight") {#Cf:2 %ground3:p};
+//   %ground4 = $GROUND @ATTACH &g => @PLACE(35, -28);
+//   &g @WIRE(mode="straight") {#Edrive:2 %ground4:p};
+//   %ground5 = $GROUND @ATTACH &g => @PLACE(29, -24);
+//   &g @WIRE(mode="straight") {#Edrive:4 %ground5:p}
+// }
+ends TM_PVR_LT3042

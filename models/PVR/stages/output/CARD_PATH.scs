@@ -1,0 +1,28 @@
+simulator lang=spectre
+// @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-pvr", version="1.0", path="../../symbols.rnl") }
+subckt TM_PVR_CARD_PATH (plug pad die g)
+parameters cpad=11.1u
+Xfeed (plug pad g) TM_PVR_LINE rs=20m le=1n
+Cboard (pad g) capacitor c=cpad
+Xbond (pad die g) TM_PVR_LINE rs=50m le=2n
+// @RNL {
+//   #Xfeed @PLACE(0, 0);
+//   #Cboard @PLACE(35, 0);
+//   (35, -3.7) @TEXT("c=cpad", size=0.68, halign="middle");
+//   #Xbond @PLACE(70, 0);
+//   %io_plug = $IO_PORT @ATTACH &plug => @PLACE(-16, 0) => @ORIENT("R0");
+//   &plug @WIRE(mode="straight") {%io_plug:p #Xfeed:1};
+//   %io_pad = $IO_PORT @ATTACH &pad => @PLACE(16, 0) => @ORIENT("R180");
+//   &pad @WIRE(mode="straight") {%io_pad:p #Xfeed:2};
+//   %io_die = $IO_PORT @ATTACH &die => @PLACE(86, 0) => @ORIENT("R180");
+//   &die @WIRE(mode="straight") {%io_die:p #Xbond:2};
+//   %io_g = $IO_PORT @ATTACH &g => @PLACE(0, -11) => @ORIENT("R90");
+//   &g @WIRE(mode="straight") {%io_g:p #Xfeed:3};
+//   &pad @WIRE(mode="straight") {#Xfeed:2 #Cboard:1};
+//   &pad @WIRE(mode="straight") {#Cboard:1 (30, 0) (30, -3) (58, -3) (58, 0) #Xbond:1};
+//   %ground0 = $GROUND @ATTACH &g => @PLACE(40, 0);
+//   &g @WIRE(mode="straight") {#Cboard:2 %ground0:p};
+//   %ground1 = $GROUND @ATTACH &g => @PLACE(70, -7);
+//   &g @WIRE(mode="straight") {#Xbond:3 %ground1:p}
+// }
+ends TM_PVR_CARD_PATH

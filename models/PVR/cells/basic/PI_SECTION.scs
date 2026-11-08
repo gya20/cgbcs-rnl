@@ -1,0 +1,27 @@
+simulator lang=spectre
+// @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-pvr", version="1.0", path="../../symbols.rnl") }
+subckt TM_PVR_PI_SECTION (p q g)
+parameters rr=5m ll=5n cc=1p
+C1 (p g) capacitor c=cc/2
+Xline (p q g) TM_PVR_LINE rs=rr le=ll
+C2 (q g) capacitor c=cc/2
+// @RNL {
+//   #C1 @PLACE(0, 0);
+//   (0, -3.7) @TEXT("c=cc/2", size=0.68, halign="middle");
+//   #Xline @PLACE(35, 0);
+//   #C2 @PLACE(70, 0);
+//   (70, -3.7) @TEXT("c=cc/2", size=0.68, halign="middle");
+//   %io_p = $IO_PORT @ATTACH &p => @PLACE(-9, 0) => @ORIENT("R0");
+//   &p @WIRE(mode="straight") {%io_p:p #C1:1};
+//   %io_q = $IO_PORT @ATTACH &q => @PLACE(51, 0) => @ORIENT("R180");
+//   &q @WIRE(mode="straight") {%io_q:p #Xline:2};
+//   %io_g = $IO_PORT @ATTACH &g => @PLACE(9, 0) => @ORIENT("R180");
+//   &g @WIRE(mode="straight") {%io_g:p #C1:2};
+//   &p @WIRE(mode="straight") {#C1:1 (-5, 0) (-5, -3) (23, -3) (23, 0) #Xline:1};
+//   &q @WIRE(mode="straight") {#Xline:2 #C2:1};
+//   %ground0 = $GROUND @ATTACH &g => @PLACE(35, -7);
+//   &g @WIRE(mode="straight") {#Xline:3 %ground0:p};
+//   %ground1 = $GROUND @ATTACH &g => @PLACE(75, 0);
+//   &g @WIRE(mode="straight") {#C2:2 %ground1:p}
+// }
+ends TM_PVR_PI_SECTION

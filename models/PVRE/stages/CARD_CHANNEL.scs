@@ -1,0 +1,28 @@
+simulator lang=spectre
+// @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-pvre", version="1.0", path="../symbols.rnl") }
+subckt TM_PVRE_CARD_CHANNEL (cm dac bias buf card plug g)
+parameters rin=1k edac=0 ccard=100u ratiosq=42.86 lenmm=76.2 cum=35 rreturn=5m lmm=0.5n cmm=0.12p rcontact=10m lcontact=1n rneck=2m lneck=1n lcap=0.7n esr=10m
+Xdrv (cm dac bias buf g) TM_PVRE_PVRE_DRV rin=rin edac=edac
+Xpcb (buf card plug g) TM_PVRE_CARD_PCB ccard=ccard ratiosq=ratiosq lenmm=lenmm cum=cum rreturn=rreturn lmm=lmm cmm=cmm rcontact=rcontact lcontact=lcontact rneck=rneck lneck=lneck lcap=lcap esr=esr
+// @RNL {
+//   #Xdrv @PLACE(0, 0);
+//   #Xpcb @PLACE(35, 0);
+//   %io_cm = $IO_PORT @ATTACH &cm => @PLACE(-16, 1) => @ORIENT("R0");
+//   &cm @WIRE(mode="straight") {%io_cm:p #Xdrv:1};
+//   %io_dac = $IO_PORT @ATTACH &dac => @PLACE(-16, -1) => @ORIENT("R0");
+//   &dac @WIRE(mode="straight") {%io_dac:p #Xdrv:2};
+//   %io_bias = $IO_PORT @ATTACH &bias => @PLACE(-3, -11) => @ORIENT("R90");
+//   &bias @WIRE(mode="straight") {%io_bias:p #Xdrv:3};
+//   %io_buf = $IO_PORT @ATTACH &buf => @PLACE(16, 0) => @ORIENT("R180");
+//   &buf @WIRE(mode="straight") {%io_buf:p #Xdrv:4};
+//   %io_card = $IO_PORT @ATTACH &card => @PLACE(51, 1) => @ORIENT("R180");
+//   &card @WIRE(mode="straight") {%io_card:p #Xpcb:2};
+//   %io_plug = $IO_PORT @ATTACH &plug => @PLACE(51, -1) => @ORIENT("R180");
+//   &plug @WIRE(mode="straight") {%io_plug:p #Xpcb:3};
+//   %io_g = $IO_PORT @ATTACH &g => @PLACE(3, -11) => @ORIENT("R90");
+//   &g @WIRE(mode="straight") {%io_g:p #Xdrv:5};
+//   &buf @WIRE(mode="straight") {#Xdrv:4 #Xpcb:1};
+//   %ground0 = $GROUND @ATTACH &g => @PLACE(35, -7);
+//   &g @WIRE(mode="straight") {#Xpcb:4 %ground0:p}
+// }
+ends TM_PVRE_CARD_CHANNEL

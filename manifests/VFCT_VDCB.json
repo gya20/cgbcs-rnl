@@ -1,0 +1,76 @@
+{
+  "format": 1,
+  "id": "cgbcs-vfct_vdcb",
+  "title": {
+    "en": "VFCT_VDCB · CGBCS",
+    "zh": "VFCT / VDCB 双路供电"
+  },
+  "description": "LT3042 · 2.1 V / 2.0 V",
+  "author": [
+    {
+      "name": "gya20",
+      "url": "https://github.com/gya20"
+    }
+  ],
+  "source": {
+    "repo": "gya20/cgbcs-rnl",
+    "url": "https://github.com/gya20/cgbcs-rnl/tree/main/models/VFCT_VDCB"
+  },
+  "base": "https://gya20.github.io/cgbcs-rnl/models/VFCT_VDCB/",
+  "entry": "top.scs",
+  "files": [
+    {
+      "path": "cells/basic/CAPBR.scs",
+      "sha256": "83f7e84f1fe9a550ab5cbcb326b4f1d54594a9be5c017ef8b8cd58c22558260c",
+      "size": 812
+    },
+    {
+      "path": "cells/basic/LINE.scs",
+      "sha256": "eea58ff9b0b4b5579c90f47f0cb8b8103086947f927914cb627d4486b6605f24",
+      "size": 1904
+    },
+    {
+      "path": "cells/basic/NOISE.scs",
+      "sha256": "88dc17eeed15890fc8763eea2778631cb49f1424fc9b5049a65851eba35d60c5",
+      "size": 991
+    },
+    {
+      "path": "cells/ic/LT3042.scs",
+      "sha256": "95901b353207c4dbb3570656058b0eb342832a4041f401f33ebd622a1e0996c8",
+      "size": 4150
+    },
+    {
+      "path": "stages/input/LDO_SET.scs",
+      "sha256": "832c4f7974630c396eae0aaa4bb30d6848babfd8e2aee5246623ecaeb2e9486b",
+      "size": 1949
+    },
+    {
+      "path": "stages/LDO_CH.scs",
+      "sha256": "17dd66eafc6a096e548d86f76c57bb86cc17711655ceb8cec83a6b8d03196cb8",
+      "size": 1811
+    },
+    {
+      "path": "stages/output/DECOUPLE.scs",
+      "sha256": "6c3867099941684ff4629b3f2b9f8ef64be131815c5427dd0efa53b975084e64",
+      "size": 785
+    },
+    {
+      "path": "stages/output/LDO_PATH.scs",
+      "sha256": "bfd25476d69ad572127b2751c2647d26fdef5b6a2ef8484fdb955ba0f2b0f629",
+      "size": 1531
+    },
+    {
+      "path": "symbols.rnl",
+      "sha256": "c98150f1048705d0a151690b869e9e9e8605537aff3c9873cd32d8cd4c49142e",
+      "size": 14613
+    },
+    {
+      "path": "top.scs",
+      "sha256": "7af9316cac365c7b503d92cd121fb9df2dc467715feb993149c8df2b91a8b2e3",
+      "size": 2213
+    }
+  ],
+  "pool": [
+    "symbols.rnl"
+  ]
+}

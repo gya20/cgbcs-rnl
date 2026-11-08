@@ -1,0 +1,43 @@
+simulator lang=spectre
+// @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-pvre", version="1.0", path="../symbols.rnl") }
+subckt TM_PVRE_CARD_ONLY (cmop dac1 dac2 bias buf1 card1 plug1 buf2 card2 plug2 g)
+parameters ccard=100u len1=76.2 len2=82.96 sq1=42.86 sq2=46.66 cum=35 rreturn=5m lmm=0.5n cmm=0.12p rcontact=10m lcontact=1n rneck=2m lneck=1n lcap=0.7n esr=10m rin=1k edac=0 ecm=0
+Xcm (cm cmop g) TM_PVRE_NOISE ew=ecm
+Xch1 (cm dac1 bias buf1 card1 plug1 g) TM_PVRE_CARD_CHANNEL rin=rin edac=edac ccard=ccard lenmm=len1 ratiosq=sq1 cum=cum rreturn=rreturn lmm=lmm cmm=cmm rcontact=rcontact lcontact=lcontact rneck=rneck lneck=lneck lcap=lcap esr=esr
+Xch2 (cm dac2 bias buf2 card2 plug2 g) TM_PVRE_CARD_CHANNEL rin=rin edac=edac ccard=ccard lenmm=len2 ratiosq=sq2 cum=cum rreturn=rreturn lmm=lmm cmm=cmm rcontact=rcontact lcontact=lcontact rneck=rneck lneck=lneck lcap=lcap esr=esr
+// @RNL {
+//   #Xcm @PLACE(0, 0);
+//   #Xch1 @PLACE(35, 11);
+//   #Xch2 @PLACE(35, -11);
+//   %io_cmop = $IO_PORT @ATTACH &cmop => @PLACE(16, 0) => @ORIENT("R180");
+//   &cmop @WIRE(mode="straight") {%io_cmop:p #Xcm:2};
+//   %io_dac1 = $IO_PORT @ATTACH &dac1 => @PLACE(19, 10) => @ORIENT("R0");
+//   &dac1 @WIRE(mode="straight") {%io_dac1:p #Xch1:2};
+//   %io_dac2 = $IO_PORT @ATTACH &dac2 => @PLACE(19, -12) => @ORIENT("R0");
+//   &dac2 @WIRE(mode="straight") {%io_dac2:p #Xch2:2};
+//   %io_bias = $IO_PORT @ATTACH &bias => @PLACE(32, 0) => @ORIENT("R90");
+//   &bias @WIRE(mode="straight") {%io_bias:p #Xch1:3};
+//   %io_buf1 = $IO_PORT @ATTACH &buf1 => @PLACE(51, 13) => @ORIENT("R180");
+//   &buf1 @WIRE(mode="straight") {%io_buf1:p #Xch1:4};
+//   %io_card1 = $IO_PORT @ATTACH &card1 => @PLACE(51, 11) => @ORIENT("R180");
+//   &card1 @WIRE(mode="straight") {%io_card1:p #Xch1:5};
+//   %io_plug1 = $IO_PORT @ATTACH &plug1 => @PLACE(51, 9) => @ORIENT("R180");
+//   &plug1 @WIRE(mode="straight") {%io_plug1:p #Xch1:6};
+//   %io_buf2 = $IO_PORT @ATTACH &buf2 => @PLACE(51, -9) => @ORIENT("R180");
+//   &buf2 @WIRE(mode="straight") {%io_buf2:p #Xch2:4};
+//   %io_card2 = $IO_PORT @ATTACH &card2 => @PLACE(51, -11) => @ORIENT("R180");
+//   &card2 @WIRE(mode="straight") {%io_card2:p #Xch2:5};
+//   %io_plug2 = $IO_PORT @ATTACH &plug2 => @PLACE(51, -13) => @ORIENT("R180");
+//   &plug2 @WIRE(mode="straight") {%io_plug2:p #Xch2:6};
+//   %io_g = $IO_PORT @ATTACH &g => @PLACE(0, -11) => @ORIENT("R90");
+//   &g @WIRE(mode="straight") {%io_g:p #Xcm:3};
+//   &cm @WIRE(mode="straight") {#Xcm:1 (-12, 0) (-12, -10) #Xch2:1};
+//   &cm @WIRE(mode="straight") {#Xch2:1 (23, -10) (23, 12) #Xch1:1};
+//   &bias @WIRE(mode="straight") {#Xch2:3 (32, -18)};
+//   (32, -19) @TEXT("bias", size=0.7, halign="middle", valign="middle");
+//   %ground0 = $GROUND @ATTACH &g => @PLACE(38, 4);
+//   &g @WIRE(mode="straight") {#Xch1:7 %ground0:p};
+//   %ground1 = $GROUND @ATTACH &g => @PLACE(38, -18);
+//   &g @WIRE(mode="straight") {#Xch2:7 %ground1:p}
+// }
+ends TM_PVRE_CARD_ONLY

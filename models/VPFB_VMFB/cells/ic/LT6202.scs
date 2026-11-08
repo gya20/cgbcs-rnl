@@ -1,0 +1,28 @@
+simulator lang=spectre
+// @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-vpfb-vmfb", version="1.0", path="../../symbols.rnl") }
+subckt TM_REF_LT6202 (p n o bias g)
+parameters a0=100k fu=99.9M ro=3.98 fo=2036 f2=1.481M ew=1.9n vos=0
+Xamp (p n z bias g) TM_REF_AMP a0=a0 fu=fu ro=ro ew=ew vos=vos f2=f2
+Rz (z o) resistor r=300 isnoisy=no
+Cz (z o) capacitor c=1/(6.283185307*300*fo)
+// @RNL {
+//   #Xamp @PLACE(0, 0);
+//   #Rz @PLACE(35, 0);
+//   (35, -3.7) @TEXT("r=300", size=0.68, halign="middle");
+//   #Cz @PLACE(70, 0);
+//   (70, -3.7) @TEXT("c=1/(6.283185307*300*fo)", size=0.68, halign="middle");
+//   %io_p = $IO_PORT @ATTACH &p => @PLACE(-16, 1) => @ORIENT("R0");
+//   &p @WIRE(mode="straight") {%io_p:p #Xamp:1};
+//   %io_n = $IO_PORT @ATTACH &n => @PLACE(-16, -1) => @ORIENT("R0");
+//   &n @WIRE(mode="straight") {%io_n:p #Xamp:2};
+//   %io_o = $IO_PORT @ATTACH &o => @PLACE(44, 0) => @ORIENT("R180");
+//   &o @WIRE(mode="straight") {%io_o:p #Rz:2};
+//   %io_bias = $IO_PORT @ATTACH &bias => @PLACE(-3, -11) => @ORIENT("R90");
+//   &bias @WIRE(mode="straight") {%io_bias:p #Xamp:4};
+//   %io_g = $IO_PORT @ATTACH &g => @PLACE(3, -11) => @ORIENT("R90");
+//   &g @WIRE(mode="straight") {%io_g:p #Xamp:5};
+//   &o @WIRE(mode="straight") {#Rz:2 (40, 0) (40, -3) (75, -3) (75, 0) #Cz:2};
+//   &z @WIRE(mode="straight") {#Xamp:3 #Rz:1};
+//   &z @WIRE(mode="straight") {#Rz:1 (30, 0) (30, 4) (65, 4) (65, 0) #Cz:1}
+// }
+ends TM_REF_LT6202

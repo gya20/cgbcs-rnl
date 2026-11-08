@@ -1,0 +1,23 @@
+simulator lang=spectre
+// @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-pvr", version="1.0", path="../../symbols.rnl") }
+subckt TM_PVR_LTC2972_SET (code analog g)
+parameters ecmd=0
+Ehold (held g code g) vcvs gain=1
+Xn (analog held g) TM_PVR_NOISE ew=ecmd
+// @RNL {
+//   #Ehold @PLACE(0, 0);
+//   (0, -4.7) @TEXT("gain=1", size=0.68, halign="middle");
+//   #Xn @PLACE(35, 0);
+//   %io_code = $IO_PORT @ATTACH &code => @PLACE(-10, 1) => @ORIENT("R0");
+//   &code @WIRE(mode="straight") {%io_code:p #Ehold:3};
+//   %io_analog = $IO_PORT @ATTACH &analog => @PLACE(19, 0) => @ORIENT("R0");
+//   &analog @WIRE(mode="straight") {%io_analog:p #Xn:1};
+//   %io_g = $IO_PORT @ATTACH &g => @PLACE(0, -9) => @ORIENT("R90");
+//   &g @WIRE(mode="straight") {%io_g:p #Ehold:2};
+//   &held @WIRE(mode="straight") {#Ehold:1 (0, 7) (47, 7) (47, 0) #Xn:2};
+//   %ground0 = $GROUND @ATTACH &g => @PLACE(-6, -1);
+//   &g @WIRE(mode="straight") {#Ehold:4 %ground0:p};
+//   %ground1 = $GROUND @ATTACH &g => @PLACE(35, -7);
+//   &g @WIRE(mode="straight") {#Xn:3 %ground1:p}
+// }
+ends TM_PVR_LTC2972_SET

@@ -1,0 +1,30 @@
+simulator lang=spectre
+// @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-vpfb-vmfb", version="1.0", path="../../symbols.rnl") }
+subckt TM_REF_NOISE_DECADE (p q g)
+parameters fj=1 en=39n fc=1
+X1 (n1 q g) TM_REF_NOISE_POLE fj=fj*1 en=en fc=fc
+X2 (n2 n1 g) TM_REF_NOISE_POLE fj=fj*1.77827941 en=en fc=fc
+X3 (n3 n2 g) TM_REF_NOISE_POLE fj=fj*3.16227766 en=en fc=fc
+X4 (p n3 g) TM_REF_NOISE_POLE fj=fj*5.62341325 en=en fc=fc
+// @RNL {
+//   #X1 @PLACE(0, 0);
+//   #X2 @PLACE(35, 0);
+//   #X3 @PLACE(70, 0);
+//   #X4 @PLACE(105, 0);
+//   %io_p = $IO_PORT @ATTACH &p => @PLACE(89, 0) => @ORIENT("R0");
+//   &p @WIRE(mode="straight") {%io_p:p #X4:1};
+//   %io_q = $IO_PORT @ATTACH &q => @PLACE(16, 0) => @ORIENT("R180");
+//   &q @WIRE(mode="straight") {%io_q:p #X1:2};
+//   %io_g = $IO_PORT @ATTACH &g => @PLACE(0, -11) => @ORIENT("R90");
+//   &g @WIRE(mode="straight") {%io_g:p #X1:3};
+//   &n1 @WIRE(mode="straight") {#X1:1 (-12, 0) (-12, 7) (47, 7) (47, 0) #X2:2};
+//   &n2 @WIRE(mode="straight") {#X2:1 (23, 0) (23, -6) (82, -6) (82, 0) #X3:2};
+//   &n3 @WIRE(mode="straight") {#X3:1 (58, 0) (58, 7) (117, 7) (117, 0) #X4:2};
+//   %ground0 = $GROUND @ATTACH &g => @PLACE(35, -7);
+//   &g @WIRE(mode="straight") {#X2:3 %ground0:p};
+//   %ground1 = $GROUND @ATTACH &g => @PLACE(70, -7);
+//   &g @WIRE(mode="straight") {#X3:3 %ground1:p};
+//   %ground2 = $GROUND @ATTACH &g => @PLACE(105, -7);
+//   &g @WIRE(mode="straight") {#X4:3 %ground2:p}
+// }
+ends TM_REF_NOISE_DECADE

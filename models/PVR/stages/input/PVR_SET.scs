@@ -1,0 +1,19 @@
+simulator lang=spectre
+// @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-pvr", version="1.0", path="../../symbols.rnl") }
+subckt TM_PVR_PVR_SET (cmd set g)
+parameters ecmd=0
+Xnoise (cmd n g) TM_PVR_LTC2972_SET ecmd=ecmd
+Rset (n set) resistor r=10
+// @RNL {
+//   #Xnoise @PLACE(0, 0);
+//   #Rset @PLACE(35, 0);
+//   (35, -3.7) @TEXT("r=10", size=0.68, halign="middle");
+//   %io_cmd = $IO_PORT @ATTACH &cmd => @PLACE(-16, 0) => @ORIENT("R0");
+//   &cmd @WIRE(mode="straight") {%io_cmd:p #Xnoise:1};
+//   %io_set = $IO_PORT @ATTACH &set => @PLACE(44, 0) => @ORIENT("R180");
+//   &set @WIRE(mode="straight") {%io_set:p #Rset:2};
+//   %io_g = $IO_PORT @ATTACH &g => @PLACE(0, -11) => @ORIENT("R90");
+//   &g @WIRE(mode="straight") {%io_g:p #Xnoise:3};
+//   &n @WIRE(mode="straight") {#Xnoise:2 #Rset:1}
+// }
+ends TM_PVR_PVR_SET

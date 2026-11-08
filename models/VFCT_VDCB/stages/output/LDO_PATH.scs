@@ -1,0 +1,31 @@
+simulator lang=spectre
+// @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-vfct-vdcb", version="1.0", path="../../symbols.rnl") }
+subckt TM_LDO_LDO_PATH (out pad die g)
+Xnear (out g) TM_LDO_DECOUPLE
+Xfeed (out pad g) TM_LDO_LINE rs=20m le=1n
+Xpad (pad g) TM_LDO_DECOUPLE
+Xbond (pad die g) TM_LDO_LINE rs=50m le=2n
+// @RNL {
+//   #Xnear @PLACE(0, 0);
+//   #Xfeed @PLACE(35, 0);
+//   #Xpad @PLACE(70, 0);
+//   #Xbond @PLACE(105, 0);
+//   %io_out = $IO_PORT @ATTACH &out => @PLACE(-16, 0) => @ORIENT("R0");
+//   &out @WIRE(mode="straight") {%io_out:p #Xnear:1};
+//   %io_pad = $IO_PORT @ATTACH &pad => @PLACE(51, 0) => @ORIENT("R180");
+//   &pad @WIRE(mode="straight") {%io_pad:p #Xfeed:2};
+//   %io_die = $IO_PORT @ATTACH &die => @PLACE(121, 0) => @ORIENT("R180");
+//   &die @WIRE(mode="straight") {%io_die:p #Xbond:2};
+//   %io_g = $IO_PORT @ATTACH &g => @PLACE(0, -11) => @ORIENT("R90");
+//   &g @WIRE(mode="straight") {%io_g:p #Xnear:2};
+//   &out @WIRE(mode="straight") {#Xnear:1 (-12, 0) (-12, 7) (23, 7) (23, 0) #Xfeed:1};
+//   &pad @WIRE(mode="straight") {#Xfeed:2 #Xpad:1};
+//   &pad @WIRE(mode="straight") {#Xpad:1 (58, 0) (58, -6) (93, -6) (93, 0) #Xbond:1};
+//   %ground0 = $GROUND @ATTACH &g => @PLACE(35, -7);
+//   &g @WIRE(mode="straight") {#Xfeed:3 %ground0:p};
+//   %ground1 = $GROUND @ATTACH &g => @PLACE(70, -7);
+//   &g @WIRE(mode="straight") {#Xpad:2 %ground1:p};
+//   %ground2 = $GROUND @ATTACH &g => @PLACE(105, -7);
+//   &g @WIRE(mode="straight") {#Xbond:3 %ground2:p}
+// }
+ends TM_LDO_LDO_PATH

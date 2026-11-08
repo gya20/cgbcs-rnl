@@ -1,0 +1,38 @@
+simulator lang=spectre
+// @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-pvre", version="1.0", path="../../symbols.rnl") }
+subckt TM_PVRE_PVRE_DRV (cm dac bias buf g)
+parameters rin=1k edac=0
+Xdn (dac d g) TM_PVRE_LTC2972_SET ecmd=edac
+Rin (d sum) resistor r=rin
+Rf (buf sum) resistor r=3k
+Cf (buf sum) capacitor c=10n
+Xu4 (cm sum buf bias g) TM_PVRE_LT1355
+// @RNL {
+//   #Xdn @PLACE(0, 0);
+//   #Rin @PLACE(35, 0);
+//   (35, -3.7) @TEXT("r=rin", size=0.68, halign="middle");
+//   #Rf @PLACE(70, 0);
+//   (70, -3.7) @TEXT("r=3k", size=0.68, halign="middle");
+//   #Cf @PLACE(105, 0);
+//   (105, -3.7) @TEXT("c=10n", size=0.68, halign="middle");
+//   #Xu4 @PLACE(0, -23);
+//   %io_cm = $IO_PORT @ATTACH &cm => @PLACE(-16, -22) => @ORIENT("R0");
+//   &cm @WIRE(mode="straight") {%io_cm:p #Xu4:1};
+//   %io_dac = $IO_PORT @ATTACH &dac => @PLACE(-16, 0) => @ORIENT("R0");
+//   &dac @WIRE(mode="straight") {%io_dac:p #Xdn:1};
+//   %io_bias = $IO_PORT @ATTACH &bias => @PLACE(-3, -34) => @ORIENT("R90");
+//   &bias @WIRE(mode="straight") {%io_bias:p #Xu4:4};
+//   %io_buf = $IO_PORT @ATTACH &buf => @PLACE(61, 0) => @ORIENT("R0");
+//   &buf @WIRE(mode="straight") {%io_buf:p #Rf:1};
+//   %io_g = $IO_PORT @ATTACH &g => @PLACE(0, -11) => @ORIENT("R90");
+//   &g @WIRE(mode="straight") {%io_g:p #Xdn:3};
+//   &d @WIRE(mode="straight") {#Xdn:2 #Rin:1};
+//   &buf @WIRE(mode="straight") {#Rf:1 (65, 0) (65, -3) (100, -3) (100, 0) #Cf:1};
+//   &buf @WIRE(mode="straight") {#Rf:1 (65, 0) (65, -23) #Xu4:3};
+//   &sum @WIRE(mode="straight") {#Rin:2 (40, 0) (40, 4) (75, 4) (75, 0) #Rf:2};
+//   &sum @WIRE(mode="straight") {#Rf:2 (75, 0) (75, 4) (110, 4) (110, 0) #Cf:2};
+//   &sum @WIRE(mode="straight") {#Rin:2 (40, 0) (40, -16) (-12, -16) (-12, -24) #Xu4:2};
+//   %ground0 = $GROUND @ATTACH &g => @PLACE(3, -30);
+//   &g @WIRE(mode="straight") {#Xu4:5 %ground0:p}
+// }
+ends TM_PVRE_PVRE_DRV

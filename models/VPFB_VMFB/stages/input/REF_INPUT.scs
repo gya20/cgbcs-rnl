@@ -1,0 +1,44 @@
+simulator lang=spectre
+// @RNL(type="header") { @VERSION("0.3"); @USE-PACKAGE(name="cgbcs-vpfb-vmfb", version="1.0", path="../../symbols.rnl") }
+subckt TM_REF_REF_INPUT (vin bias ref g)
+Rs (vin vf) resistor r=10
+Cin (vf g) capacitor c=10u
+Ch (vf g) capacitor c=100n
+Xu1 (vf bias ref g) TM_REF_LTC6655B
+Co (ref g) capacitor c=10u
+Coh (ref g) capacitor c=100n
+// @RNL {
+//   #Rs @PLACE(0, 0);
+//   (0, -3.7) @TEXT("r=10", size=0.68, halign="middle");
+//   #Cin @PLACE(35, 0);
+//   (35, -3.7) @TEXT("c=10u", size=0.68, halign="middle");
+//   #Ch @PLACE(70, 0);
+//   (70, -3.7) @TEXT("c=100n", size=0.68, halign="middle");
+//   #Xu1 @PLACE(105, 0);
+//   #Co @PLACE(0, -23);
+//   (0, -26.7) @TEXT("c=10u", size=0.68, halign="middle");
+//   #Coh @PLACE(35, -23);
+//   (35, -26.7) @TEXT("c=100n", size=0.68, halign="middle");
+//   %io_vin = $IO_PORT @ATTACH &vin => @PLACE(-9, 0) => @ORIENT("R0");
+//   &vin @WIRE(mode="straight") {%io_vin:p #Rs:1};
+//   %io_bias = $IO_PORT @ATTACH &bias => @PLACE(102, -11) => @ORIENT("R90");
+//   &bias @WIRE(mode="straight") {%io_bias:p #Xu1:2};
+//   %io_ref = $IO_PORT @ATTACH &ref => @PLACE(121, 0) => @ORIENT("R180");
+//   &ref @WIRE(mode="straight") {%io_ref:p #Xu1:3};
+//   %io_g = $IO_PORT @ATTACH &g => @PLACE(44, 0) => @ORIENT("R180");
+//   &g @WIRE(mode="straight") {%io_g:p #Cin:2};
+//   &ref @WIRE(mode="straight") {#Xu1:3 (117, 0) (117, -19) (30, -19) (30, -23) #Coh:1};
+//   &ref @WIRE(mode="straight") {#Coh:1 (30, -23) (30, -26) (-5, -26) (-5, -23) #Co:1};
+//   &vf @WIRE(mode="straight") {#Rs:2 #Cin:1};
+//   &vf @WIRE(mode="straight") {#Cin:1 (30, 0) (30, -3) (65, -3) (65, 0) #Ch:1};
+//   &vf @WIRE(mode="straight") {#Ch:1 (65, 0) (65, -3) (93, -3) (93, 0) #Xu1:1};
+//   %ground0 = $GROUND @ATTACH &g => @PLACE(75, 0);
+//   &g @WIRE(mode="straight") {#Ch:2 %ground0:p};
+//   %ground1 = $GROUND @ATTACH &g => @PLACE(108, -7);
+//   &g @WIRE(mode="straight") {#Xu1:4 %ground1:p};
+//   %ground2 = $GROUND @ATTACH &g => @PLACE(5, -23);
+//   &g @WIRE(mode="straight") {#Co:2 %ground2:p};
+//   %ground3 = $GROUND @ATTACH &g => @PLACE(40, -23);
+//   &g @WIRE(mode="straight") {#Coh:2 %ground3:p}
+// }
+ends TM_REF_REF_INPUT
