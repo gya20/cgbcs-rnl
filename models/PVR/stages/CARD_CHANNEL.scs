@@ -8,30 +8,30 @@ Cnear (buf g) capacitor c=10u
 Xpcb (buf card plug g) TM_PVR_CARD_PCB ccard=ccard ratiosq=ratiosq lenmm=lenmm cum=cum rreturn=rreturn lmm=lmm cmm=cmm rcontact=rcontact lcontact=lcontact rneck=rneck lneck=lneck lcap=lcap esr=esr
 // @RNL {
 //   #Xset @PLACE(0, 0);
-//   #Xreg @PLACE(35, 0);
-//   #Cnear @PLACE(70, 0);
-//   (70, -3.7) @TEXT("c=10u", size=0.68, halign="middle");
-//   #Xpcb @PLACE(105, 0);
-//   %io_cmd = $IO_PORT @ATTACH &cmd => @PLACE(-16, 0) => @ORIENT("R0");
+//   #Xreg @PLACE(32, 0);
+//   #Cnear @PLACE(48, -7) => @ORIENT("R270");
+//   (49.5, -7) @TEXT("Cnear  10u", size=0.76, halign="start");
+//   #Xpcb @PLACE(65, 0);
+//   %io_cmd = $IO_PORT @ATTACH &cmd => @PLACE(-14, 0) => @ORIENT("R0");
 //   &cmd @WIRE(mode="straight") {%io_cmd:p #Xset:1};
-//   %io_bias = $IO_PORT @ATTACH &bias => @PLACE(32, -11) => @ORIENT("R90");
+//   %io_bias = $IO_PORT @ATTACH &bias => @PLACE(29, -11) => @ORIENT("R90");
 //   &bias @WIRE(mode="straight") {%io_bias:p #Xreg:3};
-//   %io_buf = $IO_PORT @ATTACH &buf => @PLACE(51, 0) => @ORIENT("R180");
+//   %io_buf = $IO_PORT @ATTACH &buf => @PLACE(48, 0) => @ORIENT("R180");
 //   &buf @WIRE(mode="straight") {%io_buf:p #Xreg:2};
-//   %io_card = $IO_PORT @ATTACH &card => @PLACE(121, 1) => @ORIENT("R180");
+//   %io_card = $IO_PORT @ATTACH &card => @PLACE(68, 11) => @ORIENT("R270");
 //   &card @WIRE(mode="straight") {%io_card:p #Xpcb:2};
-//   %io_plug = $IO_PORT @ATTACH &plug => @PLACE(121, -1) => @ORIENT("R180");
+//   %io_plug = $IO_PORT @ATTACH &plug => @PLACE(79, 0) => @ORIENT("R180");
 //   &plug @WIRE(mode="straight") {%io_plug:p #Xpcb:3};
 //   %io_g = $IO_PORT @ATTACH &g => @PLACE(0, -11) => @ORIENT("R90");
 //   &g @WIRE(mode="straight") {%io_g:p #Xset:3};
 //   &set @WIRE(mode="straight") {#Xset:2 #Xreg:1};
-//   &buf @WIRE(mode="straight") {#Xreg:2 #Cnear:1};
-//   &buf @WIRE(mode="straight") {#Cnear:1 (65, 0) (65, -3) (93, -3) (93, 0) #Xpcb:1};
-//   %ground0 = $GROUND @ATTACH &g => @PLACE(38, -7);
+//   &buf @WIRE(mode="straight") {#Xreg:2 (48, 0) #Cnear:1};
+//   &buf @WIRE(mode="straight") {#Cnear:1 (48, -2) (55, -2) (55, 0) #Xpcb:1};
+//   %ground0 = $GROUND @ATTACH &g => @PLACE(35, -7);
 //   &g @WIRE(mode="straight") {#Xreg:4 %ground0:p};
-//   %ground1 = $GROUND @ATTACH &g => @PLACE(75, 0);
+//   %ground1 = $GROUND @ATTACH &g => @PLACE(48, -12);
 //   &g @WIRE(mode="straight") {#Cnear:2 %ground1:p};
-//   %ground2 = $GROUND @ATTACH &g => @PLACE(105, -7);
+//   %ground2 = $GROUND @ATTACH &g => @PLACE(68, -7);
 //   &g @WIRE(mode="straight") {#Xpcb:4 %ground2:p}
 // }
 ends TM_PVR_CARD_CHANNEL

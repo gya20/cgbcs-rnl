@@ -10,44 +10,44 @@ Cf (x g) capacitor c=1/(6.283185307*1k*freg)
 Edrive (b g x g) vcvs gain=1
 Rreg (b out) resistor r=rreg isnoisy=no
 // @RNL {
-//   #Xn @PLACE(0, 0);
-//   #Ecmd @PLACE(35, 0);
-//   (35, -4.7) @TEXT("gain=1", size=0.68, halign="middle");
-//   #Eoff @PLACE(70, 0);
-//   (70, -4.7) @TEXT("gain=vos", size=0.68, halign="middle");
-//   #Rf @PLACE(105, 0);
-//   (105, -3.7) @TEXT("r=1k", size=0.68, halign="middle");
-//   #Cf @PLACE(0, -23);
-//   (0, -26.7) @TEXT("c=1/(6.283185307*1k*freg)", size=0.68, halign="middle");
-//   #Edrive @PLACE(35, -23);
-//   (35, -27.7) @TEXT("gain=1", size=0.68, halign="middle");
-//   #Rreg @PLACE(70, -23);
-//   (70, -26.7) @TEXT("r=rreg", size=0.68, halign="middle");
-//   %io_set = $IO_PORT @ATTACH &set => @PLACE(16, 0) => @ORIENT("R180");
+//   #Xn @PLACE(48, 0);
+//   #Ecmd @PLACE(62, 0);
+//   (64.4, 1.4) @TEXT("Ecmd  1", size=0.76, halign="start");
+//   #Eoff @PLACE(77, 0);
+//   (79.4, 1.4) @TEXT("Eoff  vos", size=0.76, halign="start");
+//   #Rf @PLACE(90, 4);
+//   (90, 5.45) @TEXT("Rf  1k", size=0.76, halign="middle");
+//   #Cf @PLACE(100, -4) => @ORIENT("R270");
+//   (101.5, -4) @TEXT("Cf  C(eq)", size=0.76, halign="start");
+//   #Edrive @PLACE(117, 0);
+//   (119.4, 1.4) @TEXT("Edrive  1", size=0.76, halign="start");
+//   #Rreg @PLACE(131, 4);
+//   (131, 5.45) @TEXT("Rreg  rreg", size=0.76, halign="middle");
+//   %io_set = $IO_PORT @ATTACH &set => @PLACE(37, 0) => @ORIENT("R0");
 //   &set @WIRE(mode="straight") {%io_set:p #Xn:2};
-//   %io_out = $IO_PORT @ATTACH &out => @PLACE(79, -23) => @ORIENT("R180");
+//   %io_out = $IO_PORT @ATTACH &out => @PLACE(140, 4) => @ORIENT("R180");
 //   &out @WIRE(mode="straight") {%io_out:p #Rreg:2};
-//   %io_bias = $IO_PORT @ATTACH &bias => @PLACE(60, 1) => @ORIENT("R0");
+//   %io_bias = $IO_PORT @ATTACH &bias => @PLACE(67, 1) => @ORIENT("R0");
 //   &bias @WIRE(mode="straight") {%io_bias:p #Eoff:3};
-//   %io_g = $IO_PORT @ATTACH &g => @PLACE(0, -11) => @ORIENT("R90");
+//   %io_g = $IO_PORT @ATTACH &g => @PLACE(48, -10) => @ORIENT("R90");
 //   &g @WIRE(mode="straight") {%io_g:p #Xn:3};
-//   &u @WIRE(mode="straight") {#Xn:1 (-12, 0) (-12, 7) (29, 7) (29, 1) #Ecmd:3};
-//   &v @WIRE(mode="straight") {#Ecmd:1 (35, 5) (59, 5) (59, -5) (70, -5) #Eoff:2};
-//   &w @WIRE(mode="straight") {#Eoff:1 (70, 5) (100, 5) (100, 0) #Rf:1};
-//   &b @WIRE(mode="straight") {#Edrive:1 (35, -18) (65, -18) (65, -23) #Rreg:1};
-//   &x @WIRE(mode="straight") {#Rf:2 (110, 0) (110, -17) (29, -17) (29, -22) #Edrive:3};
-//   &x @WIRE(mode="straight") {#Edrive:3 (29, -22) (29, -26) (-5, -26) (-5, -23) #Cf:1};
-//   %ground0 = $GROUND @ATTACH &g => @PLACE(35, -5);
+//   &u @WIRE(mode="straight") {#Xn:1 (56, 0) (56, 1) #Ecmd:3};
+//   &v @WIRE(mode="straight") {#Ecmd:1 (62, 5) (72, 5) (72, -5) (77, -5) #Eoff:2};
+//   &w @WIRE(mode="straight") {#Eoff:1 (77, 5) (85, 5) (85, 4) #Rf:1};
+//   &b @WIRE(mode="straight") {#Edrive:1 (117, 5) (126, 5) (126, 4) #Rreg:1};
+//   &x @WIRE(mode="straight") {#Rf:2 (100, 4) #Cf:1};
+//   &x @WIRE(mode="straight") {#Cf:1 (100, 1) #Edrive:3};
+//   %ground0 = $GROUND @ATTACH &g => @PLACE(62, -5);
 //   &g @WIRE(mode="straight") {#Ecmd:2 %ground0:p};
-//   %ground1 = $GROUND @ATTACH &g => @PLACE(29, -1);
+//   %ground1 = $GROUND @ATTACH &g => @PLACE(56, -1);
 //   &g @WIRE(mode="straight") {#Ecmd:4 %ground1:p};
-//   %ground2 = $GROUND @ATTACH &g => @PLACE(64, -1);
+//   %ground2 = $GROUND @ATTACH &g => @PLACE(71, -1);
 //   &g @WIRE(mode="straight") {#Eoff:4 %ground2:p};
-//   %ground3 = $GROUND @ATTACH &g => @PLACE(5, -23);
+//   %ground3 = $GROUND @ATTACH &g => @PLACE(100, -9);
 //   &g @WIRE(mode="straight") {#Cf:2 %ground3:p};
-//   %ground4 = $GROUND @ATTACH &g => @PLACE(35, -28);
+//   %ground4 = $GROUND @ATTACH &g => @PLACE(117, -5);
 //   &g @WIRE(mode="straight") {#Edrive:2 %ground4:p};
-//   %ground5 = $GROUND @ATTACH &g => @PLACE(29, -24);
+//   %ground5 = $GROUND @ATTACH &g => @PLACE(111, -1);
 //   &g @WIRE(mode="straight") {#Edrive:4 %ground5:p}
 // }
 ends TM_PVR_LT3042

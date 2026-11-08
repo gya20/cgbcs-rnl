@@ -9,32 +9,32 @@ Rx (h g) resistor r=1T isnoisy=no
 Gi (t b h g) vccs gm=0.1
 // @RNL {
 //   #Rwire @PLACE(0, 0);
-//   (0, -3.7) @TEXT("r=rs", size=0.68, halign="middle");
-//   #Gs @PLACE(35, 0);
-//   (35, -4.7) @TEXT("gm=0.1", size=0.68, halign="middle");
-//   #Cx @PLACE(70, 0);
-//   (70, -3.7) @TEXT("c=le*0.01", size=0.68, halign="middle");
-//   #Rx @PLACE(105, 0);
-//   (105, -3.7) @TEXT("r=1T", size=0.68, halign="middle");
-//   #Gi @PLACE(0, -23);
-//   (0, -27.7) @TEXT("gm=0.1", size=0.68, halign="middle");
+//   (0, 1.45) @TEXT("Rwire  rs", size=0.76, halign="middle");
+//   #Gs @PLACE(15, -4);
+//   (17.4, -2.6) @TEXT("Gs  0.1", size=0.76, halign="start");
+//   #Cx @PLACE(26, -4) => @ORIENT("R270");
+//   (27.5, -4) @TEXT("Cx  le*0.01", size=0.76, halign="start");
+//   #Rx @PLACE(36, -4) => @ORIENT("R270");
+//   (37.5, -4) @TEXT("Rx  1T", size=0.76, halign="start");
+//   #Gi @PLACE(52, 0);
+//   (54.4, 1.4) @TEXT("Gi  0.1", size=0.76, halign="start");
 //   %io_a = $IO_PORT @ATTACH &a => @PLACE(-9, 0) => @ORIENT("R0");
 //   &a @WIRE(mode="straight") {%io_a:p #Rwire:1};
-//   %io_b = $IO_PORT @ATTACH &b => @PLACE(25, -1) => @ORIENT("R0");
+//   %io_b = $IO_PORT @ATTACH &b => @PLACE(5, -5) => @ORIENT("R0");
 //   &b @WIRE(mode="straight") {%io_b:p #Gs:4};
-//   %io_g = $IO_PORT @ATTACH &g => @PLACE(35, 9) => @ORIENT("R270");
+//   %io_g = $IO_PORT @ATTACH &g => @PLACE(15, 5) => @ORIENT("R270");
 //   &g @WIRE(mode="straight") {%io_g:p #Gs:1};
-//   &b @WIRE(mode="straight") {#Gs:4 (29, -1) (29, -28) (0, -28) #Gi:2};
-//   &t @WIRE(mode="straight") {#Rwire:2 (5, 0) (5, -18) (0, -18) #Gi:1};
-//   &t @WIRE(mode="straight") {#Rwire:2 (29, 0) (29, 1) #Gs:3};
-//   &h @WIRE(mode="straight") {#Gs:2 (35, -5) (65, -5) (65, 0) #Cx:1};
-//   &h @WIRE(mode="straight") {#Cx:1 (65, 0) (65, -3) (100, -3) (100, 0) #Rx:1};
-//   &h @WIRE(mode="straight") {#Gs:2 (35, -5) (-6, -5) (-6, -22) #Gi:3};
-//   %ground0 = $GROUND @ATTACH &g => @PLACE(75, 0);
+//   &b @WIRE(mode="straight") {#Gs:4 (9, -5) (9, -8) (52, -8) #Gi:2};
+//   &t @WIRE(mode="straight") {#Rwire:2 (9, 0) (9, -3) #Gs:3};
+//   &t @WIRE(mode="straight") {#Gs:3 (9, -3) (9, 6) (52, 6) #Gi:1};
+//   &h @WIRE(mode="straight") {#Gs:2 (15, -9) (23, -9) (23, 1) (26, 1) #Cx:1};
+//   &h @WIRE(mode="straight") {#Cx:1 (26, 1) (36, 1) #Rx:1};
+//   &h @WIRE(mode="straight") {#Rx:1 (36, 1) #Gi:3};
+//   %ground0 = $GROUND @ATTACH &g => @PLACE(26, -9);
 //   &g @WIRE(mode="straight") {#Cx:2 %ground0:p};
-//   %ground1 = $GROUND @ATTACH &g => @PLACE(110, 0);
+//   %ground1 = $GROUND @ATTACH &g => @PLACE(36, -9);
 //   &g @WIRE(mode="straight") {#Rx:2 %ground1:p};
-//   %ground2 = $GROUND @ATTACH &g => @PLACE(-6, -24);
+//   %ground2 = $GROUND @ATTACH &g => @PLACE(46, -1);
 //   &g @WIRE(mode="straight") {#Gi:4 %ground2:p}
 // }
 ends TM_REF_LINE

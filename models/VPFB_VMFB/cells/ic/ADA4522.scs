@@ -5,15 +5,15 @@ parameters a0=1M fu=3.274M ro=10 ew=5.8n vos=0
 Xamp (p n o bias g) TM_REF_AMP a0=a0 fu=fu ro=ro ew=ew vos=vos f2=5.252M
 // @RNL {
 //   #Xamp @PLACE(0, 0);
-//   %io_p = $IO_PORT @ATTACH &p => @PLACE(-16, 1) => @ORIENT("R0");
+//   %io_p = $IO_PORT @ATTACH &p => @PLACE(-13, -2) => @ORIENT("R0");
 //   &p @WIRE(mode="straight") {%io_p:p #Xamp:1};
-//   %io_n = $IO_PORT @ATTACH &n => @PLACE(-16, -1) => @ORIENT("R0");
+//   %io_n = $IO_PORT @ATTACH &n => @PLACE(-13, 2) => @ORIENT("R0");
 //   &n @WIRE(mode="straight") {%io_n:p #Xamp:2};
-//   %io_o = $IO_PORT @ATTACH &o => @PLACE(16, 0) => @ORIENT("R180");
+//   %io_o = $IO_PORT @ATTACH &o => @PLACE(13, 0) => @ORIENT("R180");
 //   &o @WIRE(mode="straight") {%io_o:p #Xamp:3};
-//   %io_bias = $IO_PORT @ATTACH &bias => @PLACE(-3, -11) => @ORIENT("R90");
+//   %io_bias = $IO_PORT @ATTACH &bias => @PLACE(-2, 12) => @ORIENT("R270");
 //   &bias @WIRE(mode="straight") {%io_bias:p #Xamp:4};
-//   %io_g = $IO_PORT @ATTACH &g => @PLACE(3, -11) => @ORIENT("R90");
+//   %io_g = $IO_PORT @ATTACH &g => @PLACE(-2, -12) => @ORIENT("R90");
 //   &g @WIRE(mode="straight") {%io_g:p #Xamp:5}
 // }
 ends TM_REF_ADA4522

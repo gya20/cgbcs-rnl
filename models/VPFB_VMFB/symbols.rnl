@@ -28,8 +28,7 @@
   $SYM_RESISTOR = @DEFINE-SYMBOL(box=[-3,-2,3,2]) {
     @LINE {(-3, 0) (-1.7, 0) (-1.4, 0.55) (-0.9, -0.55) (-0.45, 0.55) (0, -0.55) (0.45, 0.55) (0.9, -0.55) (1.4, 0.55) (1.7, 0) (3, 0)};
     (-3, 0) @PIN(terminal=1, direction="left");
-    (3, 0) @PIN(terminal=2, direction="right");
-    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 2.3)
+    (3, 0) @PIN(terminal=2, direction="right")
   };
   # @SELECT-INSTANCE(model="resistor") => @SET-SYMBOL $SYM_RESISTOR;
   $SYM_CAPACITOR = @DEFINE-SYMBOL(box=[-3,-2,3,2]) {
@@ -38,8 +37,7 @@
     @LINE {(-0.28, -1) (-0.28, 1)};
     @LINE {(0.28, -1) (0.28, 1)};
     (-3, 0) @PIN(terminal=1, direction="left");
-    (3, 0) @PIN(terminal=2, direction="right");
-    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 2.3)
+    (3, 0) @PIN(terminal=2, direction="right")
   };
   # @SELECT-INSTANCE(model="capacitor") => @SET-SYMBOL $SYM_CAPACITOR;
   $SYM_VCVS = @DEFINE-SYMBOL(box=[-4,-3,4,3]) {
@@ -55,8 +53,7 @@
     (0, 3) @PIN(terminal=1, direction="up");
     (0, -3) @PIN(terminal=2, direction="down");
     (-4, 1) @PIN(terminal=3, direction="left");
-    (-4, -1) @PIN(terminal=4, direction="left");
-    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 3.3)
+    (-4, -1) @PIN(terminal=4, direction="left")
   };
   # @SELECT-INSTANCE(model="vcvs") => @SET-SYMBOL $SYM_VCVS;
   $SYM_VCCS = @DEFINE-SYMBOL(box=[-4,-3,4,3]) {
@@ -72,237 +69,210 @@
     (0, 3) @PIN(terminal=1, direction="up");
     (0, -3) @PIN(terminal=2, direction="down");
     (-4, 1) @PIN(terminal=3, direction="left");
-    (-4, -1) @PIN(terminal=4, direction="left");
-    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 3.3)
+    (-4, -1) @PIN(terminal=4, direction="left")
   };
   # @SELECT-INSTANCE(model="vccs") => @SET-SYMBOL $SYM_VCCS;
-  $SYM_TM_REF_REF = @DEFINE-SYMBOL(box=[-10,-6,10,6]) {
-    @LINE {(-10, 0) (-9, 0)};
-    (-7.4, 0) @TEXT("vin", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, 3) (9, 3)};
-    (7.4, 3) @TEXT("padp", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, 1) (9, 1)};
-    (7.4, 1) @TEXT("diep", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, -1) (9, -1)};
-    (7.4, -1) @TEXT("padm", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, -3) (9, -3)};
-    (7.4, -3) @TEXT("diem", size=0.65, halign="middle", valign="middle");
-    @LINE {(-3, -6) (-3, -5)};
-    (-3, -4.35) @TEXT("bias", size=0.65, halign="middle", valign="middle");
-    @LINE {(3, -6) (3, -5)};
-    (3, -4.35) @TEXT("g", size=0.65, halign="middle", valign="middle");
-    @LINE {(-9, -5) (9, -5) (9, 5) (-9, 5) (-9, -5)};
-    @LINE {(-2.7, 0) (-1.4, 0) (-1.4, 1) (1.8, 1)};
-    @LINE {(-1.4, 0) (-1.4, -1) (1.8, -1)};
-    @LINE {(1.3, 1.35) (1.8, 1) (1.3, 0.65)};
-    @LINE {(1.3, -0.65) (1.8, -1) (1.3, -1.35)};
-    (0, 4) @TEXT("REF", size=0.82, halign="middle", valign="middle");
-    (-10, 0) @PIN(terminal=1, direction="left");
-    (-3, -6) @PIN(terminal=2, direction="down");
-    (10, 3) @PIN(terminal=3, direction="right");
-    (10, 1) @PIN(terminal=4, direction="right");
-    (10, -1) @PIN(terminal=5, direction="right");
-    (10, -3) @PIN(terminal=6, direction="right");
-    (3, -6) @PIN(terminal=7, direction="down");
-    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 6.3)
+  $SYM_TM_REF_REF = @DEFINE-SYMBOL(box=[-15,-15,15,15]) {
+    @LINE {(-15, 9) (-10, 9)};
+    (-12, 9.8) @TEXT("vin", size=0.72, halign="middle", valign="middle");
+    @LINE {(-10, 9) (-9, 9)};
+    @LINE {(-9, 6.4) (-9, 11.6) (-3, 9) (-9, 6.4)};
+    @LINE {(-3, 9) (1.5, 9) (1.8, 9.5) (2.3, 8.5) (2.8, 9.5) (3.3, 8.5) (3.8, 9.5) (4.3, 8.5) (4.5, 9) (9, 9)};
+    @LINE {(9, 9) (15, 9)};
+    (12.3, 9.8) @TEXT("padp", size=0.72, halign="middle", valign="middle");
+    (9, 9) @CIRCLE(radius=0.22, fill="linecolor", linestyle="none");
+    @LINE {(9, 9) (9, 7.6) (8.55, 7.2) (9.45, 6.6) (8.55, 6) (9.45, 5.4) (9, 5) (9, 3)};
+    @LINE {(9, 3) (15, 3)};
+    (12.3, 3.8) @TEXT("diep", size=0.72, halign="middle", valign="middle");
+    (9, 3) @CIRCLE(radius=0.22, fill="linecolor", linestyle="none");
+    @LINE {(9, 3) (9, 1.6) (8.55, 1.2) (9.45, 0.6) (8.55, 0) (9.45, -0.6) (9, -1) (9, -3)};
+    @LINE {(9, -3) (15, -3)};
+    (12.3, -2.2) @TEXT("padm", size=0.72, halign="middle", valign="middle");
+    (9, -3) @CIRCLE(radius=0.22, fill="linecolor", linestyle="none");
+    @LINE {(9, -3) (9, -4.4) (8.55, -4.8) (9.45, -5.4) (8.55, -6) (9.45, -6.6) (9, -7) (9, -9)};
+    @LINE {(9, -9) (15, -9)};
+    (12.3, -8.2) @TEXT("diem", size=0.72, halign="middle", valign="middle");
+    @LINE {(-6, -13) (-6, 7.7)};
+    (-7.4, -12) @TEXT("bias", size=0.7, halign="middle", valign="middle");
+    @LINE {(9, 3) (6, 3) (6, 1.9) (4, 1.9)};
+    @LINE {(4, 1.9) (4, -5.27)};
+    @LINE {(3, -5.27) (5, -5.27)};
+    @LINE {(3, -5.83) (5, -5.83)};
+    @LINE {(4, -5.83) (4, -13)};
+    (-2, 14.2) @TEXT("REF", size=0.9, halign="middle", valign="middle");
+    (-15, 9) @PIN(terminal=1, direction="left");
+    (-6, -13) @PIN(terminal=2, direction="down");
+    (15, 9) @PIN(terminal=3, direction="right");
+    (15, 3) @PIN(terminal=4, direction="right");
+    (15, -3) @PIN(terminal=5, direction="right");
+    (15, -9) @PIN(terminal=6, direction="right");
+    (4, -13) @PIN(terminal=7, direction="down");
+    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 16.35)
   };
   # @SELECT-INSTANCE(model="TM_REF_REF") => @SET-SYMBOL $SYM_TM_REF_REF;
-  $SYM_TM_REF_REF_CH = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
-    @LINE {(-10, 0) (-9, 0)};
-    (-7.4, 0) @TEXT("ref", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, 1) (9, 1)};
-    (7.4, 1) @TEXT("pad", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, -1) (9, -1)};
-    (7.4, -1) @TEXT("die", size=0.65, halign="middle", valign="middle");
-    @LINE {(-3, -5) (-3, -4)};
-    (-3, -3.35) @TEXT("bias", size=0.65, halign="middle", valign="middle");
-    @LINE {(3, -5) (3, -4)};
-    (3, -3.35) @TEXT("g", size=0.65, halign="middle", valign="middle");
-    @LINE {(-9, -4) (9, -4) (9, 4) (-9, 4) (-9, -4)};
-    @LINE {(-2.7, 0) (-1.4, 0) (-1.4, 1) (1.8, 1)};
-    @LINE {(-1.4, 0) (-1.4, -1) (1.8, -1)};
-    @LINE {(1.3, 1.35) (1.8, 1) (1.3, 0.65)};
-    @LINE {(1.3, -0.65) (1.8, -1) (1.3, -1.35)};
-    (0, 3) @TEXT("REF CH", size=0.82, halign="middle", valign="middle");
-    (-10, 0) @PIN(terminal=1, direction="left");
-    (-3, -5) @PIN(terminal=2, direction="down");
-    (10, 1) @PIN(terminal=3, direction="right");
-    (10, -1) @PIN(terminal=4, direction="right");
-    (3, -5) @PIN(terminal=5, direction="down");
-    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 5.3)
+  $SYM_TM_REF_REF_CH = @DEFINE-SYMBOL(box=[-15,-9,15,9]) {
+    @LINE {(-15, 3) (-10, 3)};
+    (-12, 3.8) @TEXT("ref", size=0.72, halign="middle", valign="middle");
+    @LINE {(-10, 3) (-9, 3)};
+    @LINE {(-9, 0.4) (-9, 5.6) (-3, 3) (-9, 0.4)};
+    @LINE {(-2.6, 0.6) (-2.6, 5.4) (3, 3) (-2.6, 0.6)};
+    @LINE {(-3, 3) (-2.6, 3)};
+    @LINE {(3, 3) (4.5, 3) (4.8, 3.5) (5.3, 2.5) (5.8, 3.5) (6.3, 2.5) (6.8, 3.5) (7.3, 2.5) (7.5, 3) (9, 3)};
+    @LINE {(9, 3) (9, -0.6) (-9.6, -0.6) (-9.6, 1.9) (-9, 1.9)};
+    @LINE {(9, 3) (15, 3)};
+    (12.3, 3.8) @TEXT("pad", size=0.72, halign="middle", valign="middle");
+    (9, 3) @CIRCLE(radius=0.22, fill="linecolor", linestyle="none");
+    @LINE {(9, 3) (9, 1.6) (8.55, 1.2) (9.45, 0.6) (8.55, 0) (9.45, -0.6) (9, -1) (9, -3)};
+    @LINE {(9, -3) (15, -3)};
+    (12.3, -2.2) @TEXT("die", size=0.72, halign="middle", valign="middle");
+    @LINE {(-6, -7) (-6, 1.7)};
+    (-7.4, -6) @TEXT("bias", size=0.7, halign="middle", valign="middle");
+    @LINE {(9, 3) (6, 3) (6, 1.9) (4, 1.9)};
+    @LINE {(4, 1.9) (4, -2.27)};
+    @LINE {(3, -2.27) (5, -2.27)};
+    @LINE {(3, -2.83) (5, -2.83)};
+    @LINE {(4, -2.83) (4, -7)};
+    (-2, 8.2) @TEXT("REF buffer", size=0.9, halign="middle", valign="middle");
+    (-15, 3) @PIN(terminal=1, direction="left");
+    (-6, -7) @PIN(terminal=2, direction="down");
+    (15, 3) @PIN(terminal=3, direction="right");
+    (15, -3) @PIN(terminal=4, direction="right");
+    (4, -7) @PIN(terminal=5, direction="down");
+    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 10.35)
   };
   # @SELECT-INSTANCE(model="TM_REF_REF_CH") => @SET-SYMBOL $SYM_TM_REF_REF_CH;
-  $SYM_TM_REF_AMP = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
-    @LINE {(-10, 1) (-9, 1)};
-    (-7.4, 1) @TEXT("p", size=0.65, halign="middle", valign="middle");
-    @LINE {(-10, -1) (-9, -1)};
-    (-7.4, -1) @TEXT("n", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, 0) (9, 0)};
-    (7.4, 0) @TEXT("out", size=0.65, halign="middle", valign="middle");
-    @LINE {(-3, -5) (-3, -4)};
-    (-3, -3.35) @TEXT("bias", size=0.65, halign="middle", valign="middle");
-    @LINE {(3, -5) (3, -4)};
-    (3, -3.35) @TEXT("g", size=0.65, halign="middle", valign="middle");
-    @LINE {(-9, -4) (9, -4) (9, 4) (-9, 4) (-9, -4)};
-    @LINE {(-2, -1.7) (-2, 1.7) (2, 0) (-2, -1.7)};
-    (-1.25, 0.65) @TEXT("+", size=0.8, halign="middle", valign="middle");
-    (-1.25, -0.65) @TEXT("−", size=0.8, halign="middle", valign="middle");
-    (0, 3) @TEXT("AMP", size=0.82, halign="middle", valign="middle");
-    (-10, 1) @PIN(terminal=1, direction="left");
-    (-10, -1) @PIN(terminal=2, direction="left");
-    (10, 0) @PIN(terminal=3, direction="right");
-    (-3, -5) @PIN(terminal=4, direction="down");
-    (3, -5) @PIN(terminal=5, direction="down");
-    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 5.3)
+  $SYM_TM_REF_AMP = @DEFINE-SYMBOL(box=[-7,-6,7,6]) {
+    @LINE {(-5, -5) (-5, 5) (5, 0) (-5, -5)};
+    @LINE {(-7, 2) (-5, 2)};
+    @LINE {(-7, -2) (-5, -2)};
+    @LINE {(5, 0) (7, 0)};
+    @LINE {(-2, 6) (-2, 3.5)};
+    @LINE {(-2, -3.5) (-2, -6)};
+    (-3.9, -2) @TEXT("+", size=1.25, halign="middle", valign="middle");
+    (-3.9, 2) @TEXT("−", size=1.25, halign="middle", valign="middle");
+    (-0.75, 0) @TEXT("A(s)", size=0.78, halign="middle", valign="middle");
+    (-7, -2) @PIN(terminal=1, direction="left");
+    (-7, 2) @PIN(terminal=2, direction="left");
+    (7, 0) @PIN(terminal=3, direction="right");
+    (-2, 6) @PIN(terminal=4, direction="up");
+    (-2, -6) @PIN(terminal=5, direction="down");
+    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 7.35)
   };
   # @SELECT-INSTANCE(model="TM_REF_AMP") => @SET-SYMBOL $SYM_TM_REF_AMP;
-  $SYM_TM_REF_CAPBR = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
-    @LINE {(-10, 0) (-9, 0)};
-    (-7.4, 0) @TEXT("p", size=0.65, halign="middle", valign="middle");
-    @LINE {(0, -5) (0, -4)};
-    (0, -3.35) @TEXT("g", size=0.65, halign="middle", valign="middle");
-    @LINE {(-9, -4) (9, -4) (9, 4) (-9, 4) (-9, -4)};
-    @LINE {(-3, 0.8) (-0.4, 0.8) (0.1, 1.2) (0.55, 0.4) (1, 0.8) (3, 0.8)};
-    @LINE {(0, 0.8) (0, -0.25)};
-    @LINE {(-0.9, -0.25) (0.9, -0.25)};
-    @LINE {(-0.9, -0.65) (0.9, -0.65)};
-    @LINE {(0, -0.65) (0, -1.4)};
-    (0, 3) @TEXT("CAPBR", size=0.82, halign="middle", valign="middle");
-    (-10, 0) @PIN(terminal=1, direction="left");
-    (0, -5) @PIN(terminal=2, direction="down");
-    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 5.3)
+  $SYM_TM_REF_CAPBR = @DEFINE-SYMBOL(box=[-4,-4,4,4]) {
+    @LINE {(0, 4) (0, 0.28)};
+    @LINE {(-1, 0.28) (1, 0.28)};
+    @LINE {(-1, -0.28) (1, -0.28)};
+    @LINE {(0, -0.28) (0, -4)};
+    (2, 1.35) @TEXT("ESR", size=0.65, halign="middle", valign="middle");
+    (0, 4) @PIN(terminal=1, direction="up");
+    (0, -4) @PIN(terminal=2, direction="down");
+    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 5.35)
   };
   # @SELECT-INSTANCE(model="TM_REF_CAPBR") => @SET-SYMBOL $SYM_TM_REF_CAPBR;
-  $SYM_TM_REF_LINE = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
-    @LINE {(-10, 0) (-9, 0)};
-    (-7.4, 0) @TEXT("a", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, 0) (9, 0)};
-    (7.4, 0) @TEXT("b", size=0.65, halign="middle", valign="middle");
+  $SYM_TM_REF_LINE = @DEFINE-SYMBOL(box=[-8,-5,8,5]) {
+    @LINE {(-8, 0) (-6, 0) (-5.7, 0.5) (-5.2, -0.5) (-4.7, 0.5) (-4.2, -0.5) (-3.7, 0.5) (-3.2, -0.5) (-3, 0) (-1, 0)};
+    @LINE {(-1, 0) (0, 0)};
+    @LINE {(0, 0) (0.125, 0.382683) (0.25, 0.707107) (0.375, 0.92388) (0.5, 1) (0.625, 0.92388) (0.75, 0.707107) (0.875, 0.382683) (1, 1.22465e-16) (1.125, 0.382683) (1.25, 0.707107) (1.375, 0.92388) (1.5, 1) (1.625, 0.92388) (1.75, 0.707107) (1.875, 0.382683) (2, 2.44929e-16) (2.125, 0.382683) (2.25, 0.707107) (2.375, 0.92388) (2.5, 1) (2.625, 0.92388) (2.75, 0.707107) (2.875, 0.382683) (3, 3.67394e-16) (3.125, 0.382683) (3.25, 0.707107) (3.375, 0.92388) (3.5, 1) (3.625, 0.92388) (3.75, 0.707107) (3.875, 0.382683) (4, 4.89859e-16)};
+    @LINE {(4, 0) (8, 0)};
+    (0, -3.3) @TEXT("g", size=0.7, halign="middle", valign="middle");
     @LINE {(0, -5) (0, -4)};
-    (0, -3.35) @TEXT("g", size=0.65, halign="middle", valign="middle");
-    @LINE {(-9, -4) (9, -4) (9, 4) (-9, 4) (-9, -4)};
-    @LINE {(-3, 0.8) (-0.4, 0.8) (0.1, 1.2) (0.55, 0.4) (1, 0.8) (3, 0.8)};
-    @LINE {(0, 0.8) (0, -0.25)};
-    @LINE {(-0.9, -0.25) (0.9, -0.25)};
-    @LINE {(-0.9, -0.65) (0.9, -0.65)};
-    @LINE {(0, -0.65) (0, -1.4)};
-    (0, 3) @TEXT("LINE", size=0.82, halign="middle", valign="middle");
-    (-10, 0) @PIN(terminal=1, direction="left");
-    (10, 0) @PIN(terminal=2, direction="right");
+    (-8, 0) @PIN(terminal=1, direction="left");
+    (8, 0) @PIN(terminal=2, direction="right");
     (0, -5) @PIN(terminal=3, direction="down");
-    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 5.3)
+    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 6.35)
   };
   # @SELECT-INSTANCE(model="TM_REF_LINE") => @SET-SYMBOL $SYM_TM_REF_LINE;
-  $SYM_TM_REF_NOISE = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
-    @LINE {(-10, 0) (-9, 0)};
-    (-7.4, 0) @TEXT("p", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, 0) (9, 0)};
-    (7.4, 0) @TEXT("q", size=0.65, halign="middle", valign="middle");
-    @LINE {(0, -5) (0, -4)};
-    (0, -3.35) @TEXT("g", size=0.65, halign="middle", valign="middle");
-    @LINE {(-9, -4) (9, -4) (9, 4) (-9, 4) (-9, -4)};
-    @LINE {(-3, 0) (-2.4, 0.1) (-2, 0.8) (-1.5, -0.6) (-1, 1.2) (-0.35, -1.1) (0, 0.5) (0.5, -0.4) (1, 0.6) (1.6, -0.7) (2, 0.2) (3, 0)};
-    (0, 3) @TEXT("NOISE", size=0.82, halign="middle", valign="middle");
-    (-10, 0) @PIN(terminal=1, direction="left");
-    (10, 0) @PIN(terminal=2, direction="right");
-    (0, -5) @PIN(terminal=3, direction="down");
-    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 5.3)
+  $SYM_TM_REF_NOISE = @DEFINE-SYMBOL(box=[-5,-4,5,4]) {
+    (0, 0) @CIRCLE(radius=2.2);
+    @LINE {(-5, 0) (-2.2, 0)};
+    @LINE {(2.2, 0) (5, 0)};
+    @LINE {(0, -2.2) (0, -4)};
+    @LINE {(-1.55, 0) (-1.1, 0.3) (-0.75, -0.6) (-0.3, 1.05) (0.15, -0.95) (0.6, 0.55) (1, 0.05) (1.5, 0.3)};
+    (-2.8, 0.8) @TEXT("−", size=0.8, halign="middle", valign="middle");
+    (2.8, 0.8) @TEXT("+", size=0.8, halign="middle", valign="middle");
+    (5, 0) @PIN(terminal=1, direction="right");
+    (-5, 0) @PIN(terminal=2, direction="left");
+    (0, -4) @PIN(terminal=3, direction="down");
+    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 5.35)
   };
   # @SELECT-INSTANCE(model="TM_REF_NOISE") => @SET-SYMBOL $SYM_TM_REF_NOISE;
-  $SYM_TM_REF_NOISE_DECADE = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
-    @LINE {(-10, 0) (-9, 0)};
-    (-7.4, 0) @TEXT("p", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, 0) (9, 0)};
-    (7.4, 0) @TEXT("q", size=0.65, halign="middle", valign="middle");
-    @LINE {(0, -5) (0, -4)};
-    (0, -3.35) @TEXT("g", size=0.65, halign="middle", valign="middle");
-    @LINE {(-9, -4) (9, -4) (9, 4) (-9, 4) (-9, -4)};
-    @LINE {(-3, 0) (-2.4, 0.1) (-2, 0.8) (-1.5, -0.6) (-1, 1.2) (-0.35, -1.1) (0, 0.5) (0.5, -0.4) (1, 0.6) (1.6, -0.7) (2, 0.2) (3, 0)};
-    (0, 3) @TEXT("NOISE DECADE", size=0.82, halign="middle", valign="middle");
-    (-10, 0) @PIN(terminal=1, direction="left");
-    (10, 0) @PIN(terminal=2, direction="right");
-    (0, -5) @PIN(terminal=3, direction="down");
-    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 5.3)
+  $SYM_TM_REF_NOISE_DECADE = @DEFINE-SYMBOL(box=[-5,-4,5,4]) {
+    (0, 0) @CIRCLE(radius=2.2);
+    @LINE {(-5, 0) (-2.2, 0)};
+    @LINE {(2.2, 0) (5, 0)};
+    @LINE {(0, -2.2) (0, -4)};
+    @LINE {(-1.55, 0) (-1.1, 0.3) (-0.75, -0.6) (-0.3, 1.05) (0.15, -0.95) (0.6, 0.55) (1, 0.05) (1.5, 0.3)};
+    (-2.8, 0.8) @TEXT("−", size=0.8, halign="middle", valign="middle");
+    (2.8, 0.8) @TEXT("+", size=0.8, halign="middle", valign="middle");
+    (5, 0) @PIN(terminal=1, direction="right");
+    (-5, 0) @PIN(terminal=2, direction="left");
+    (0, -4) @PIN(terminal=3, direction="down");
+    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 5.35)
   };
   # @SELECT-INSTANCE(model="TM_REF_NOISE_DECADE") => @SET-SYMBOL $SYM_TM_REF_NOISE_DECADE;
-  $SYM_TM_REF_NOISE_POLE = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
-    @LINE {(-10, 0) (-9, 0)};
-    (-7.4, 0) @TEXT("p", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, 0) (9, 0)};
-    (7.4, 0) @TEXT("q", size=0.65, halign="middle", valign="middle");
-    @LINE {(0, -5) (0, -4)};
-    (0, -3.35) @TEXT("g", size=0.65, halign="middle", valign="middle");
-    @LINE {(-9, -4) (9, -4) (9, 4) (-9, 4) (-9, -4)};
-    @LINE {(-3, 0) (-2.4, 0.1) (-2, 0.8) (-1.5, -0.6) (-1, 1.2) (-0.35, -1.1) (0, 0.5) (0.5, -0.4) (1, 0.6) (1.6, -0.7) (2, 0.2) (3, 0)};
-    (0, 3) @TEXT("NOISE POLE", size=0.82, halign="middle", valign="middle");
-    (-10, 0) @PIN(terminal=1, direction="left");
-    (10, 0) @PIN(terminal=2, direction="right");
-    (0, -5) @PIN(terminal=3, direction="down");
-    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 5.3)
+  $SYM_TM_REF_NOISE_POLE = @DEFINE-SYMBOL(box=[-5,-4,5,4]) {
+    (0, 0) @CIRCLE(radius=2.2);
+    @LINE {(-5, 0) (-2.2, 0)};
+    @LINE {(2.2, 0) (5, 0)};
+    @LINE {(0, -2.2) (0, -4)};
+    @LINE {(-1.55, 0) (-1.1, 0.3) (-0.75, -0.6) (-0.3, 1.05) (0.15, -0.95) (0.6, 0.55) (1, 0.05) (1.5, 0.3)};
+    (-2.8, 0.8) @TEXT("−", size=0.8, halign="middle", valign="middle");
+    (2.8, 0.8) @TEXT("+", size=0.8, halign="middle", valign="middle");
+    (5, 0) @PIN(terminal=1, direction="right");
+    (-5, 0) @PIN(terminal=2, direction="left");
+    (0, -4) @PIN(terminal=3, direction="down");
+    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 5.35)
   };
   # @SELECT-INSTANCE(model="TM_REF_NOISE_POLE") => @SET-SYMBOL $SYM_TM_REF_NOISE_POLE;
-  $SYM_TM_REF_REF_NOISE = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
-    @LINE {(-10, 0) (-9, 0)};
-    (-7.4, 0) @TEXT("p", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, 0) (9, 0)};
-    (7.4, 0) @TEXT("q", size=0.65, halign="middle", valign="middle");
-    @LINE {(0, -5) (0, -4)};
-    (0, -3.35) @TEXT("g", size=0.65, halign="middle", valign="middle");
-    @LINE {(-9, -4) (9, -4) (9, 4) (-9, 4) (-9, -4)};
-    @LINE {(-3, 0) (-2.4, 0.1) (-2, 0.8) (-1.5, -0.6) (-1, 1.2) (-0.35, -1.1) (0, 0.5) (0.5, -0.4) (1, 0.6) (1.6, -0.7) (2, 0.2) (3, 0)};
-    (0, 3) @TEXT("REF NOISE", size=0.82, halign="middle", valign="middle");
-    (-10, 0) @PIN(terminal=1, direction="left");
-    (10, 0) @PIN(terminal=2, direction="right");
-    (0, -5) @PIN(terminal=3, direction="down");
-    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 5.3)
+  $SYM_TM_REF_REF_NOISE = @DEFINE-SYMBOL(box=[-5,-4,5,4]) {
+    (0, 0) @CIRCLE(radius=2.2);
+    @LINE {(-5, 0) (-2.2, 0)};
+    @LINE {(2.2, 0) (5, 0)};
+    @LINE {(0, -2.2) (0, -4)};
+    @LINE {(-1.55, 0) (-1.1, 0.3) (-0.75, -0.6) (-0.3, 1.05) (0.15, -0.95) (0.6, 0.55) (1, 0.05) (1.5, 0.3)};
+    (-2.8, 0.8) @TEXT("−", size=0.8, halign="middle", valign="middle");
+    (2.8, 0.8) @TEXT("+", size=0.8, halign="middle", valign="middle");
+    (5, 0) @PIN(terminal=1, direction="right");
+    (-5, 0) @PIN(terminal=2, direction="left");
+    (0, -4) @PIN(terminal=3, direction="down");
+    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 5.35)
   };
   # @SELECT-INSTANCE(model="TM_REF_REF_NOISE") => @SET-SYMBOL $SYM_TM_REF_REF_NOISE;
-  $SYM_TM_REF_ADA4522 = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
-    @LINE {(-10, 1) (-9, 1)};
-    (-7.4, 1) @TEXT("p", size=0.65, halign="middle", valign="middle");
-    @LINE {(-10, -1) (-9, -1)};
-    (-7.4, -1) @TEXT("n", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, 0) (9, 0)};
-    (7.4, 0) @TEXT("o", size=0.65, halign="middle", valign="middle");
-    @LINE {(-3, -5) (-3, -4)};
-    (-3, -3.35) @TEXT("bias", size=0.65, halign="middle", valign="middle");
-    @LINE {(3, -5) (3, -4)};
-    (3, -3.35) @TEXT("g", size=0.65, halign="middle", valign="middle");
-    @LINE {(-9, -4) (9, -4) (9, 4) (-9, 4) (-9, -4)};
-    @LINE {(-2, -1.7) (-2, 1.7) (2, 0) (-2, -1.7)};
-    (-1.25, 0.65) @TEXT("+", size=0.8, halign="middle", valign="middle");
-    (-1.25, -0.65) @TEXT("−", size=0.8, halign="middle", valign="middle");
-    (0, 3) @TEXT("ADA4522", size=0.82, halign="middle", valign="middle");
-    (-10, 1) @PIN(terminal=1, direction="left");
-    (-10, -1) @PIN(terminal=2, direction="left");
-    (10, 0) @PIN(terminal=3, direction="right");
-    (-3, -5) @PIN(terminal=4, direction="down");
-    (3, -5) @PIN(terminal=5, direction="down");
-    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 5.3)
+  $SYM_TM_REF_ADA4522 = @DEFINE-SYMBOL(box=[-7,-6,7,6]) {
+    @LINE {(-5, -5) (-5, 5) (5, 0) (-5, -5)};
+    @LINE {(-7, 2) (-5, 2)};
+    @LINE {(-7, -2) (-5, -2)};
+    @LINE {(5, 0) (7, 0)};
+    @LINE {(-2, 6) (-2, 3.5)};
+    @LINE {(-2, -3.5) (-2, -6)};
+    (-3.9, -2) @TEXT("+", size=1.25, halign="middle", valign="middle");
+    (-3.9, 2) @TEXT("−", size=1.25, halign="middle", valign="middle");
+    (-0.75, 0) @TEXT("4522", size=0.78, halign="middle", valign="middle");
+    (-7, -2) @PIN(terminal=1, direction="left");
+    (-7, 2) @PIN(terminal=2, direction="left");
+    (7, 0) @PIN(terminal=3, direction="right");
+    (-2, 6) @PIN(terminal=4, direction="up");
+    (-2, -6) @PIN(terminal=5, direction="down");
+    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 7.35)
   };
   # @SELECT-INSTANCE(model="TM_REF_ADA4522") => @SET-SYMBOL $SYM_TM_REF_ADA4522;
-  $SYM_TM_REF_LT6202 = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
-    @LINE {(-10, 1) (-9, 1)};
-    (-7.4, 1) @TEXT("p", size=0.65, halign="middle", valign="middle");
-    @LINE {(-10, -1) (-9, -1)};
-    (-7.4, -1) @TEXT("n", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, 0) (9, 0)};
-    (7.4, 0) @TEXT("o", size=0.65, halign="middle", valign="middle");
-    @LINE {(-3, -5) (-3, -4)};
-    (-3, -3.35) @TEXT("bias", size=0.65, halign="middle", valign="middle");
-    @LINE {(3, -5) (3, -4)};
-    (3, -3.35) @TEXT("g", size=0.65, halign="middle", valign="middle");
-    @LINE {(-9, -4) (9, -4) (9, 4) (-9, 4) (-9, -4)};
-    @LINE {(-2, -1.7) (-2, 1.7) (2, 0) (-2, -1.7)};
-    (-1.25, 0.65) @TEXT("+", size=0.8, halign="middle", valign="middle");
-    (-1.25, -0.65) @TEXT("−", size=0.8, halign="middle", valign="middle");
-    (0, 3) @TEXT("LT6202", size=0.82, halign="middle", valign="middle");
-    (-10, 1) @PIN(terminal=1, direction="left");
-    (-10, -1) @PIN(terminal=2, direction="left");
-    (10, 0) @PIN(terminal=3, direction="right");
-    (-3, -5) @PIN(terminal=4, direction="down");
-    (3, -5) @PIN(terminal=5, direction="down");
-    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 5.3)
+  $SYM_TM_REF_LT6202 = @DEFINE-SYMBOL(box=[-7,-6,7,6]) {
+    @LINE {(-5, -5) (-5, 5) (5, 0) (-5, -5)};
+    @LINE {(-7, 2) (-5, 2)};
+    @LINE {(-7, -2) (-5, -2)};
+    @LINE {(5, 0) (7, 0)};
+    @LINE {(-2, 6) (-2, 3.5)};
+    @LINE {(-2, -3.5) (-2, -6)};
+    (-3.9, -2) @TEXT("+", size=1.25, halign="middle", valign="middle");
+    (-3.9, 2) @TEXT("−", size=1.25, halign="middle", valign="middle");
+    (-0.75, 0) @TEXT("6202", size=0.78, halign="middle", valign="middle");
+    (-7, -2) @PIN(terminal=1, direction="left");
+    (-7, 2) @PIN(terminal=2, direction="left");
+    (7, 0) @PIN(terminal=3, direction="right");
+    (-2, 6) @PIN(terminal=4, direction="up");
+    (-2, -6) @PIN(terminal=5, direction="down");
+    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 7.35)
   };
   # @SELECT-INSTANCE(model="TM_REF_LT6202") => @SET-SYMBOL $SYM_TM_REF_LT6202;
   $SYM_TM_REF_LTC6655B = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
@@ -323,55 +293,43 @@
     (-3, -5) @PIN(terminal=2, direction="down");
     (10, 0) @PIN(terminal=3, direction="right");
     (3, -5) @PIN(terminal=4, direction="down");
-    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 5.3)
+    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 6.35)
   };
   # @SELECT-INSTANCE(model="TM_REF_LTC6655B") => @SET-SYMBOL $SYM_TM_REF_LTC6655B;
-  $SYM_TM_REF_FAST = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
-    @LINE {(-10, 1) (-9, 1)};
-    (-7.4, 1) @TEXT("servo", size=0.65, halign="middle", valign="middle");
-    @LINE {(-10, -1) (-9, -1)};
-    (-7.4, -1) @TEXT("pad", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, 0) (9, 0)};
-    (7.4, 0) @TEXT("drive", size=0.65, halign="middle", valign="middle");
-    @LINE {(-3, -5) (-3, -4)};
-    (-3, -3.35) @TEXT("bias", size=0.65, halign="middle", valign="middle");
-    @LINE {(3, -5) (3, -4)};
-    (3, -3.35) @TEXT("g", size=0.65, halign="middle", valign="middle");
-    @LINE {(-9, -4) (9, -4) (9, 4) (-9, 4) (-9, -4)};
-    @LINE {(-2, -1.7) (-2, 1.7) (2, 0) (-2, -1.7)};
-    (-1.25, 0.65) @TEXT("+", size=0.8, halign="middle", valign="middle");
-    (-1.25, -0.65) @TEXT("−", size=0.8, halign="middle", valign="middle");
-    (0, 3) @TEXT("FAST", size=0.82, halign="middle", valign="middle");
-    (-10, 1) @PIN(terminal=1, direction="left");
-    (-10, -1) @PIN(terminal=2, direction="left");
-    (10, 0) @PIN(terminal=3, direction="right");
-    (-3, -5) @PIN(terminal=4, direction="down");
-    (3, -5) @PIN(terminal=5, direction="down");
-    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 5.3)
+  $SYM_TM_REF_FAST = @DEFINE-SYMBOL(box=[-7,-6,7,6]) {
+    @LINE {(-5, -5) (-5, 5) (5, 0) (-5, -5)};
+    @LINE {(-7, 2) (-5, 2)};
+    @LINE {(-7, -2) (-5, -2)};
+    @LINE {(5, 0) (7, 0)};
+    @LINE {(-2, 6) (-2, 3.5)};
+    @LINE {(-2, -3.5) (-2, -6)};
+    (-3.9, -2) @TEXT("+", size=1.25, halign="middle", valign="middle");
+    (-3.9, 2) @TEXT("−", size=1.25, halign="middle", valign="middle");
+    (-0.75, 0) @TEXT("FAST", size=0.78, halign="middle", valign="middle");
+    (-7, -2) @PIN(terminal=1, direction="left");
+    (-7, 2) @PIN(terminal=2, direction="left");
+    (7, 0) @PIN(terminal=3, direction="right");
+    (-2, 6) @PIN(terminal=4, direction="up");
+    (-2, -6) @PIN(terminal=5, direction="down");
+    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 7.35)
   };
   # @SELECT-INSTANCE(model="TM_REF_FAST") => @SET-SYMBOL $SYM_TM_REF_FAST;
-  $SYM_TM_REF_SERVO = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
-    @LINE {(-10, 1) (-9, 1)};
-    (-7.4, 1) @TEXT("set", size=0.65, halign="middle", valign="middle");
-    @LINE {(-10, -1) (-9, -1)};
-    (-7.4, -1) @TEXT("pad", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, 0) (9, 0)};
-    (7.4, 0) @TEXT("servo", size=0.65, halign="middle", valign="middle");
-    @LINE {(-3, -5) (-3, -4)};
-    (-3, -3.35) @TEXT("bias", size=0.65, halign="middle", valign="middle");
-    @LINE {(3, -5) (3, -4)};
-    (3, -3.35) @TEXT("g", size=0.65, halign="middle", valign="middle");
-    @LINE {(-9, -4) (9, -4) (9, 4) (-9, 4) (-9, -4)};
-    @LINE {(-2, -1.7) (-2, 1.7) (2, 0) (-2, -1.7)};
-    (-1.25, 0.65) @TEXT("+", size=0.8, halign="middle", valign="middle");
-    (-1.25, -0.65) @TEXT("−", size=0.8, halign="middle", valign="middle");
-    (0, 3) @TEXT("SERVO", size=0.82, halign="middle", valign="middle");
-    (-10, 1) @PIN(terminal=1, direction="left");
-    (-10, -1) @PIN(terminal=2, direction="left");
-    (10, 0) @PIN(terminal=3, direction="right");
-    (-3, -5) @PIN(terminal=4, direction="down");
-    (3, -5) @PIN(terminal=5, direction="down");
-    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 5.3)
+  $SYM_TM_REF_SERVO = @DEFINE-SYMBOL(box=[-7,-6,7,6]) {
+    @LINE {(-5, -5) (-5, 5) (5, 0) (-5, -5)};
+    @LINE {(-7, 2) (-5, 2)};
+    @LINE {(-7, -2) (-5, -2)};
+    @LINE {(5, 0) (7, 0)};
+    @LINE {(-2, 6) (-2, 3.5)};
+    @LINE {(-2, -3.5) (-2, -6)};
+    (-3.9, -2) @TEXT("+", size=1.25, halign="middle", valign="middle");
+    (-3.9, 2) @TEXT("−", size=1.25, halign="middle", valign="middle");
+    (-0.75, 0) @TEXT("SERVO", size=0.78, halign="middle", valign="middle");
+    (-7, -2) @PIN(terminal=1, direction="left");
+    (-7, 2) @PIN(terminal=2, direction="left");
+    (7, 0) @PIN(terminal=3, direction="right");
+    (-2, 6) @PIN(terminal=4, direction="up");
+    (-2, -6) @PIN(terminal=5, direction="down");
+    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 7.35)
   };
   # @SELECT-INSTANCE(model="TM_REF_SERVO") => @SET-SYMBOL $SYM_TM_REF_SERVO;
   $SYM_TM_REF_REF_INPUT = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
@@ -392,48 +350,41 @@
     (-3, -5) @PIN(terminal=2, direction="down");
     (10, 0) @PIN(terminal=3, direction="right");
     (3, -5) @PIN(terminal=4, direction="down");
-    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 5.3)
+    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 6.35)
   };
   # @SELECT-INSTANCE(model="TM_REF_REF_INPUT") => @SET-SYMBOL $SYM_TM_REF_REF_INPUT;
-  $SYM_TM_REF_REF_SET = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
-    @LINE {(-10, 0) (-9, 0)};
-    (-7.4, 0) @TEXT("ref", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, 0) (9, 0)};
-    (7.4, 0) @TEXT("set", size=0.65, halign="middle", valign="middle");
-    @LINE {(0, -5) (0, -4)};
-    (0, -3.35) @TEXT("g", size=0.65, halign="middle", valign="middle");
-    @LINE {(-9, -4) (9, -4) (9, 4) (-9, 4) (-9, -4)};
-    @LINE {(-3, -0.8) (-2, -0.8) (-1.5, 0.7) (3, 0.7)};
-    @LINE {(-2.5, 1.4) (-2.5, 1)};
-    @LINE {(-2.8, 1.2) (-2.2, 1.2)};
-    (0, 3) @TEXT("REF SET", size=0.82, halign="middle", valign="middle");
-    (-10, 0) @PIN(terminal=1, direction="left");
-    (10, 0) @PIN(terminal=2, direction="right");
+  $SYM_TM_REF_REF_SET = @DEFINE-SYMBOL(box=[-8,-5,8,5]) {
+    @LINE {(-8, 0) (-1.5, 0) (-1.2, 0.5) (-0.7, -0.5) (-0.2, 0.5) (0.3, -0.5) (0.8, 0.5) (1.3, -0.5) (1.5, 0) (8, 0)};
+    @LINE {(4, 0) (4, -1.22)};
+    @LINE {(3, -1.22) (5, -1.22)};
+    @LINE {(3, -1.78) (5, -1.78)};
+    @LINE {(4, -1.78) (4, -3)};
+    @LINE {(4, -3) (0, -3) (0, -5)};
+    (0, 2) @TEXT("SET", size=0.7, halign="middle", valign="middle");
+    (-8, 0) @PIN(terminal=1, direction="left");
+    (8, 0) @PIN(terminal=2, direction="right");
     (0, -5) @PIN(terminal=3, direction="down");
-    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 5.3)
+    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 6.35)
   };
   # @SELECT-INSTANCE(model="TM_REF_REF_SET") => @SET-SYMBOL $SYM_TM_REF_REF_SET;
-  $SYM_TM_REF_REF_PATH = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
-    @LINE {(-10, 0) (-9, 0)};
-    (-7.4, 0) @TEXT("drive", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, 1) (9, 1)};
-    (7.4, 1) @TEXT("pad", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, -1) (9, -1)};
-    (7.4, -1) @TEXT("die", size=0.65, halign="middle", valign="middle");
-    @LINE {(0, -5) (0, -4)};
-    (0, -3.35) @TEXT("g", size=0.65, halign="middle", valign="middle");
-    @LINE {(-9, -4) (9, -4) (9, 4) (-9, 4) (-9, -4)};
-    @LINE {(-3, 0.8) (-0.4, 0.8) (0.1, 1.2) (0.55, 0.4) (1, 0.8) (3, 0.8)};
-    @LINE {(0, 0.8) (0, -0.25)};
-    @LINE {(-0.9, -0.25) (0.9, -0.25)};
-    @LINE {(-0.9, -0.65) (0.9, -0.65)};
-    @LINE {(0, -0.65) (0, -1.4)};
-    (0, 3) @TEXT("REF PATH", size=0.82, halign="middle", valign="middle");
-    (-10, 0) @PIN(terminal=1, direction="left");
-    (10, 1) @PIN(terminal=2, direction="right");
-    (10, -1) @PIN(terminal=3, direction="right");
-    (0, -5) @PIN(terminal=4, direction="down");
-    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 5.3)
+  $SYM_TM_REF_REF_PATH = @DEFINE-SYMBOL(box=[-8,-5,8,5]) {
+    @LINE {(-8, 0) (-6, 0) (-5.7, 0.5) (-5.2, -0.5) (-4.7, 0.5) (-4.2, -0.5) (-3.7, 0.5) (-3.2, -0.5) (-3, 0) (-1, 0)};
+    @LINE {(-1, 0) (0, 0)};
+    @LINE {(0, 0) (0.125, 0.382683) (0.25, 0.707107) (0.375, 0.92388) (0.5, 1) (0.625, 0.92388) (0.75, 0.707107) (0.875, 0.382683) (1, 1.22465e-16) (1.125, 0.382683) (1.25, 0.707107) (1.375, 0.92388) (1.5, 1) (1.625, 0.92388) (1.75, 0.707107) (1.875, 0.382683) (2, 2.44929e-16) (2.125, 0.382683) (2.25, 0.707107) (2.375, 0.92388) (2.5, 1) (2.625, 0.92388) (2.75, 0.707107) (2.875, 0.382683) (3, 3.67394e-16) (3.125, 0.382683) (3.25, 0.707107) (3.375, 0.92388) (3.5, 1) (3.625, 0.92388) (3.75, 0.707107) (3.875, 0.382683) (4, 4.89859e-16)};
+    @LINE {(4, 0) (8, 0)};
+    @LINE {(3, 5) (3, 2) (0, 2) (0, 0)};
+    (4.1, 3.6) @TEXT("pad", size=0.6, halign="middle", valign="middle");
+    @LINE {(0, 0) (0, -1) (3, -1)};
+    @LINE {(3, -1) (3, -2.72)};
+    @LINE {(2, -2.72) (4, -2.72)};
+    @LINE {(2, -3.28) (4, -3.28)};
+    @LINE {(3, -3.28) (3, -5)};
+    (0, 0) @CIRCLE(radius=0.18, fill="linecolor", linestyle="none");
+    (-8, 0) @PIN(terminal=1, direction="left");
+    (3, 5) @PIN(terminal=2, direction="up");
+    (8, 0) @PIN(terminal=3, direction="right");
+    (3, -5) @PIN(terminal=4, direction="down");
+    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 6.35)
   };
   # @SELECT-INSTANCE(model="TM_REF_REF_PATH") => @SET-SYMBOL $SYM_TM_REF_REF_PATH
 }

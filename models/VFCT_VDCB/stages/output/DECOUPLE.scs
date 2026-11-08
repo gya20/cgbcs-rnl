@@ -4,14 +4,19 @@ subckt TM_LDO_DECOUPLE (p g)
 Xbulk (p g) TM_LDO_CAPBR rr=10m ll=0.5n cc=22u
 Xhf (p g) TM_LDO_CAPBR rr=30m ll=0.25n cc=100n
 // @RNL {
-//   #Xbulk @PLACE(0, 0);
-//   #Xhf @PLACE(35, 0);
-//   %io_p = $IO_PORT @ATTACH &p => @PLACE(-16, 0) => @ORIENT("R0");
-//   &p @WIRE(mode="straight") {%io_p:p #Xbulk:1};
-//   %io_g = $IO_PORT @ATTACH &g => @PLACE(0, -11) => @ORIENT("R90");
-//   &g @WIRE(mode="straight") {%io_g:p #Xbulk:2};
-//   &p @WIRE(mode="straight") {#Xbulk:1 (-12, 0) (-12, 7) (23, 7) (23, 0) #Xhf:1};
-//   %ground0 = $GROUND @ATTACH &g => @PLACE(35, -7);
-//   &g @WIRE(mode="straight") {#Xhf:2 %ground0:p}
+//   #Xbulk @PLACE(0, -2);
+//   #Xhf @PLACE(12, -2);
+//   %j1 = (0, 5);
+//   $JUNCTION @ATTACH %j1;
+//   %port_p = $IO_PORT @ATTACH &p => @PLACE(-8,5) => @ORIENT("R0");
+//   &p @WIRE(mode="straight") {%port_p:p %j1 (12, 5) #Xhf:1};
+//   &p @WIRE(mode="straight") {%j1 #Xbulk:1};
+//   %ground2 = $GROUND @ATTACH &g => @PLACE(0,-9);
+//   &g @WIRE(mode="straight") {#Xbulk:2 %ground2:p};
+//   %ground3 = $GROUND @ATTACH &g => @PLACE(12,-9);
+//   &g @WIRE(mode="straight") {#Xhf:2 %ground3:p};
+//   %port_g = $IO_PORT @ATTACH &g => @PLACE(-9,-11) => @ORIENT("R0");
+//   %common = $GROUND @ATTACH &g => @PLACE(-6,-13);
+//   &g @WIRE(mode="straight") {%port_g:p (-6, -11) %common:p}
 // }
 ends TM_LDO_DECOUPLE

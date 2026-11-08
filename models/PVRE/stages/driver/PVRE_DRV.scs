@@ -8,31 +8,43 @@ Rf (buf sum) resistor r=3k
 Cf (buf sum) capacitor c=10n
 Xu4 (cm sum buf bias g) TM_PVRE_LT1355
 // @RNL {
-//   #Xdn @PLACE(0, 0);
-//   #Rin @PLACE(35, 0);
-//   (35, -3.7) @TEXT("r=rin", size=0.68, halign="middle");
-//   #Rf @PLACE(70, 0);
-//   (70, -3.7) @TEXT("r=3k", size=0.68, halign="middle");
-//   #Cf @PLACE(105, 0);
-//   (105, -3.7) @TEXT("c=10n", size=0.68, halign="middle");
-//   #Xu4 @PLACE(0, -23);
-//   %io_cm = $IO_PORT @ATTACH &cm => @PLACE(-16, -22) => @ORIENT("R0");
-//   &cm @WIRE(mode="straight") {%io_cm:p #Xu4:1};
-//   %io_dac = $IO_PORT @ATTACH &dac => @PLACE(-16, 0) => @ORIENT("R0");
-//   &dac @WIRE(mode="straight") {%io_dac:p #Xdn:1};
-//   %io_bias = $IO_PORT @ATTACH &bias => @PLACE(-3, -34) => @ORIENT("R90");
-//   &bias @WIRE(mode="straight") {%io_bias:p #Xu4:4};
-//   %io_buf = $IO_PORT @ATTACH &buf => @PLACE(61, 0) => @ORIENT("R0");
-//   &buf @WIRE(mode="straight") {%io_buf:p #Rf:1};
-//   %io_g = $IO_PORT @ATTACH &g => @PLACE(0, -11) => @ORIENT("R90");
-//   &g @WIRE(mode="straight") {%io_g:p #Xdn:3};
-//   &d @WIRE(mode="straight") {#Xdn:2 #Rin:1};
-//   &buf @WIRE(mode="straight") {#Rf:1 (65, 0) (65, -3) (100, -3) (100, 0) #Cf:1};
-//   &buf @WIRE(mode="straight") {#Rf:1 (65, 0) (65, -23) #Xu4:3};
-//   &sum @WIRE(mode="straight") {#Rin:2 (40, 0) (40, 4) (75, 4) (75, 0) #Rf:2};
-//   &sum @WIRE(mode="straight") {#Rf:2 (75, 0) (75, 4) (110, 4) (110, 0) #Cf:2};
-//   &sum @WIRE(mode="straight") {#Rin:2 (40, 0) (40, -16) (-12, -16) (-12, -24) #Xu4:2};
-//   %ground0 = $GROUND @ATTACH &g => @PLACE(3, -30);
-//   &g @WIRE(mode="straight") {#Xu4:5 %ground0:p}
+//   #Xdn @PLACE(-38, 2);
+//   #Rin @PLACE(-19, 2);
+//   (-19, 3.45) @TEXT("Rin  rin", size=0.76, halign="middle");
+//   #Rf @PLACE(0, 13) => @ORIENT("R180");
+//   (0, 14.45) @TEXT("Rf  3k", size=0.76, halign="middle");
+//   #Cf @PLACE(0, 21) => @ORIENT("R180");
+//   (0, 22.45) @TEXT("Cf  10n", size=0.76, halign="middle");
+//   #Xu4 @PLACE(0, 0);
+//   %port_cm = $IO_PORT @ATTACH &cm => @PLACE(-24,-2) => @ORIENT("R0");
+//   &cm @WIRE(mode="straight") {%port_cm:p #Xu4:1};
+//   %port_bias = $IO_PORT @ATTACH &bias => @PLACE(5,7) => @ORIENT("R180");
+//   &bias @WIRE(mode="straight") {%port_bias:p (-2, 7) #Xu4:4};
+//   %ground1 = $GROUND @ATTACH &g => @PLACE(-2,-9);
+//   &g @WIRE(mode="straight") {#Xu4:5 %ground1:p};
+//   %j2 = (-9, 2);
+//   $JUNCTION @ATTACH %j2;
+//   %j3 = (14, 0);
+//   $JUNCTION @ATTACH %j3;
+//   &sum @WIRE(mode="straight") {%j2 #Xu4:2};
+//   %port_buf = $IO_PORT @ATTACH &buf => @PLACE(21,0) => @ORIENT("R180");
+//   &buf @WIRE(mode="straight") {#Xu4:3 %j3 %port_buf:p};
+//   %port_dac = $IO_PORT @ATTACH &dac => @PLACE(-56,2) => @ORIENT("R0");
+//   &dac @WIRE(mode="straight") {%port_dac:p #Xdn:1};
+//   &d @WIRE(mode="straight") {#Xdn:2 (-26, 2) (-26, 2) #Rin:1};
+//   %ground4 = $GROUND @ATTACH &g => @PLACE(-38,-6);
+//   &g @WIRE(mode="straight") {#Xdn:3 %ground4:p};
+//   &sum @WIRE(mode="straight") {#Rin:2 %j2};
+//   %j5 = (-9, 13);
+//   $JUNCTION @ATTACH %j5;
+//   %j6 = (14, 13);
+//   $JUNCTION @ATTACH %j6;
+//   &sum @WIRE(mode="straight") {%j2 %j5 #Rf:2};
+//   &buf @WIRE(mode="straight") {#Rf:1 %j6 %j3};
+//   &sum @WIRE(mode="straight") {%j5 (-9, 21) #Cf:2};
+//   &buf @WIRE(mode="straight") {#Cf:1 (14, 21) %j6};
+//   %port_g = $IO_PORT @ATTACH &g => @PLACE(-57,-11) => @ORIENT("R0");
+//   %common = $GROUND @ATTACH &g => @PLACE(-54,-13);
+//   &g @WIRE(mode="straight") {%port_g:p (-54, -11) %common:p}
 // }
 ends TM_PVRE_PVRE_DRV

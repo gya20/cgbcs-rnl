@@ -8,25 +8,33 @@ Rh (nf nc) resistor r=20k
 Ch (nc drive) capacitor c=4.7n
 // @RNL {
 //   #Xu @PLACE(0, 0);
-//   #Rf @PLACE(35, 0);
-//   (35, -3.7) @TEXT("r=100", size=0.68, halign="middle");
-//   #Rh @PLACE(70, 0);
-//   (70, -3.7) @TEXT("r=20k", size=0.68, halign="middle");
-//   #Ch @PLACE(105, 0);
-//   (105, -3.7) @TEXT("c=4.7n", size=0.68, halign="middle");
-//   %io_servo = $IO_PORT @ATTACH &servo => @PLACE(-16, 1) => @ORIENT("R0");
-//   &servo @WIRE(mode="straight") {%io_servo:p #Xu:1};
-//   %io_pad = $IO_PORT @ATTACH &pad => @PLACE(26, 0) => @ORIENT("R0");
-//   &pad @WIRE(mode="straight") {%io_pad:p #Rf:1};
-//   %io_drive = $IO_PORT @ATTACH &drive => @PLACE(16, 0) => @ORIENT("R180");
-//   &drive @WIRE(mode="straight") {%io_drive:p #Xu:3};
-//   %io_bias = $IO_PORT @ATTACH &bias => @PLACE(-3, -11) => @ORIENT("R90");
-//   &bias @WIRE(mode="straight") {%io_bias:p #Xu:4};
-//   %io_g = $IO_PORT @ATTACH &g => @PLACE(3, -11) => @ORIENT("R90");
-//   &g @WIRE(mode="straight") {%io_g:p #Xu:5};
-//   &drive @WIRE(mode="straight") {#Xu:3 (12, 0) (12, -3) (110, -3) (110, 0) #Ch:2};
+//   #Rf @PLACE(-18, 2);
+//   (-18, 3.45) @TEXT("Rf  100", size=0.76, halign="middle");
+//   #Rh @PLACE(-4, 13);
+//   (-4, 14.45) @TEXT("Rh  20k", size=0.76, halign="middle");
+//   #Ch @PLACE(8, 13);
+//   (8, 14.45) @TEXT("Ch  4.7n", size=0.76, halign="middle");
+//   %port_servo = $IO_PORT @ATTACH &servo => @PLACE(-24,-2) => @ORIENT("R0");
+//   &servo @WIRE(mode="straight") {%port_servo:p #Xu:1};
+//   %port_bias = $IO_PORT @ATTACH &bias => @PLACE(5,7) => @ORIENT("R180");
+//   &bias @WIRE(mode="straight") {%port_bias:p (-2, 7) #Xu:4};
+//   %ground1 = $GROUND @ATTACH &g => @PLACE(-2,-9);
+//   &g @WIRE(mode="straight") {#Xu:5 %ground1:p};
+//   %j2 = (-9, 2);
+//   $JUNCTION @ATTACH %j2;
+//   %j3 = (14, 0);
+//   $JUNCTION @ATTACH %j3;
+//   &nf @WIRE(mode="straight") {%j2 #Xu:2};
+//   %port_drive = $IO_PORT @ATTACH &drive => @PLACE(21,0) => @ORIENT("R180");
+//   &drive @WIRE(mode="straight") {#Xu:3 %j3 %port_drive:p};
+//   %port_pad = $IO_PORT @ATTACH &pad => @PLACE(-27,2) => @ORIENT("R0");
+//   &pad @WIRE(mode="straight") {%port_pad:p #Rf:1};
+//   &nf @WIRE(mode="straight") {#Rf:2 %j2};
+//   &nf @WIRE(mode="straight") {%j2 (-9, 13) #Rh:1};
 //   &nc @WIRE(mode="straight") {#Rh:2 #Ch:1};
-//   &nf @WIRE(mode="straight") {#Xu:2 (-12, -1) (-12, 7) (40, 7) (40, 0) #Rf:2};
-//   &nf @WIRE(mode="straight") {#Rf:2 #Rh:1}
+//   &drive @WIRE(mode="straight") {#Ch:2 (14, 13) %j3};
+//   %port_g = $IO_PORT @ATTACH &g => @PLACE(-30,-11) => @ORIENT("R0");
+//   %common = $GROUND @ATTACH &g => @PLACE(-27,-13);
+//   &g @WIRE(mode="straight") {%port_g:p (-27, -11) %common:p}
 // }
 ends TM_REF_FAST

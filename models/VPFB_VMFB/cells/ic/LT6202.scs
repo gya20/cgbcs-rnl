@@ -7,22 +7,22 @@ Rz (z o) resistor r=300 isnoisy=no
 Cz (z o) capacitor c=1/(6.283185307*300*fo)
 // @RNL {
 //   #Xamp @PLACE(0, 0);
-//   #Rz @PLACE(35, 0);
-//   (35, -3.7) @TEXT("r=300", size=0.68, halign="middle");
-//   #Cz @PLACE(70, 0);
-//   (70, -3.7) @TEXT("c=1/(6.283185307*300*fo)", size=0.68, halign="middle");
-//   %io_p = $IO_PORT @ATTACH &p => @PLACE(-16, 1) => @ORIENT("R0");
+//   #Rz @PLACE(18, 0);
+//   (18, 1.45) @TEXT("Rz  300", size=0.76, halign="middle");
+//   #Cz @PLACE(18, 9);
+//   (18, 10.45) @TEXT("Cz  C(eq)", size=0.76, halign="middle");
+//   %io_p = $IO_PORT @ATTACH &p => @PLACE(-13, -2) => @ORIENT("R0");
 //   &p @WIRE(mode="straight") {%io_p:p #Xamp:1};
-//   %io_n = $IO_PORT @ATTACH &n => @PLACE(-16, -1) => @ORIENT("R0");
+//   %io_n = $IO_PORT @ATTACH &n => @PLACE(-13, 2) => @ORIENT("R0");
 //   &n @WIRE(mode="straight") {%io_n:p #Xamp:2};
-//   %io_o = $IO_PORT @ATTACH &o => @PLACE(44, 0) => @ORIENT("R180");
+//   %io_o = $IO_PORT @ATTACH &o => @PLACE(27, 0) => @ORIENT("R180");
 //   &o @WIRE(mode="straight") {%io_o:p #Rz:2};
-//   %io_bias = $IO_PORT @ATTACH &bias => @PLACE(-3, -11) => @ORIENT("R90");
+//   %io_bias = $IO_PORT @ATTACH &bias => @PLACE(-2, 12) => @ORIENT("R270");
 //   &bias @WIRE(mode="straight") {%io_bias:p #Xamp:4};
-//   %io_g = $IO_PORT @ATTACH &g => @PLACE(3, -11) => @ORIENT("R90");
+//   %io_g = $IO_PORT @ATTACH &g => @PLACE(-2, -12) => @ORIENT("R90");
 //   &g @WIRE(mode="straight") {%io_g:p #Xamp:5};
-//   &o @WIRE(mode="straight") {#Rz:2 (40, 0) (40, -3) (75, -3) (75, 0) #Cz:2};
+//   &o @WIRE(mode="straight") {#Rz:2 (23, 0) (23, 9) #Cz:2};
 //   &z @WIRE(mode="straight") {#Xamp:3 #Rz:1};
-//   &z @WIRE(mode="straight") {#Rz:1 (30, 0) (30, 4) (65, 4) (65, 0) #Cz:1}
+//   &z @WIRE(mode="straight") {#Rz:1 (13, 0) (13, 9) #Cz:1}
 // }
 ends TM_REF_LT6202

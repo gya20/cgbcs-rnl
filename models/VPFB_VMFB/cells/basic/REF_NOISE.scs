@@ -17,29 +17,29 @@ X7 (p n6 g) TM_REF_NOISE_DECADE fj=fj*1000 en=en fc=fc
 //   #X5 @PLACE(0, -23);
 //   #X6 @PLACE(35, -23);
 //   #X7 @PLACE(70, -23);
-//   %io_p = $IO_PORT @ATTACH &p => @PLACE(54, -23) => @ORIENT("R0");
+//   %io_p = $IO_PORT @ATTACH &p => @PLACE(81, -23) => @ORIENT("R180");
 //   &p @WIRE(mode="straight") {%io_p:p #X7:1};
-//   %io_q = $IO_PORT @ATTACH &q => @PLACE(16, 0) => @ORIENT("R180");
+//   %io_q = $IO_PORT @ATTACH &q => @PLACE(-11, 0) => @ORIENT("R0");
 //   &q @WIRE(mode="straight") {%io_q:p #X1:2};
-//   %io_g = $IO_PORT @ATTACH &g => @PLACE(0, -11) => @ORIENT("R90");
+//   %io_g = $IO_PORT @ATTACH &g => @PLACE(0, -10) => @ORIENT("R90");
 //   &g @WIRE(mode="straight") {%io_g:p #X1:3};
-//   &n1 @WIRE(mode="straight") {#X1:1 (-12, 0) (-12, 7) (47, 7) (47, 0) #X2:2};
-//   &n2 @WIRE(mode="straight") {#X2:1 (23, 0) (23, -6) (82, -6) (82, 0) #X3:2};
-//   &n3 @WIRE(mode="straight") {#X3:1 (58, 0) (58, 7) (117, 7) (117, 0) #X4:2};
-//   &n4 @WIRE(mode="straight") {#X4:1 (93, 0) (93, -16) (12, -16) (12, -23) #X5:2};
-//   &n5 @WIRE(mode="straight") {#X5:1 (-12, -23) (-12, -29) (47, -29) (47, -23) #X6:2};
-//   &n6 @WIRE(mode="straight") {#X6:1 (23, -23) (23, -30) (82, -30) (82, -23) #X7:2};
-//   %ground0 = $GROUND @ATTACH &g => @PLACE(35, -7);
+//   &n1 @WIRE(mode="straight") {#X1:1 #X2:2};
+//   &n2 @WIRE(mode="straight") {#X2:1 #X3:2};
+//   &n3 @WIRE(mode="straight") {#X3:1 #X4:2};
+//   &n4 @WIRE(mode="straight") {#X4:1 (112, 0) (112, -17) (-7, -17) (-7, -23) #X5:2};
+//   &n5 @WIRE(mode="straight") {#X5:1 #X6:2};
+//   &n6 @WIRE(mode="straight") {#X6:1 #X7:2};
+//   %ground0 = $GROUND @ATTACH &g => @PLACE(35, -6);
 //   &g @WIRE(mode="straight") {#X2:3 %ground0:p};
-//   %ground1 = $GROUND @ATTACH &g => @PLACE(70, -7);
+//   %ground1 = $GROUND @ATTACH &g => @PLACE(70, -6);
 //   &g @WIRE(mode="straight") {#X3:3 %ground1:p};
-//   %ground2 = $GROUND @ATTACH &g => @PLACE(105, -7);
+//   %ground2 = $GROUND @ATTACH &g => @PLACE(105, -6);
 //   &g @WIRE(mode="straight") {#X4:3 %ground2:p};
-//   %ground3 = $GROUND @ATTACH &g => @PLACE(0, -30);
+//   %ground3 = $GROUND @ATTACH &g => @PLACE(0, -29);
 //   &g @WIRE(mode="straight") {#X5:3 %ground3:p};
-//   %ground4 = $GROUND @ATTACH &g => @PLACE(35, -30);
+//   %ground4 = $GROUND @ATTACH &g => @PLACE(35, -29);
 //   &g @WIRE(mode="straight") {#X6:3 %ground4:p};
-//   %ground5 = $GROUND @ATTACH &g => @PLACE(70, -30);
+//   %ground5 = $GROUND @ATTACH &g => @PLACE(70, -29);
 //   &g @WIRE(mode="straight") {#X7:3 %ground5:p}
 // }
 ends TM_REF_REF_NOISE

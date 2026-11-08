@@ -24,8 +24,7 @@
   $SYM_RESISTOR = @DEFINE-SYMBOL(box=[-3,-2,3,2]) {
     @LINE {(-3, 0) (-1.7, 0) (-1.4, 0.55) (-0.9, -0.55) (-0.45, 0.55) (0, -0.55) (0.45, 0.55) (0.9, -0.55) (1.4, 0.55) (1.7, 0) (3, 0)};
     (-3, 0) @PIN(terminal=1, direction="left");
-    (3, 0) @PIN(terminal=2, direction="right");
-    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 2.3)
+    (3, 0) @PIN(terminal=2, direction="right")
   };
   # @SELECT-INSTANCE(model="resistor") => @SET-SYMBOL $SYM_RESISTOR;
   $SYM_CAPACITOR = @DEFINE-SYMBOL(box=[-3,-2,3,2]) {
@@ -34,8 +33,7 @@
     @LINE {(-0.28, -1) (-0.28, 1)};
     @LINE {(0.28, -1) (0.28, 1)};
     (-3, 0) @PIN(terminal=1, direction="left");
-    (3, 0) @PIN(terminal=2, direction="right");
-    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 2.3)
+    (3, 0) @PIN(terminal=2, direction="right")
   };
   # @SELECT-INSTANCE(model="capacitor") => @SET-SYMBOL $SYM_CAPACITOR;
   $SYM_VCVS = @DEFINE-SYMBOL(box=[-4,-3,4,3]) {
@@ -51,8 +49,7 @@
     (0, 3) @PIN(terminal=1, direction="up");
     (0, -3) @PIN(terminal=2, direction="down");
     (-4, 1) @PIN(terminal=3, direction="left");
-    (-4, -1) @PIN(terminal=4, direction="left");
-    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 3.3)
+    (-4, -1) @PIN(terminal=4, direction="left")
   };
   # @SELECT-INSTANCE(model="vcvs") => @SET-SYMBOL $SYM_VCVS;
   $SYM_VCCS = @DEFINE-SYMBOL(box=[-4,-3,4,3]) {
@@ -68,269 +65,295 @@
     (0, 3) @PIN(terminal=1, direction="up");
     (0, -3) @PIN(terminal=2, direction="down");
     (-4, 1) @PIN(terminal=3, direction="left");
-    (-4, -1) @PIN(terminal=4, direction="left");
-    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 3.3)
+    (-4, -1) @PIN(terminal=4, direction="left")
   };
   # @SELECT-INSTANCE(model="vccs") => @SET-SYMBOL $SYM_VCCS;
-  $SYM_TM_PVRE_PVRE = @DEFINE-SYMBOL(box=[-10,-10,10,10]) {
-    @LINE {(-10, 2) (-9, 2)};
-    (-7.4, 2) @TEXT("cmop", size=0.65, halign="middle", valign="middle");
-    @LINE {(-10, 0) (-9, 0)};
-    (-7.4, 0) @TEXT("dac1", size=0.65, halign="middle", valign="middle");
-    @LINE {(-10, -2) (-9, -2)};
-    (-7.4, -2) @TEXT("dac2", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, 7) (9, 7)};
-    (7.4, 7) @TEXT("buf1", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, 5) (9, 5)};
-    (7.4, 5) @TEXT("card1", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, 3) (9, 3)};
-    (7.4, 3) @TEXT("pad1", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, 1) (9, 1)};
-    (7.4, 1) @TEXT("die1", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, -1) (9, -1)};
-    (7.4, -1) @TEXT("buf2", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, -3) (9, -3)};
-    (7.4, -3) @TEXT("card2", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, -5) (9, -5)};
-    (7.4, -5) @TEXT("pad2", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, -7) (9, -7)};
-    (7.4, -7) @TEXT("die2", size=0.65, halign="middle", valign="middle");
-    @LINE {(-3, -10) (-3, -9)};
-    (-3, -8.35) @TEXT("bias", size=0.65, halign="middle", valign="middle");
-    @LINE {(3, -10) (3, -9)};
-    (3, -8.35) @TEXT("g", size=0.65, halign="middle", valign="middle");
-    @LINE {(-9, -9) (9, -9) (9, 9) (-9, 9) (-9, -9)};
-    @LINE {(-2.7, 0) (-1.4, 0) (-1.4, 1) (1.8, 1)};
-    @LINE {(-1.4, 0) (-1.4, -1) (1.8, -1)};
-    @LINE {(1.3, 1.35) (1.8, 1) (1.3, 0.65)};
-    @LINE {(1.3, -0.65) (1.8, -1) (1.3, -1.35)};
-    (0, 8) @TEXT("PVRE", size=0.82, halign="middle", valign="middle");
-    (-10, 2) @PIN(terminal=1, direction="left");
-    (-10, 0) @PIN(terminal=2, direction="left");
-    (-10, -2) @PIN(terminal=3, direction="left");
-    (-3, -10) @PIN(terminal=4, direction="down");
-    (10, 7) @PIN(terminal=5, direction="right");
-    (10, 5) @PIN(terminal=6, direction="right");
-    (10, 3) @PIN(terminal=7, direction="right");
-    (10, 1) @PIN(terminal=8, direction="right");
-    (10, -1) @PIN(terminal=9, direction="right");
-    (10, -3) @PIN(terminal=10, direction="right");
-    (10, -5) @PIN(terminal=11, direction="right");
-    (10, -7) @PIN(terminal=12, direction="right");
-    (3, -10) @PIN(terminal=13, direction="down");
-    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 10.3)
+  $SYM_TM_PVRE_PVRE = @DEFINE-SYMBOL(box=[-15,-27,15,27]) {
+    @LINE {(-15, 25) (-10, 25)};
+    (-12, 25.8) @TEXT("cmop", size=0.72, halign="middle", valign="middle");
+    @LINE {(-10, 25) (-9, 22)};
+    @LINE {(-15, 21) (-10, 21)};
+    (-12, 21.8) @TEXT("dac1", size=0.72, halign="middle", valign="middle");
+    @LINE {(-10, 21) (-9, 20)};
+    @LINE {(-15, 17) (-10, 17)};
+    (-12, 17.8) @TEXT("dac2", size=0.72, halign="middle", valign="middle");
+    @LINE {(-9, 18.4) (-9, 23.6) (-3, 21) (-9, 18.4)};
+    (-8, 22) @TEXT("+", size=0.75, halign="middle", valign="middle");
+    (-8, 20) @TEXT("−", size=0.75, halign="middle", valign="middle");
+    @LINE {(-3, 21) (9, 21)};
+    @LINE {(9, 21) (15, 21)};
+    (12.3, 21.8) @TEXT("buf1", size=0.72, halign="middle", valign="middle");
+    (9, 21) @CIRCLE(radius=0.22, fill="linecolor", linestyle="none");
+    @LINE {(9, 21) (9, 19.6) (8.55, 19.2) (9.45, 18.6) (8.55, 18) (9.45, 17.4) (9, 17) (9, 15)};
+    @LINE {(9, 15) (15, 15)};
+    (12.3, 15.8) @TEXT("card1", size=0.72, halign="middle", valign="middle");
+    (9, 15) @CIRCLE(radius=0.22, fill="linecolor", linestyle="none");
+    @LINE {(9, 15) (9, 13.6) (8.55, 13.2) (9.45, 12.6) (8.55, 12) (9.45, 11.4) (9, 11) (9, 9)};
+    @LINE {(9, 9) (15, 9)};
+    (12.3, 9.8) @TEXT("pad1", size=0.72, halign="middle", valign="middle");
+    (9, 9) @CIRCLE(radius=0.22, fill="linecolor", linestyle="none");
+    @LINE {(9, 9) (9, 7.6) (8.55, 7.2) (9.45, 6.6) (8.55, 6) (9.45, 5.4) (9, 5) (9, 3)};
+    @LINE {(9, 3) (15, 3)};
+    (12.3, 3.8) @TEXT("die1", size=0.72, halign="middle", valign="middle");
+    (9, 3) @CIRCLE(radius=0.22, fill="linecolor", linestyle="none");
+    @LINE {(9, 3) (9, 1.6) (8.55, 1.2) (9.45, 0.6) (8.55, 0) (9.45, -0.6) (9, -1) (9, -3)};
+    @LINE {(9, -3) (15, -3)};
+    (12.3, -2.2) @TEXT("buf2", size=0.72, halign="middle", valign="middle");
+    (9, -3) @CIRCLE(radius=0.22, fill="linecolor", linestyle="none");
+    @LINE {(9, -3) (9, -4.4) (8.55, -4.8) (9.45, -5.4) (8.55, -6) (9.45, -6.6) (9, -7) (9, -9)};
+    @LINE {(9, -9) (15, -9)};
+    (12.3, -8.2) @TEXT("card2", size=0.72, halign="middle", valign="middle");
+    (9, -9) @CIRCLE(radius=0.22, fill="linecolor", linestyle="none");
+    @LINE {(9, -9) (9, -10.4) (8.55, -10.8) (9.45, -11.4) (8.55, -12) (9.45, -12.6) (9, -13) (9, -15)};
+    @LINE {(9, -15) (15, -15)};
+    (12.3, -14.2) @TEXT("pad2", size=0.72, halign="middle", valign="middle");
+    (9, -15) @CIRCLE(radius=0.22, fill="linecolor", linestyle="none");
+    @LINE {(9, -15) (9, -16.4) (8.55, -16.8) (9.45, -17.4) (8.55, -18) (9.45, -18.6) (9, -19) (9, -21)};
+    @LINE {(9, -21) (15, -21)};
+    (12.3, -20.2) @TEXT("die2", size=0.72, halign="middle", valign="middle");
+    @LINE {(-6, -25) (-6, 19.7)};
+    (-7.4, -24) @TEXT("bias", size=0.7, halign="middle", valign="middle");
+    @LINE {(9, 15) (6, 15) (6, 13.9) (4, 13.9)};
+    @LINE {(4, 13.9) (4, -5.27)};
+    @LINE {(3, -5.27) (5, -5.27)};
+    @LINE {(3, -5.83) (5, -5.83)};
+    @LINE {(4, -5.83) (4, -25)};
+    (-2, 26.2) @TEXT("PVRE", size=0.9, halign="middle", valign="middle");
+    (-15, 25) @PIN(terminal=1, direction="left");
+    (-15, 21) @PIN(terminal=2, direction="left");
+    (-15, 17) @PIN(terminal=3, direction="left");
+    (-6, -25) @PIN(terminal=4, direction="down");
+    (15, 21) @PIN(terminal=5, direction="right");
+    (15, 15) @PIN(terminal=6, direction="right");
+    (15, 9) @PIN(terminal=7, direction="right");
+    (15, 3) @PIN(terminal=8, direction="right");
+    (15, -3) @PIN(terminal=9, direction="right");
+    (15, -9) @PIN(terminal=10, direction="right");
+    (15, -15) @PIN(terminal=11, direction="right");
+    (15, -21) @PIN(terminal=12, direction="right");
+    (4, -25) @PIN(terminal=13, direction="down");
+    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 28.35)
   };
   # @SELECT-INSTANCE(model="TM_PVRE_PVRE") => @SET-SYMBOL $SYM_TM_PVRE_PVRE;
-  $SYM_TM_PVRE_CARD_CHANNEL = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
-    @LINE {(-10, 1) (-9, 1)};
-    (-7.4, 1) @TEXT("cm", size=0.65, halign="middle", valign="middle");
-    @LINE {(-10, -1) (-9, -1)};
-    (-7.4, -1) @TEXT("dac", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, 2) (9, 2)};
-    (7.4, 2) @TEXT("buf", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, 0) (9, 0)};
-    (7.4, 0) @TEXT("card", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, -2) (9, -2)};
-    (7.4, -2) @TEXT("plug", size=0.65, halign="middle", valign="middle");
-    @LINE {(-3, -5) (-3, -4)};
-    (-3, -3.35) @TEXT("bias", size=0.65, halign="middle", valign="middle");
-    @LINE {(3, -5) (3, -4)};
-    (3, -3.35) @TEXT("g", size=0.65, halign="middle", valign="middle");
-    @LINE {(-9, -4) (9, -4) (9, 4) (-9, 4) (-9, -4)};
-    @LINE {(-2.7, 0) (-1.4, 0) (-1.4, 1) (1.8, 1)};
-    @LINE {(-1.4, 0) (-1.4, -1) (1.8, -1)};
-    @LINE {(1.3, 1.35) (1.8, 1) (1.3, 0.65)};
-    @LINE {(1.3, -0.65) (1.8, -1) (1.3, -1.35)};
-    (0, 3) @TEXT("CARD CHANNEL", size=0.82, halign="middle", valign="middle");
-    (-10, 1) @PIN(terminal=1, direction="left");
-    (-10, -1) @PIN(terminal=2, direction="left");
-    (-3, -5) @PIN(terminal=3, direction="down");
-    (10, 2) @PIN(terminal=4, direction="right");
-    (10, 0) @PIN(terminal=5, direction="right");
-    (10, -2) @PIN(terminal=6, direction="right");
-    (3, -5) @PIN(terminal=7, direction="down");
-    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 5.3)
+  $SYM_TM_PVRE_CARD_CHANNEL = @DEFINE-SYMBOL(box=[-15,-12,15,12]) {
+    @LINE {(-15, 8) (-10, 8)};
+    (-12, 8.8) @TEXT("cm", size=0.72, halign="middle", valign="middle");
+    @LINE {(-10, 8) (-9, 7)};
+    @LINE {(-15, 4) (-10, 4)};
+    (-12, 4.8) @TEXT("dac", size=0.72, halign="middle", valign="middle");
+    @LINE {(-10, 4) (-9, 5)};
+    @LINE {(-9, 3.4) (-9, 8.6) (-3, 6) (-9, 3.4)};
+    (-8, 7) @TEXT("+", size=0.75, halign="middle", valign="middle");
+    (-8, 5) @TEXT("−", size=0.75, halign="middle", valign="middle");
+    @LINE {(-3, 6) (9, 6)};
+    @LINE {(9, 6) (15, 6)};
+    (12.3, 6.8) @TEXT("buf", size=0.72, halign="middle", valign="middle");
+    (9, 6) @CIRCLE(radius=0.22, fill="linecolor", linestyle="none");
+    @LINE {(9, 6) (9, 4.6) (8.55, 4.2) (9.45, 3.6) (8.55, 3) (9.45, 2.4) (9, 2) (9, 0)};
+    @LINE {(9, 0) (15, 0)};
+    (12.3, 0.8) @TEXT("card", size=0.72, halign="middle", valign="middle");
+    (9, 0) @CIRCLE(radius=0.22, fill="linecolor", linestyle="none");
+    @LINE {(9, 0) (9, -1.4) (8.55, -1.8) (9.45, -2.4) (8.55, -3) (9.45, -3.6) (9, -4) (9, -6)};
+    @LINE {(9, -6) (15, -6)};
+    (12.3, -5.2) @TEXT("plug", size=0.72, halign="middle", valign="middle");
+    @LINE {(-6, -10) (-6, 4.7)};
+    (-7.4, -9) @TEXT("bias", size=0.7, halign="middle", valign="middle");
+    @LINE {(9, 0) (6, 0) (6, -1.1) (4, -1.1)};
+    @LINE {(4, -1.1) (4, -5.27)};
+    @LINE {(3, -5.27) (5, -5.27)};
+    @LINE {(3, -5.83) (5, -5.83)};
+    @LINE {(4, -5.83) (4, -10)};
+    (-2, 11.2) @TEXT("Card driver", size=0.9, halign="middle", valign="middle");
+    (-15, 8) @PIN(terminal=1, direction="left");
+    (-15, 4) @PIN(terminal=2, direction="left");
+    (-6, -10) @PIN(terminal=3, direction="down");
+    (15, 6) @PIN(terminal=4, direction="right");
+    (15, 0) @PIN(terminal=5, direction="right");
+    (15, -6) @PIN(terminal=6, direction="right");
+    (4, -10) @PIN(terminal=7, direction="down");
+    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 13.35)
   };
   # @SELECT-INSTANCE(model="TM_PVRE_CARD_CHANNEL") => @SET-SYMBOL $SYM_TM_PVRE_CARD_CHANNEL;
-  $SYM_TM_PVRE_CARD_ONLY = @DEFINE-SYMBOL(box=[-10,-8,10,8]) {
-    @LINE {(-10, 2) (-9, 2)};
-    (-7.4, 2) @TEXT("cmop", size=0.65, halign="middle", valign="middle");
-    @LINE {(-10, 0) (-9, 0)};
-    (-7.4, 0) @TEXT("dac1", size=0.65, halign="middle", valign="middle");
-    @LINE {(-10, -2) (-9, -2)};
-    (-7.4, -2) @TEXT("dac2", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, 5) (9, 5)};
-    (7.4, 5) @TEXT("buf1", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, 3) (9, 3)};
-    (7.4, 3) @TEXT("card1", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, 1) (9, 1)};
-    (7.4, 1) @TEXT("plug1", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, -1) (9, -1)};
-    (7.4, -1) @TEXT("buf2", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, -3) (9, -3)};
-    (7.4, -3) @TEXT("card2", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, -5) (9, -5)};
-    (7.4, -5) @TEXT("plug2", size=0.65, halign="middle", valign="middle");
-    @LINE {(-3, -8) (-3, -7)};
-    (-3, -6.35) @TEXT("bias", size=0.65, halign="middle", valign="middle");
-    @LINE {(3, -8) (3, -7)};
-    (3, -6.35) @TEXT("g", size=0.65, halign="middle", valign="middle");
-    @LINE {(-9, -7) (9, -7) (9, 7) (-9, 7) (-9, -7)};
-    @LINE {(-2.7, 0) (-1.4, 0) (-1.4, 1) (1.8, 1)};
-    @LINE {(-1.4, 0) (-1.4, -1) (1.8, -1)};
-    @LINE {(1.3, 1.35) (1.8, 1) (1.3, 0.65)};
-    @LINE {(1.3, -0.65) (1.8, -1) (1.3, -1.35)};
-    (0, 6) @TEXT("CARD ONLY", size=0.82, halign="middle", valign="middle");
-    (-10, 2) @PIN(terminal=1, direction="left");
-    (-10, 0) @PIN(terminal=2, direction="left");
-    (-10, -2) @PIN(terminal=3, direction="left");
-    (-3, -8) @PIN(terminal=4, direction="down");
-    (10, 5) @PIN(terminal=5, direction="right");
-    (10, 3) @PIN(terminal=6, direction="right");
-    (10, 1) @PIN(terminal=7, direction="right");
-    (10, -1) @PIN(terminal=8, direction="right");
-    (10, -3) @PIN(terminal=9, direction="right");
-    (10, -5) @PIN(terminal=10, direction="right");
-    (3, -8) @PIN(terminal=11, direction="down");
-    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 8.3)
+  $SYM_TM_PVRE_CARD_ONLY = @DEFINE-SYMBOL(box=[-15,-21,15,21]) {
+    @LINE {(-15, 19) (-10, 19)};
+    (-12, 19.8) @TEXT("cmop", size=0.72, halign="middle", valign="middle");
+    @LINE {(-10, 19) (-9, 16)};
+    @LINE {(-15, 15) (-10, 15)};
+    (-12, 15.8) @TEXT("dac1", size=0.72, halign="middle", valign="middle");
+    @LINE {(-10, 15) (-9, 14)};
+    @LINE {(-15, 11) (-10, 11)};
+    (-12, 11.8) @TEXT("dac2", size=0.72, halign="middle", valign="middle");
+    @LINE {(-9, 12.4) (-9, 17.6) (-3, 15) (-9, 12.4)};
+    (-8, 16) @TEXT("+", size=0.75, halign="middle", valign="middle");
+    (-8, 14) @TEXT("−", size=0.75, halign="middle", valign="middle");
+    @LINE {(-3, 15) (9, 15)};
+    @LINE {(9, 15) (15, 15)};
+    (12.3, 15.8) @TEXT("buf1", size=0.72, halign="middle", valign="middle");
+    (9, 15) @CIRCLE(radius=0.22, fill="linecolor", linestyle="none");
+    @LINE {(9, 15) (9, 13.6) (8.55, 13.2) (9.45, 12.6) (8.55, 12) (9.45, 11.4) (9, 11) (9, 9)};
+    @LINE {(9, 9) (15, 9)};
+    (12.3, 9.8) @TEXT("card1", size=0.72, halign="middle", valign="middle");
+    (9, 9) @CIRCLE(radius=0.22, fill="linecolor", linestyle="none");
+    @LINE {(9, 9) (9, 7.6) (8.55, 7.2) (9.45, 6.6) (8.55, 6) (9.45, 5.4) (9, 5) (9, 3)};
+    @LINE {(9, 3) (15, 3)};
+    (12.3, 3.8) @TEXT("plug1", size=0.72, halign="middle", valign="middle");
+    (9, 3) @CIRCLE(radius=0.22, fill="linecolor", linestyle="none");
+    @LINE {(9, 3) (9, 1.6) (8.55, 1.2) (9.45, 0.6) (8.55, 0) (9.45, -0.6) (9, -1) (9, -3)};
+    @LINE {(9, -3) (15, -3)};
+    (12.3, -2.2) @TEXT("buf2", size=0.72, halign="middle", valign="middle");
+    (9, -3) @CIRCLE(radius=0.22, fill="linecolor", linestyle="none");
+    @LINE {(9, -3) (9, -4.4) (8.55, -4.8) (9.45, -5.4) (8.55, -6) (9.45, -6.6) (9, -7) (9, -9)};
+    @LINE {(9, -9) (15, -9)};
+    (12.3, -8.2) @TEXT("card2", size=0.72, halign="middle", valign="middle");
+    (9, -9) @CIRCLE(radius=0.22, fill="linecolor", linestyle="none");
+    @LINE {(9, -9) (9, -10.4) (8.55, -10.8) (9.45, -11.4) (8.55, -12) (9.45, -12.6) (9, -13) (9, -15)};
+    @LINE {(9, -15) (15, -15)};
+    (12.3, -14.2) @TEXT("plug2", size=0.72, halign="middle", valign="middle");
+    @LINE {(-6, -19) (-6, 13.7)};
+    (-7.4, -18) @TEXT("bias", size=0.7, halign="middle", valign="middle");
+    @LINE {(9, 9) (6, 9) (6, 7.9) (4, 7.9)};
+    @LINE {(4, 7.9) (4, -5.27)};
+    @LINE {(3, -5.27) (5, -5.27)};
+    @LINE {(3, -5.83) (5, -5.83)};
+    @LINE {(4, -5.83) (4, -19)};
+    (-2, 20.2) @TEXT("CARD ONLY", size=0.9, halign="middle", valign="middle");
+    (-15, 19) @PIN(terminal=1, direction="left");
+    (-15, 15) @PIN(terminal=2, direction="left");
+    (-15, 11) @PIN(terminal=3, direction="left");
+    (-6, -19) @PIN(terminal=4, direction="down");
+    (15, 15) @PIN(terminal=5, direction="right");
+    (15, 9) @PIN(terminal=6, direction="right");
+    (15, 3) @PIN(terminal=7, direction="right");
+    (15, -3) @PIN(terminal=8, direction="right");
+    (15, -9) @PIN(terminal=9, direction="right");
+    (15, -15) @PIN(terminal=10, direction="right");
+    (4, -19) @PIN(terminal=11, direction="down");
+    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 22.35)
   };
   # @SELECT-INSTANCE(model="TM_PVRE_CARD_ONLY") => @SET-SYMBOL $SYM_TM_PVRE_CARD_ONLY;
-  $SYM_TM_PVRE_PVRE_CH = @DEFINE-SYMBOL(box=[-10,-6,10,6]) {
-    @LINE {(-10, 1) (-9, 1)};
-    (-7.4, 1) @TEXT("cm", size=0.65, halign="middle", valign="middle");
-    @LINE {(-10, -1) (-9, -1)};
-    (-7.4, -1) @TEXT("dac", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, 3) (9, 3)};
-    (7.4, 3) @TEXT("buf", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, 1) (9, 1)};
-    (7.4, 1) @TEXT("card", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, -1) (9, -1)};
-    (7.4, -1) @TEXT("pad", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, -3) (9, -3)};
-    (7.4, -3) @TEXT("die", size=0.65, halign="middle", valign="middle");
-    @LINE {(-3, -6) (-3, -5)};
-    (-3, -4.35) @TEXT("bias", size=0.65, halign="middle", valign="middle");
-    @LINE {(3, -6) (3, -5)};
-    (3, -4.35) @TEXT("g", size=0.65, halign="middle", valign="middle");
-    @LINE {(-9, -5) (9, -5) (9, 5) (-9, 5) (-9, -5)};
-    @LINE {(-2.7, 0) (-1.4, 0) (-1.4, 1) (1.8, 1)};
-    @LINE {(-1.4, 0) (-1.4, -1) (1.8, -1)};
-    @LINE {(1.3, 1.35) (1.8, 1) (1.3, 0.65)};
-    @LINE {(1.3, -0.65) (1.8, -1) (1.3, -1.35)};
-    (0, 4) @TEXT("PVRE CH", size=0.82, halign="middle", valign="middle");
-    (-10, 1) @PIN(terminal=1, direction="left");
-    (-10, -1) @PIN(terminal=2, direction="left");
-    (-3, -6) @PIN(terminal=3, direction="down");
-    (10, 3) @PIN(terminal=4, direction="right");
-    (10, 1) @PIN(terminal=5, direction="right");
-    (10, -1) @PIN(terminal=6, direction="right");
-    (10, -3) @PIN(terminal=7, direction="right");
-    (3, -6) @PIN(terminal=8, direction="down");
-    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 6.3)
+  $SYM_TM_PVRE_PVRE_CH = @DEFINE-SYMBOL(box=[-15,-15,15,15]) {
+    @LINE {(-15, 11) (-10, 11)};
+    (-12, 11.8) @TEXT("cm", size=0.72, halign="middle", valign="middle");
+    @LINE {(-10, 11) (-9, 10)};
+    @LINE {(-15, 7) (-10, 7)};
+    (-12, 7.8) @TEXT("dac", size=0.72, halign="middle", valign="middle");
+    @LINE {(-10, 7) (-9, 8)};
+    @LINE {(-9, 6.4) (-9, 11.6) (-3, 9) (-9, 6.4)};
+    (-8, 10) @TEXT("+", size=0.75, halign="middle", valign="middle");
+    (-8, 8) @TEXT("−", size=0.75, halign="middle", valign="middle");
+    @LINE {(-3, 9) (9, 9)};
+    @LINE {(9, 9) (15, 9)};
+    (12.3, 9.8) @TEXT("buf", size=0.72, halign="middle", valign="middle");
+    (9, 9) @CIRCLE(radius=0.22, fill="linecolor", linestyle="none");
+    @LINE {(9, 9) (9, 7.6) (8.55, 7.2) (9.45, 6.6) (8.55, 6) (9.45, 5.4) (9, 5) (9, 3)};
+    @LINE {(9, 3) (15, 3)};
+    (12.3, 3.8) @TEXT("card", size=0.72, halign="middle", valign="middle");
+    (9, 3) @CIRCLE(radius=0.22, fill="linecolor", linestyle="none");
+    @LINE {(9, 3) (9, 1.6) (8.55, 1.2) (9.45, 0.6) (8.55, 0) (9.45, -0.6) (9, -1) (9, -3)};
+    @LINE {(9, -3) (15, -3)};
+    (12.3, -2.2) @TEXT("pad", size=0.72, halign="middle", valign="middle");
+    (9, -3) @CIRCLE(radius=0.22, fill="linecolor", linestyle="none");
+    @LINE {(9, -3) (9, -4.4) (8.55, -4.8) (9.45, -5.4) (8.55, -6) (9.45, -6.6) (9, -7) (9, -9)};
+    @LINE {(9, -9) (15, -9)};
+    (12.3, -8.2) @TEXT("die", size=0.72, halign="middle", valign="middle");
+    @LINE {(-6, -13) (-6, 7.7)};
+    (-7.4, -12) @TEXT("bias", size=0.7, halign="middle", valign="middle");
+    @LINE {(9, -3) (6, -3) (6, -4.1) (4, -4.1)};
+    @LINE {(4, -4.1) (4, -8.27)};
+    @LINE {(3, -8.27) (5, -8.27)};
+    @LINE {(3, -8.83) (5, -8.83)};
+    @LINE {(4, -8.83) (4, -13)};
+    (-2, 14.2) @TEXT("PVRE channel", size=0.9, halign="middle", valign="middle");
+    (-15, 11) @PIN(terminal=1, direction="left");
+    (-15, 7) @PIN(terminal=2, direction="left");
+    (-6, -13) @PIN(terminal=3, direction="down");
+    (15, 9) @PIN(terminal=4, direction="right");
+    (15, 3) @PIN(terminal=5, direction="right");
+    (15, -3) @PIN(terminal=6, direction="right");
+    (15, -9) @PIN(terminal=7, direction="right");
+    (4, -13) @PIN(terminal=8, direction="down");
+    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 16.35)
   };
   # @SELECT-INSTANCE(model="TM_PVRE_PVRE_CH") => @SET-SYMBOL $SYM_TM_PVRE_PVRE_CH;
-  $SYM_TM_PVRE_AMP = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
-    @LINE {(-10, 1) (-9, 1)};
-    (-7.4, 1) @TEXT("p", size=0.65, halign="middle", valign="middle");
-    @LINE {(-10, -1) (-9, -1)};
-    (-7.4, -1) @TEXT("n", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, 0) (9, 0)};
-    (7.4, 0) @TEXT("out", size=0.65, halign="middle", valign="middle");
-    @LINE {(-3, -5) (-3, -4)};
-    (-3, -3.35) @TEXT("bias", size=0.65, halign="middle", valign="middle");
-    @LINE {(3, -5) (3, -4)};
-    (3, -3.35) @TEXT("g", size=0.65, halign="middle", valign="middle");
-    @LINE {(-9, -4) (9, -4) (9, 4) (-9, 4) (-9, -4)};
-    @LINE {(-2, -1.7) (-2, 1.7) (2, 0) (-2, -1.7)};
-    (-1.25, 0.65) @TEXT("+", size=0.8, halign="middle", valign="middle");
-    (-1.25, -0.65) @TEXT("−", size=0.8, halign="middle", valign="middle");
-    (0, 3) @TEXT("AMP", size=0.82, halign="middle", valign="middle");
-    (-10, 1) @PIN(terminal=1, direction="left");
-    (-10, -1) @PIN(terminal=2, direction="left");
-    (10, 0) @PIN(terminal=3, direction="right");
-    (-3, -5) @PIN(terminal=4, direction="down");
-    (3, -5) @PIN(terminal=5, direction="down");
-    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 5.3)
+  $SYM_TM_PVRE_AMP = @DEFINE-SYMBOL(box=[-7,-6,7,6]) {
+    @LINE {(-5, -5) (-5, 5) (5, 0) (-5, -5)};
+    @LINE {(-7, 2) (-5, 2)};
+    @LINE {(-7, -2) (-5, -2)};
+    @LINE {(5, 0) (7, 0)};
+    @LINE {(-2, 6) (-2, 3.5)};
+    @LINE {(-2, -3.5) (-2, -6)};
+    (-3.9, -2) @TEXT("+", size=1.25, halign="middle", valign="middle");
+    (-3.9, 2) @TEXT("−", size=1.25, halign="middle", valign="middle");
+    (-0.75, 0) @TEXT("A(s)", size=0.78, halign="middle", valign="middle");
+    (-7, -2) @PIN(terminal=1, direction="left");
+    (-7, 2) @PIN(terminal=2, direction="left");
+    (7, 0) @PIN(terminal=3, direction="right");
+    (-2, 6) @PIN(terminal=4, direction="up");
+    (-2, -6) @PIN(terminal=5, direction="down");
+    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 7.35)
   };
   # @SELECT-INSTANCE(model="TM_PVRE_AMP") => @SET-SYMBOL $SYM_TM_PVRE_AMP;
-  $SYM_TM_PVRE_LINE = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
-    @LINE {(-10, 0) (-9, 0)};
-    (-7.4, 0) @TEXT("a", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, 0) (9, 0)};
-    (7.4, 0) @TEXT("b", size=0.65, halign="middle", valign="middle");
+  $SYM_TM_PVRE_LINE = @DEFINE-SYMBOL(box=[-8,-5,8,5]) {
+    @LINE {(-8, 0) (-6, 0) (-5.7, 0.5) (-5.2, -0.5) (-4.7, 0.5) (-4.2, -0.5) (-3.7, 0.5) (-3.2, -0.5) (-3, 0) (-1, 0)};
+    @LINE {(-1, 0) (0, 0)};
+    @LINE {(0, 0) (0.125, 0.382683) (0.25, 0.707107) (0.375, 0.92388) (0.5, 1) (0.625, 0.92388) (0.75, 0.707107) (0.875, 0.382683) (1, 1.22465e-16) (1.125, 0.382683) (1.25, 0.707107) (1.375, 0.92388) (1.5, 1) (1.625, 0.92388) (1.75, 0.707107) (1.875, 0.382683) (2, 2.44929e-16) (2.125, 0.382683) (2.25, 0.707107) (2.375, 0.92388) (2.5, 1) (2.625, 0.92388) (2.75, 0.707107) (2.875, 0.382683) (3, 3.67394e-16) (3.125, 0.382683) (3.25, 0.707107) (3.375, 0.92388) (3.5, 1) (3.625, 0.92388) (3.75, 0.707107) (3.875, 0.382683) (4, 4.89859e-16)};
+    @LINE {(4, 0) (8, 0)};
+    (0, -3.3) @TEXT("g", size=0.7, halign="middle", valign="middle");
     @LINE {(0, -5) (0, -4)};
-    (0, -3.35) @TEXT("g", size=0.65, halign="middle", valign="middle");
-    @LINE {(-9, -4) (9, -4) (9, 4) (-9, 4) (-9, -4)};
-    @LINE {(-3, 0.8) (-0.4, 0.8) (0.1, 1.2) (0.55, 0.4) (1, 0.8) (3, 0.8)};
-    @LINE {(0, 0.8) (0, -0.25)};
-    @LINE {(-0.9, -0.25) (0.9, -0.25)};
-    @LINE {(-0.9, -0.65) (0.9, -0.65)};
-    @LINE {(0, -0.65) (0, -1.4)};
-    (0, 3) @TEXT("LINE", size=0.82, halign="middle", valign="middle");
-    (-10, 0) @PIN(terminal=1, direction="left");
-    (10, 0) @PIN(terminal=2, direction="right");
+    (-8, 0) @PIN(terminal=1, direction="left");
+    (8, 0) @PIN(terminal=2, direction="right");
     (0, -5) @PIN(terminal=3, direction="down");
-    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 5.3)
+    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 6.35)
   };
   # @SELECT-INSTANCE(model="TM_PVRE_LINE") => @SET-SYMBOL $SYM_TM_PVRE_LINE;
-  $SYM_TM_PVRE_NOISE = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
-    @LINE {(-10, 0) (-9, 0)};
-    (-7.4, 0) @TEXT("p", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, 0) (9, 0)};
-    (7.4, 0) @TEXT("q", size=0.65, halign="middle", valign="middle");
-    @LINE {(0, -5) (0, -4)};
-    (0, -3.35) @TEXT("g", size=0.65, halign="middle", valign="middle");
-    @LINE {(-9, -4) (9, -4) (9, 4) (-9, 4) (-9, -4)};
-    @LINE {(-3, 0) (-2.4, 0.1) (-2, 0.8) (-1.5, -0.6) (-1, 1.2) (-0.35, -1.1) (0, 0.5) (0.5, -0.4) (1, 0.6) (1.6, -0.7) (2, 0.2) (3, 0)};
-    (0, 3) @TEXT("NOISE", size=0.82, halign="middle", valign="middle");
-    (-10, 0) @PIN(terminal=1, direction="left");
-    (10, 0) @PIN(terminal=2, direction="right");
-    (0, -5) @PIN(terminal=3, direction="down");
-    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 5.3)
+  $SYM_TM_PVRE_NOISE = @DEFINE-SYMBOL(box=[-5,-4,5,4]) {
+    (0, 0) @CIRCLE(radius=2.2);
+    @LINE {(-5, 0) (-2.2, 0)};
+    @LINE {(2.2, 0) (5, 0)};
+    @LINE {(0, -2.2) (0, -4)};
+    @LINE {(-1.55, 0) (-1.1, 0.3) (-0.75, -0.6) (-0.3, 1.05) (0.15, -0.95) (0.6, 0.55) (1, 0.05) (1.5, 0.3)};
+    (-2.8, 0.8) @TEXT("−", size=0.8, halign="middle", valign="middle");
+    (2.8, 0.8) @TEXT("+", size=0.8, halign="middle", valign="middle");
+    (5, 0) @PIN(terminal=1, direction="right");
+    (-5, 0) @PIN(terminal=2, direction="left");
+    (0, -4) @PIN(terminal=3, direction="down");
+    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 5.35)
   };
   # @SELECT-INSTANCE(model="TM_PVRE_NOISE") => @SET-SYMBOL $SYM_TM_PVRE_NOISE;
-  $SYM_TM_PVRE_PI_SECTION = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
-    @LINE {(-10, 0) (-9, 0)};
-    (-7.4, 0) @TEXT("p", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, 0) (9, 0)};
-    (7.4, 0) @TEXT("q", size=0.65, halign="middle", valign="middle");
-    @LINE {(0, -5) (0, -4)};
-    (0, -3.35) @TEXT("g", size=0.65, halign="middle", valign="middle");
-    @LINE {(-9, -4) (9, -4) (9, 4) (-9, 4) (-9, -4)};
-    @LINE {(-3, 0.8) (-0.4, 0.8) (0.1, 1.2) (0.55, 0.4) (1, 0.8) (3, 0.8)};
-    @LINE {(0, 0.8) (0, -0.25)};
-    @LINE {(-0.9, -0.25) (0.9, -0.25)};
-    @LINE {(-0.9, -0.65) (0.9, -0.65)};
-    @LINE {(0, -0.65) (0, -1.4)};
-    (0, 3) @TEXT("PI SECTION", size=0.82, halign="middle", valign="middle");
-    (-10, 0) @PIN(terminal=1, direction="left");
-    (10, 0) @PIN(terminal=2, direction="right");
+  $SYM_TM_PVRE_PI_SECTION = @DEFINE-SYMBOL(box=[-8,-5,8,5]) {
+    @LINE {(-8, 0) (-1.5, 0) (-1.2, 0.5) (-0.7, -0.5) (-0.2, 0.5) (0.3, -0.5) (0.8, 0.5) (1.3, -0.5) (1.5, 0) (8, 0)};
+    @LINE {(4, 0) (4, -1.22)};
+    @LINE {(3, -1.22) (5, -1.22)};
+    @LINE {(3, -1.78) (5, -1.78)};
+    @LINE {(4, -1.78) (4, -3)};
+    @LINE {(4, -3) (0, -3) (0, -5)};
+    @LINE {(-4, 0) (-4, -1.22)};
+    @LINE {(-5, -1.22) (-3, -1.22)};
+    @LINE {(-5, -1.78) (-3, -1.78)};
+    @LINE {(-4, -1.78) (-4, -3)};
+    @LINE {(-4, -3) (0, -3)};
+    (-8, 0) @PIN(terminal=1, direction="left");
+    (8, 0) @PIN(terminal=2, direction="right");
     (0, -5) @PIN(terminal=3, direction="down");
-    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 5.3)
+    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 6.35)
   };
   # @SELECT-INSTANCE(model="TM_PVRE_PI_SECTION") => @SET-SYMBOL $SYM_TM_PVRE_PI_SECTION;
-  $SYM_TM_PVRE_LT1355 = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
-    @LINE {(-10, 1) (-9, 1)};
-    (-7.4, 1) @TEXT("p", size=0.65, halign="middle", valign="middle");
-    @LINE {(-10, -1) (-9, -1)};
-    (-7.4, -1) @TEXT("n", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, 0) (9, 0)};
-    (7.4, 0) @TEXT("o", size=0.65, halign="middle", valign="middle");
-    @LINE {(-3, -5) (-3, -4)};
-    (-3, -3.35) @TEXT("bias", size=0.65, halign="middle", valign="middle");
-    @LINE {(3, -5) (3, -4)};
-    (3, -3.35) @TEXT("g", size=0.65, halign="middle", valign="middle");
-    @LINE {(-9, -4) (9, -4) (9, 4) (-9, 4) (-9, -4)};
-    @LINE {(-2, -1.7) (-2, 1.7) (2, 0) (-2, -1.7)};
-    (-1.25, 0.65) @TEXT("+", size=0.8, halign="middle", valign="middle");
-    (-1.25, -0.65) @TEXT("−", size=0.8, halign="middle", valign="middle");
-    (0, 3) @TEXT("LT1355", size=0.82, halign="middle", valign="middle");
-    (-10, 1) @PIN(terminal=1, direction="left");
-    (-10, -1) @PIN(terminal=2, direction="left");
-    (10, 0) @PIN(terminal=3, direction="right");
-    (-3, -5) @PIN(terminal=4, direction="down");
-    (3, -5) @PIN(terminal=5, direction="down");
-    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 5.3)
+  $SYM_TM_PVRE_LT1355 = @DEFINE-SYMBOL(box=[-7,-6,7,6]) {
+    @LINE {(-5, -5) (-5, 5) (5, 0) (-5, -5)};
+    @LINE {(-7, 2) (-5, 2)};
+    @LINE {(-7, -2) (-5, -2)};
+    @LINE {(5, 0) (7, 0)};
+    @LINE {(-2, 6) (-2, 3.5)};
+    @LINE {(-2, -3.5) (-2, -6)};
+    (-3.9, -2) @TEXT("+", size=1.25, halign="middle", valign="middle");
+    (-3.9, 2) @TEXT("−", size=1.25, halign="middle", valign="middle");
+    (-0.75, 0) @TEXT("1355", size=0.78, halign="middle", valign="middle");
+    (-7, -2) @PIN(terminal=1, direction="left");
+    (-7, 2) @PIN(terminal=2, direction="left");
+    (7, 0) @PIN(terminal=3, direction="right");
+    (-2, 6) @PIN(terminal=4, direction="up");
+    (-2, -6) @PIN(terminal=5, direction="down");
+    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 7.35)
   };
   # @SELECT-INSTANCE(model="TM_PVRE_LT1355") => @SET-SYMBOL $SYM_TM_PVRE_LT1355;
   $SYM_TM_PVRE_LTC2972_SET = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
@@ -348,77 +371,65 @@
     (-10, 0) @PIN(terminal=1, direction="left");
     (10, 0) @PIN(terminal=2, direction="right");
     (0, -5) @PIN(terminal=3, direction="down");
-    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 5.3)
+    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 6.35)
   };
   # @SELECT-INSTANCE(model="TM_PVRE_LTC2972_SET") => @SET-SYMBOL $SYM_TM_PVRE_LTC2972_SET;
-  $SYM_TM_PVRE_PVRE_DRV = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
-    @LINE {(-10, 1) (-9, 1)};
-    (-7.4, 1) @TEXT("cm", size=0.65, halign="middle", valign="middle");
-    @LINE {(-10, -1) (-9, -1)};
-    (-7.4, -1) @TEXT("dac", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, 0) (9, 0)};
-    (7.4, 0) @TEXT("buf", size=0.65, halign="middle", valign="middle");
-    @LINE {(-3, -5) (-3, -4)};
-    (-3, -3.35) @TEXT("bias", size=0.65, halign="middle", valign="middle");
-    @LINE {(3, -5) (3, -4)};
-    (3, -3.35) @TEXT("g", size=0.65, halign="middle", valign="middle");
-    @LINE {(-9, -4) (9, -4) (9, 4) (-9, 4) (-9, -4)};
-    @LINE {(-2, -1.7) (-2, 1.7) (2, 0) (-2, -1.7)};
-    (-1.25, 0.65) @TEXT("+", size=0.8, halign="middle", valign="middle");
-    (-1.25, -0.65) @TEXT("−", size=0.8, halign="middle", valign="middle");
-    (0, 3) @TEXT("PVRE DRV", size=0.82, halign="middle", valign="middle");
-    (-10, 1) @PIN(terminal=1, direction="left");
-    (-10, -1) @PIN(terminal=2, direction="left");
-    (-3, -5) @PIN(terminal=3, direction="down");
-    (10, 0) @PIN(terminal=4, direction="right");
-    (3, -5) @PIN(terminal=5, direction="down");
-    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 5.3)
+  $SYM_TM_PVRE_PVRE_DRV = @DEFINE-SYMBOL(box=[-7,-6,7,6]) {
+    @LINE {(-5, -5) (-5, 5) (5, 0) (-5, -5)};
+    @LINE {(-7, 2) (-5, 2)};
+    @LINE {(-7, -2) (-5, -2)};
+    @LINE {(5, 0) (7, 0)};
+    @LINE {(-2, 6) (-2, 3.5)};
+    @LINE {(-2, -3.5) (-2, -6)};
+    (-3.9, -2) @TEXT("+", size=1.25, halign="middle", valign="middle");
+    (-3.9, 2) @TEXT("−", size=1.25, halign="middle", valign="middle");
+    (-0.75, 0) @TEXT("DRV", size=0.78, halign="middle", valign="middle");
+    (-7, -2) @PIN(terminal=1, direction="left");
+    (-7, 2) @PIN(terminal=2, direction="left");
+    (-2, 6) @PIN(terminal=3, direction="up");
+    (7, 0) @PIN(terminal=4, direction="right");
+    (-2, -6) @PIN(terminal=5, direction="down");
+    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 7.35)
   };
   # @SELECT-INSTANCE(model="TM_PVRE_PVRE_DRV") => @SET-SYMBOL $SYM_TM_PVRE_PVRE_DRV;
-  $SYM_TM_PVRE_CARD_PATH = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
-    @LINE {(-10, 0) (-9, 0)};
-    (-7.4, 0) @TEXT("plug", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, 1) (9, 1)};
-    (7.4, 1) @TEXT("pad", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, -1) (9, -1)};
-    (7.4, -1) @TEXT("die", size=0.65, halign="middle", valign="middle");
-    @LINE {(0, -5) (0, -4)};
-    (0, -3.35) @TEXT("g", size=0.65, halign="middle", valign="middle");
-    @LINE {(-9, -4) (9, -4) (9, 4) (-9, 4) (-9, -4)};
-    @LINE {(-3, 0.8) (-0.4, 0.8) (0.1, 1.2) (0.55, 0.4) (1, 0.8) (3, 0.8)};
-    @LINE {(0, 0.8) (0, -0.25)};
-    @LINE {(-0.9, -0.25) (0.9, -0.25)};
-    @LINE {(-0.9, -0.65) (0.9, -0.65)};
-    @LINE {(0, -0.65) (0, -1.4)};
-    (0, 3) @TEXT("CARD PATH", size=0.82, halign="middle", valign="middle");
-    (-10, 0) @PIN(terminal=1, direction="left");
-    (10, 1) @PIN(terminal=2, direction="right");
-    (10, -1) @PIN(terminal=3, direction="right");
-    (0, -5) @PIN(terminal=4, direction="down");
-    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 5.3)
+  $SYM_TM_PVRE_CARD_PATH = @DEFINE-SYMBOL(box=[-8,-5,8,5]) {
+    @LINE {(-8, 0) (-6, 0) (-5.7, 0.5) (-5.2, -0.5) (-4.7, 0.5) (-4.2, -0.5) (-3.7, 0.5) (-3.2, -0.5) (-3, 0) (-1, 0)};
+    @LINE {(-1, 0) (0, 0)};
+    @LINE {(0, 0) (0.125, 0.382683) (0.25, 0.707107) (0.375, 0.92388) (0.5, 1) (0.625, 0.92388) (0.75, 0.707107) (0.875, 0.382683) (1, 1.22465e-16) (1.125, 0.382683) (1.25, 0.707107) (1.375, 0.92388) (1.5, 1) (1.625, 0.92388) (1.75, 0.707107) (1.875, 0.382683) (2, 2.44929e-16) (2.125, 0.382683) (2.25, 0.707107) (2.375, 0.92388) (2.5, 1) (2.625, 0.92388) (2.75, 0.707107) (2.875, 0.382683) (3, 3.67394e-16) (3.125, 0.382683) (3.25, 0.707107) (3.375, 0.92388) (3.5, 1) (3.625, 0.92388) (3.75, 0.707107) (3.875, 0.382683) (4, 4.89859e-16)};
+    @LINE {(4, 0) (8, 0)};
+    @LINE {(3, 5) (3, 2) (0, 2) (0, 0)};
+    (4.1, 3.6) @TEXT("pad", size=0.6, halign="middle", valign="middle");
+    @LINE {(0, 0) (0, -1) (3, -1)};
+    @LINE {(3, -1) (3, -2.72)};
+    @LINE {(2, -2.72) (4, -2.72)};
+    @LINE {(2, -3.28) (4, -3.28)};
+    @LINE {(3, -3.28) (3, -5)};
+    (0, 0) @CIRCLE(radius=0.18, fill="linecolor", linestyle="none");
+    (-8, 0) @PIN(terminal=1, direction="left");
+    (3, 5) @PIN(terminal=2, direction="up");
+    (8, 0) @PIN(terminal=3, direction="right");
+    (3, -5) @PIN(terminal=4, direction="down");
+    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 6.35)
   };
   # @SELECT-INSTANCE(model="TM_PVRE_CARD_PATH") => @SET-SYMBOL $SYM_TM_PVRE_CARD_PATH;
-  $SYM_TM_PVRE_CARD_PCB = @DEFINE-SYMBOL(box=[-10,-5,10,5]) {
-    @LINE {(-10, 0) (-9, 0)};
-    (-7.4, 0) @TEXT("buf", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, 1) (9, 1)};
-    (7.4, 1) @TEXT("card", size=0.65, halign="middle", valign="middle");
-    @LINE {(10, -1) (9, -1)};
-    (7.4, -1) @TEXT("plug", size=0.65, halign="middle", valign="middle");
-    @LINE {(0, -5) (0, -4)};
-    (0, -3.35) @TEXT("g", size=0.65, halign="middle", valign="middle");
-    @LINE {(-9, -4) (9, -4) (9, 4) (-9, 4) (-9, -4)};
-    @LINE {(-3, 0.8) (-0.4, 0.8) (0.1, 1.2) (0.55, 0.4) (1, 0.8) (3, 0.8)};
-    @LINE {(0, 0.8) (0, -0.25)};
-    @LINE {(-0.9, -0.25) (0.9, -0.25)};
-    @LINE {(-0.9, -0.65) (0.9, -0.65)};
-    @LINE {(0, -0.65) (0, -1.4)};
-    (0, 3) @TEXT("CARD PCB", size=0.82, halign="middle", valign="middle");
-    (-10, 0) @PIN(terminal=1, direction="left");
-    (10, 1) @PIN(terminal=2, direction="right");
-    (10, -1) @PIN(terminal=3, direction="right");
-    (0, -5) @PIN(terminal=4, direction="down");
-    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 5.3)
+  $SYM_TM_PVRE_CARD_PCB = @DEFINE-SYMBOL(box=[-8,-5,8,5]) {
+    @LINE {(-8, 0) (-6, 0) (-5.7, 0.5) (-5.2, -0.5) (-4.7, 0.5) (-4.2, -0.5) (-3.7, 0.5) (-3.2, -0.5) (-3, 0) (-1, 0)};
+    @LINE {(-1, 0) (0, 0)};
+    @LINE {(0, 0) (0.125, 0.382683) (0.25, 0.707107) (0.375, 0.92388) (0.5, 1) (0.625, 0.92388) (0.75, 0.707107) (0.875, 0.382683) (1, 1.22465e-16) (1.125, 0.382683) (1.25, 0.707107) (1.375, 0.92388) (1.5, 1) (1.625, 0.92388) (1.75, 0.707107) (1.875, 0.382683) (2, 2.44929e-16) (2.125, 0.382683) (2.25, 0.707107) (2.375, 0.92388) (2.5, 1) (2.625, 0.92388) (2.75, 0.707107) (2.875, 0.382683) (3, 3.67394e-16) (3.125, 0.382683) (3.25, 0.707107) (3.375, 0.92388) (3.5, 1) (3.625, 0.92388) (3.75, 0.707107) (3.875, 0.382683) (4, 4.89859e-16)};
+    @LINE {(4, 0) (8, 0)};
+    @LINE {(3, 5) (3, 2) (0, 2) (0, 0)};
+    (4.1, 3.6) @TEXT("card", size=0.6, halign="middle", valign="middle");
+    @LINE {(0, 0) (0, -1) (3, -1)};
+    @LINE {(3, -1) (3, -2.72)};
+    @LINE {(2, -2.72) (4, -2.72)};
+    @LINE {(2, -3.28) (4, -3.28)};
+    @LINE {(3, -3.28) (3, -5)};
+    (0, 0) @CIRCLE(radius=0.18, fill="linecolor", linestyle="none");
+    (-8, 0) @PIN(terminal=1, direction="left");
+    (3, 5) @PIN(terminal=2, direction="up");
+    (8, 0) @PIN(terminal=3, direction="right");
+    (3, -5) @PIN(terminal=4, direction="down");
+    ? @TEXT("${name}", key="name", size=0.8, halign="middle", valign="bottom") => @PLACE(0, 6.35)
   };
   # @SELECT-INSTANCE(model="TM_PVRE_CARD_PCB") => @SET-SYMBOL $SYM_TM_PVRE_CARD_PCB
 }

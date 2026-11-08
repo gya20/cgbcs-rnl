@@ -7,7 +7,7 @@ Rset (n set) resistor r=10
 // @RNL {
 //   #Xnoise @PLACE(0, 0);
 //   #Rset @PLACE(35, 0);
-//   (35, -3.7) @TEXT("r=10", size=0.68, halign="middle");
+//   (35, 1.45) @TEXT("Rset  10", size=0.76, halign="middle");
 //   %io_cmd = $IO_PORT @ATTACH &cmd => @PLACE(-16, 0) => @ORIENT("R0");
 //   &cmd @WIRE(mode="straight") {%io_cmd:p #Xnoise:1};
 //   %io_set = $IO_PORT @ATTACH &set => @PLACE(44, 0) => @ORIENT("R180");

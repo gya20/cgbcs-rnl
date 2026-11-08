@@ -6,14 +6,14 @@ Xesl (p t g) TM_REF_LINE rs=rr le=ll
 Cstore (t g) capacitor c=cc
 // @RNL {
 //   #Xesl @PLACE(0, 0);
-//   #Cstore @PLACE(35, 0);
-//   (35, -3.7) @TEXT("c=cc", size=0.68, halign="middle");
-//   %io_p = $IO_PORT @ATTACH &p => @PLACE(-16, 0) => @ORIENT("R0");
+//   #Cstore @PLACE(14, -6) => @ORIENT("R270");
+//   (15.5, -6) @TEXT("Cstore  cc", size=0.76, halign="start");
+//   %io_p = $IO_PORT @ATTACH &p => @PLACE(-14, 0) => @ORIENT("R0");
 //   &p @WIRE(mode="straight") {%io_p:p #Xesl:1};
 //   %io_g = $IO_PORT @ATTACH &g => @PLACE(0, -11) => @ORIENT("R90");
 //   &g @WIRE(mode="straight") {%io_g:p #Xesl:3};
-//   &t @WIRE(mode="straight") {#Xesl:2 #Cstore:1};
-//   %ground0 = $GROUND @ATTACH &g => @PLACE(40, 0);
+//   &t @WIRE(mode="straight") {#Xesl:2 (14, 0) #Cstore:1};
+//   %ground0 = $GROUND @ATTACH &g => @PLACE(14, -11);
 //   &g @WIRE(mode="straight") {#Cstore:2 %ground0:p}
 // }
 ends TM_REF_CAPBR

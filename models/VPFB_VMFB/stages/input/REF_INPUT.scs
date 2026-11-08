@@ -9,36 +9,36 @@ Co (ref g) capacitor c=10u
 Coh (ref g) capacitor c=100n
 // @RNL {
 //   #Rs @PLACE(0, 0);
-//   (0, -3.7) @TEXT("r=10", size=0.68, halign="middle");
-//   #Cin @PLACE(35, 0);
-//   (35, -3.7) @TEXT("c=10u", size=0.68, halign="middle");
-//   #Ch @PLACE(70, 0);
-//   (70, -3.7) @TEXT("c=100n", size=0.68, halign="middle");
-//   #Xu1 @PLACE(105, 0);
-//   #Co @PLACE(0, -23);
-//   (0, -26.7) @TEXT("c=10u", size=0.68, halign="middle");
-//   #Coh @PLACE(35, -23);
-//   (35, -26.7) @TEXT("c=100n", size=0.68, halign="middle");
+//   (0, 1.45) @TEXT("Rs  10", size=0.76, halign="middle");
+//   #Cin @PLACE(9, -7) => @ORIENT("R270");
+//   (10.5, -7) @TEXT("Cin  10u", size=0.76, halign="start");
+//   #Ch @PLACE(18, -7) => @ORIENT("R270");
+//   (19.5, -7) @TEXT("Ch  100n", size=0.76, halign="start");
+//   #Xu1 @PLACE(36, 0);
+//   #Co @PLACE(53, -7) => @ORIENT("R270");
+//   (54.5, -7) @TEXT("Co  10u", size=0.76, halign="start");
+//   #Coh @PLACE(63, -7) => @ORIENT("R270");
+//   (64.5, -7) @TEXT("Coh  100n", size=0.76, halign="start");
 //   %io_vin = $IO_PORT @ATTACH &vin => @PLACE(-9, 0) => @ORIENT("R0");
 //   &vin @WIRE(mode="straight") {%io_vin:p #Rs:1};
-//   %io_bias = $IO_PORT @ATTACH &bias => @PLACE(102, -11) => @ORIENT("R90");
+//   %io_bias = $IO_PORT @ATTACH &bias => @PLACE(33, -11) => @ORIENT("R90");
 //   &bias @WIRE(mode="straight") {%io_bias:p #Xu1:2};
-//   %io_ref = $IO_PORT @ATTACH &ref => @PLACE(121, 0) => @ORIENT("R180");
+//   %io_ref = $IO_PORT @ATTACH &ref => @PLACE(52, 0) => @ORIENT("R180");
 //   &ref @WIRE(mode="straight") {%io_ref:p #Xu1:3};
-//   %io_g = $IO_PORT @ATTACH &g => @PLACE(44, 0) => @ORIENT("R180");
+//   %io_g = $IO_PORT @ATTACH &g => @PLACE(9, -16) => @ORIENT("R90");
 //   &g @WIRE(mode="straight") {%io_g:p #Cin:2};
-//   &ref @WIRE(mode="straight") {#Xu1:3 (117, 0) (117, -19) (30, -19) (30, -23) #Coh:1};
-//   &ref @WIRE(mode="straight") {#Coh:1 (30, -23) (30, -26) (-5, -26) (-5, -23) #Co:1};
-//   &vf @WIRE(mode="straight") {#Rs:2 #Cin:1};
-//   &vf @WIRE(mode="straight") {#Cin:1 (30, 0) (30, -3) (65, -3) (65, 0) #Ch:1};
-//   &vf @WIRE(mode="straight") {#Ch:1 (65, 0) (65, -3) (93, -3) (93, 0) #Xu1:1};
-//   %ground0 = $GROUND @ATTACH &g => @PLACE(75, 0);
+//   &ref @WIRE(mode="straight") {#Xu1:3 (53, 0) #Co:1};
+//   &ref @WIRE(mode="straight") {#Co:1 (53, -2) (63, -2) #Coh:1};
+//   &vf @WIRE(mode="straight") {#Rs:2 (9, 0) #Cin:1};
+//   &vf @WIRE(mode="straight") {#Cin:1 (9, -2) (18, -2) #Ch:1};
+//   &vf @WIRE(mode="straight") {#Ch:1 (18, -2) (24, -2) (24, 0) #Xu1:1};
+//   %ground0 = $GROUND @ATTACH &g => @PLACE(18, -12);
 //   &g @WIRE(mode="straight") {#Ch:2 %ground0:p};
-//   %ground1 = $GROUND @ATTACH &g => @PLACE(108, -7);
+//   %ground1 = $GROUND @ATTACH &g => @PLACE(39, -7);
 //   &g @WIRE(mode="straight") {#Xu1:4 %ground1:p};
-//   %ground2 = $GROUND @ATTACH &g => @PLACE(5, -23);
+//   %ground2 = $GROUND @ATTACH &g => @PLACE(53, -12);
 //   &g @WIRE(mode="straight") {#Co:2 %ground2:p};
-//   %ground3 = $GROUND @ATTACH &g => @PLACE(40, -23);
+//   %ground3 = $GROUND @ATTACH &g => @PLACE(63, -12);
 //   &g @WIRE(mode="straight") {#Coh:2 %ground3:p}
 // }
 ends TM_REF_REF_INPUT

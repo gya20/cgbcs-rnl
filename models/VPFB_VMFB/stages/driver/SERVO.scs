@@ -6,22 +6,30 @@ Rs (pad ns) resistor r=1k
 Cs (ns servo) capacitor c=100n
 // @RNL {
 //   #Xu @PLACE(0, 0);
-//   #Rs @PLACE(35, 0);
-//   (35, -3.7) @TEXT("r=1k", size=0.68, halign="middle");
-//   #Cs @PLACE(70, 0);
-//   (70, -3.7) @TEXT("c=100n", size=0.68, halign="middle");
-//   %io_set = $IO_PORT @ATTACH &set => @PLACE(-16, 1) => @ORIENT("R0");
-//   &set @WIRE(mode="straight") {%io_set:p #Xu:1};
-//   %io_pad = $IO_PORT @ATTACH &pad => @PLACE(26, 0) => @ORIENT("R0");
-//   &pad @WIRE(mode="straight") {%io_pad:p #Rs:1};
-//   %io_servo = $IO_PORT @ATTACH &servo => @PLACE(16, 0) => @ORIENT("R180");
-//   &servo @WIRE(mode="straight") {%io_servo:p #Xu:3};
-//   %io_bias = $IO_PORT @ATTACH &bias => @PLACE(-3, -11) => @ORIENT("R90");
-//   &bias @WIRE(mode="straight") {%io_bias:p #Xu:4};
-//   %io_g = $IO_PORT @ATTACH &g => @PLACE(3, -11) => @ORIENT("R90");
-//   &g @WIRE(mode="straight") {%io_g:p #Xu:5};
-//   &servo @WIRE(mode="straight") {#Xu:3 (12, 0) (12, -3) (75, -3) (75, 0) #Cs:2};
-//   &ns @WIRE(mode="straight") {#Xu:2 (-12, -1) (-12, 7) (40, 7) (40, 0) #Rs:2};
-//   &ns @WIRE(mode="straight") {#Rs:2 #Cs:1}
+//   #Rs @PLACE(-16, 2);
+//   (-16, 3.45) @TEXT("Rs  1k", size=0.76, halign="middle");
+//   #Cs @PLACE(0, 12);
+//   (0, 13.45) @TEXT("Cs  100n", size=0.76, halign="middle");
+//   %port_set = $IO_PORT @ATTACH &set => @PLACE(-24,-2) => @ORIENT("R0");
+//   &set @WIRE(mode="straight") {%port_set:p #Xu:1};
+//   %port_bias = $IO_PORT @ATTACH &bias => @PLACE(5,7) => @ORIENT("R180");
+//   &bias @WIRE(mode="straight") {%port_bias:p (-2, 7) #Xu:4};
+//   %ground1 = $GROUND @ATTACH &g => @PLACE(-2,-9);
+//   &g @WIRE(mode="straight") {#Xu:5 %ground1:p};
+//   %j2 = (-9, 2);
+//   $JUNCTION @ATTACH %j2;
+//   %j3 = (14, 0);
+//   $JUNCTION @ATTACH %j3;
+//   &ns @WIRE(mode="straight") {%j2 #Xu:2};
+//   %port_servo = $IO_PORT @ATTACH &servo => @PLACE(21,0) => @ORIENT("R180");
+//   &servo @WIRE(mode="straight") {#Xu:3 %j3 %port_servo:p};
+//   %port_pad = $IO_PORT @ATTACH &pad => @PLACE(-26,2) => @ORIENT("R0");
+//   &pad @WIRE(mode="straight") {%port_pad:p #Rs:1};
+//   &ns @WIRE(mode="straight") {#Rs:2 %j2};
+//   &ns @WIRE(mode="straight") {%j2 (-9, 12) #Cs:1};
+//   &servo @WIRE(mode="straight") {#Cs:2 (14, 12) %j3};
+//   %port_g = $IO_PORT @ATTACH &g => @PLACE(-28,-11) => @ORIENT("R0");
+//   %common = $GROUND @ATTACH &g => @PLACE(-25,-13);
+//   &g @WIRE(mode="straight") {%port_g:p (-25, -11) %common:p}
 // }
 ends TM_REF_SERVO

@@ -8,31 +8,31 @@ Xfast (servo pad drive bias g) TM_REF_FAST rofast=rofast fo=fo f2=f2
 Xport (drive pad die g) TM_REF_REF_PATH ceff=ceff lb=lb
 // @RNL {
 //   #Xset @PLACE(0, 0);
-//   #Xslow @PLACE(35, 0);
-//   #Xfast @PLACE(70, 0);
-//   #Xport @PLACE(105, 0);
-//   %io_ref = $IO_PORT @ATTACH &ref => @PLACE(-16, 0) => @ORIENT("R0");
+//   #Xslow @PLACE(26, 0);
+//   #Xfast @PLACE(52, 0);
+//   #Xport @PLACE(81, 0);
+//   %io_ref = $IO_PORT @ATTACH &ref => @PLACE(-14, 0) => @ORIENT("R0");
 //   &ref @WIRE(mode="straight") {%io_ref:p #Xset:1};
-//   %io_bias = $IO_PORT @ATTACH &bias => @PLACE(32, -11) => @ORIENT("R90");
+//   %io_bias = $IO_PORT @ATTACH &bias => @PLACE(24, 12) => @ORIENT("R270");
 //   &bias @WIRE(mode="straight") {%io_bias:p #Xslow:4};
-//   %io_pad = $IO_PORT @ATTACH &pad => @PLACE(19, -1) => @ORIENT("R0");
+//   %io_pad = $IO_PORT @ATTACH &pad => @PLACE(13, 2) => @ORIENT("R0");
 //   &pad @WIRE(mode="straight") {%io_pad:p #Xslow:2};
-//   %io_die = $IO_PORT @ATTACH &die => @PLACE(121, -1) => @ORIENT("R180");
+//   %io_die = $IO_PORT @ATTACH &die => @PLACE(95, 0) => @ORIENT("R180");
 //   &die @WIRE(mode="straight") {%io_die:p #Xport:3};
 //   %io_g = $IO_PORT @ATTACH &g => @PLACE(0, -11) => @ORIENT("R90");
 //   &g @WIRE(mode="straight") {%io_g:p #Xset:3};
-//   &set @WIRE(mode="straight") {#Xset:2 (23, 0) (23, 1) #Xslow:1};
-//   &servo @WIRE(mode="straight") {#Xslow:3 (58, 0) (58, 1) #Xfast:1};
+//   &set @WIRE(mode="straight") {#Xset:2 (17, 0) (17, -2) #Xslow:1};
+//   &servo @WIRE(mode="straight") {#Xslow:3 (43, 0) (43, -2) #Xfast:1};
 //   &drive @WIRE(mode="straight") {#Xfast:3 #Xport:1};
-//   &pad @WIRE(mode="straight") {#Xslow:2 (23, -1) (23, -6) (58, -6) (58, -1) #Xfast:2};
-//   &pad @WIRE(mode="straight") {#Xfast:2 (59, -1) (59, 7) (117, 7) (117, 1) #Xport:2};
-//   &bias @WIRE(mode="straight") {#Xfast:4 (67, -7)};
-//   (67, -8) @TEXT("bias", size=0.7, halign="middle", valign="middle");
-//   %ground0 = $GROUND @ATTACH &g => @PLACE(38, -7);
+//   &pad @WIRE(mode="straight") {#Xslow:2 (17, 2) (17, 8) (43, 8) (43, 2) #Xfast:2};
+//   &pad @WIRE(mode="straight") {#Xfast:2 (43, 2) (43, 8) (84, 8) #Xport:2};
+//   &bias @WIRE(mode="straight") {#Xfast:4 (50, 8)};
+//   (50, 9) @TEXT("bias", size=0.7, halign="middle", valign="middle");
+//   %ground0 = $GROUND @ATTACH &g => @PLACE(24, -8);
 //   &g @WIRE(mode="straight") {#Xslow:5 %ground0:p};
-//   %ground1 = $GROUND @ATTACH &g => @PLACE(73, -7);
+//   %ground1 = $GROUND @ATTACH &g => @PLACE(50, -8);
 //   &g @WIRE(mode="straight") {#Xfast:5 %ground1:p};
-//   %ground2 = $GROUND @ATTACH &g => @PLACE(105, -7);
+//   %ground2 = $GROUND @ATTACH &g => @PLACE(84, -7);
 //   &g @WIRE(mode="straight") {#Xport:4 %ground2:p}
 // }
 ends TM_REF_REF_CH

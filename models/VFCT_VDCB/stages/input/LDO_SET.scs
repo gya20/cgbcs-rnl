@@ -9,32 +9,32 @@ Rset (set g) resistor r=rt
 Cset (set g) capacitor c=4.7u
 // @RNL {
 //   #Rin @PLACE(0, 0);
-//   (0, -3.7) @TEXT("r=1", size=0.68, halign="middle");
-//   #Cin @PLACE(35, 0);
-//   (35, -3.7) @TEXT("c=22u", size=0.68, halign="middle");
-//   #Chf @PLACE(70, 0);
-//   (70, -3.7) @TEXT("c=100n", size=0.68, halign="middle");
-//   #Rset @PLACE(105, 0);
-//   (105, -3.7) @TEXT("r=rt", size=0.68, halign="middle");
-//   #Cset @PLACE(0, -23);
-//   (0, -26.7) @TEXT("c=4.7u", size=0.68, halign="middle");
+//   (0, 1.45) @TEXT("Rin  1", size=0.76, halign="middle");
+//   #Cin @PLACE(9, -7) => @ORIENT("R270");
+//   (10.5, -7) @TEXT("Cin  22u", size=0.76, halign="start");
+//   #Chf @PLACE(18, -7) => @ORIENT("R270");
+//   (19.5, -7) @TEXT("Chf  100n", size=0.76, halign="start");
+//   #Rset @PLACE(34, -7) => @ORIENT("R270");
+//   (35.5, -7) @TEXT("Rset  rt", size=0.76, halign="start");
+//   #Cset @PLACE(45, -7) => @ORIENT("R270");
+//   (46.5, -7) @TEXT("Cset  4.7u", size=0.76, halign="start");
 //   %io_vin = $IO_PORT @ATTACH &vin => @PLACE(-9, 0) => @ORIENT("R0");
 //   &vin @WIRE(mode="straight") {%io_vin:p #Rin:1};
 //   %io_bias = $IO_PORT @ATTACH &bias => @PLACE(-16, -25);
-//   %io_set = $IO_PORT @ATTACH &set => @PLACE(96, 0) => @ORIENT("R0");
+//   %io_set = $IO_PORT @ATTACH &set => @PLACE(34, 2) => @ORIENT("R270");
 //   &set @WIRE(mode="straight") {%io_set:p #Rset:1};
 //   %io_localin = $IO_PORT @ATTACH &localin => @PLACE(9, 0) => @ORIENT("R180");
 //   &localin @WIRE(mode="straight") {%io_localin:p #Rin:2};
-//   %io_g = $IO_PORT @ATTACH &g => @PLACE(44, 0) => @ORIENT("R180");
+//   %io_g = $IO_PORT @ATTACH &g => @PLACE(9, -16) => @ORIENT("R90");
 //   &g @WIRE(mode="straight") {%io_g:p #Cin:2};
-//   &set @WIRE(mode="straight") {#Rset:1 (100, 0) (100, -19) (-5, -19) (-5, -23) #Cset:1};
-//   &localin @WIRE(mode="straight") {#Rin:2 #Cin:1};
-//   &localin @WIRE(mode="straight") {#Cin:1 (30, 0) (30, -3) (65, -3) (65, 0) #Chf:1};
-//   %ground0 = $GROUND @ATTACH &g => @PLACE(75, 0);
+//   &set @WIRE(mode="straight") {#Rset:1 (34, -2) (45, -2) #Cset:1};
+//   &localin @WIRE(mode="straight") {#Rin:2 (9, 0) #Cin:1};
+//   &localin @WIRE(mode="straight") {#Cin:1 (9, -2) (18, -2) #Chf:1};
+//   %ground0 = $GROUND @ATTACH &g => @PLACE(18, -12);
 //   &g @WIRE(mode="straight") {#Chf:2 %ground0:p};
-//   %ground1 = $GROUND @ATTACH &g => @PLACE(110, 0);
+//   %ground1 = $GROUND @ATTACH &g => @PLACE(34, -12);
 //   &g @WIRE(mode="straight") {#Rset:2 %ground1:p};
-//   %ground2 = $GROUND @ATTACH &g => @PLACE(5, -23);
+//   %ground2 = $GROUND @ATTACH &g => @PLACE(45, -12);
 //   &g @WIRE(mode="straight") {#Cset:2 %ground2:p}
 // }
 ends TM_LDO_LDO_SET
